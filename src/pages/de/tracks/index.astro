@@ -1,0 +1,105 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import content from '../../../data/content.json';
+
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+const tracks = content.tracks;
+---
+
+<Layout
+  title={isEn ? 'Tracks — DJ Except4' : 'Tracks — DJ Except4'}
+  description={isEn ? 'All tracks by DJ Except4 — Uplifting Trance, Vocal Trance, Emotional Trance.' : 'Alle Tracks von DJ Except4 — Uplifting Trance, Vocal Trance, Emotional Trance.'}
+  image={`/assets/DJ_Except4-Logo.png`}
+  type="music.album"
+  locale={locale}
+>
+  <section class="tracks-page" aria-labelledby="tracks-heading">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">{isEn ? 'Music' : 'Musik'}</p>
+        <h1 id="tracks-heading">{isEn ? 'Tracks' : 'Tracks'}</h1>
+      </div>
+
+      <div class="tracks-grid">
+        {tracks.map((track) => (
+          <a href={`/${locale}/tracks/${track.slug}/`} class="track-card">
+            <div class="track-cover">
+              <img src={track.files.cover} alt={track.title} width="300" height="300" loading="lazy" />
+            </div>
+            <div class="track-info">
+              <span class="track-genre">{track.genre}</span>
+              <h3>{track.title}</h3>
+              <p class="track-style">{isEn ? track.styleEn : track.style}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .tracks-page {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+  }
+
+  .tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-2xl);
+  }
+
+  .track-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--dj-text-primary);
+    transition: all var(--transition-normal);
+  }
+
+  .track-card:hover {
+    border-color: var(--dj-accent-cyan);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .track-cover img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .track-info {
+    padding: var(--space-lg);
+  }
+
+  .track-genre {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--dj-accent-cyan);
+  }
+
+  .track-info h3 {
+    margin: var(--space-sm) 0;
+    font-size: 1.1rem;
+  }
+
+  .track-style {
+    color: var(--dj-text-muted);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .section-heading {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+</style>
