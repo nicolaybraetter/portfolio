@@ -8,65 +8,145 @@ const tracks = content.tracks;
 const site = content.site;
 const locale = Astro.currentLocale || 'de';
 const isEn = locale === 'en';
+const primaryTrack = tracks[0];
+const youtubeVideos = tracks.filter(t => t.youtube?.videoId).slice(0, 4);
 ---
 
 <Layout
   title={site.name + ' — ' + (isEn ? site.taglineEn : site.tagline)}
   description={isEn ? site.descriptionEn : site.description}
-  image={`/assets/DJ_Except4-Logo.png`}
+  image="/assets/DJ_Except4-Logo-1200.webp"
   type="website"
   locale={locale}
 >
-  <section class="hero" aria-labelledby="hero-heading">
-    <div class="container">
-      <p class="eyebrow">{isEn ? 'DJ & Producer' : 'DJ & Producer'}</p>
-      <h1 id="hero-heading">{isEn ? 'DJ Except4' : 'DJ Except4'}</h1>
-      <p class="lead">{isEn ? site.taglineEn : site.tagline}</p>
-      <div class="hero-actions">
-        <a href={`/${locale}/tracks/`} class="button button-primary">
-          {isEn ? 'Listen Now' : 'Musik hören'}
+  <!-- Hero Section with Wallpaper Background -->
+  <section class="hero" aria-labelledby="hero-heading" data-astro-cid-ctkvyxq6>
+    <div class="hero-bg" data-astro-cid-ctkvyxq6></div>
+    <div class="container hero-content" data-astro-cid-ctkvyxq6>
+      <div class="hero-avatar" data-astro-cid-ctkvyxq6>
+        <img src="/media/youtube/avatar-900.webp" alt="DJ Except4 Avatar" width="120" height="120" loading="eager" data-astro-cid-ctkvyxq6 />
+      </div>
+      <p class="eyebrow" data-astro-cid-ctkvyxq6>{isEn ? 'DJ & Producer' : 'DJ & Producer'}</p>
+      <h1 id="hero-heading" data-astro-cid-ctkvyxq6>DJ Except4</h1>
+      <p class="lead" data-astro-cid-ctkvyxq6>{isEn ? site.taglineEn : site.tagline}</p>
+      <div class="hero-actions" data-astro-cid-ctkvyxq6>
+        <a href={`/${locale}/tracks/`} class="button button-primary" data-astro-cid-ctkvyxq6>
+          {isEn ? '♫ Listen Now' : '♫ Musik hören'}
         </a>
-        <a href={`/${locale}/bio/`} class="button button-secondary">
-          {isEn ? 'Read Bio' : 'Bio lesen'}
+        <a href={`/${locale}/bio/`} class="button button-secondary" data-astro-cid-ctkvyxq6>
+          {isEn ? '📖 Read Bio' : '📖 Bio lesen'}
         </a>
       </div>
     </div>
   </section>
 
-  <section class="latest-track" aria-labelledby="latest-heading">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">{isEn ? 'Latest Release' : 'Neueste Veröffentlichung'}</p>
-        <h2 id="latest-heading">{isEn ? 'Latest Track' : 'Neuester Track'}</h2>
+  <!-- YouTube Video Showcase -->
+  <section class="youtube-section" aria-labelledby="youtube-heading" data-astro-cid-ctkvyxq6>
+    <div class="container" data-astro-cid-ctkvyxq6>
+      <div class="section-heading" data-astro-cid-ctkvyxq6>
+        <p class="eyebrow" data-astro-cid-ctkvyxq6>▶ YouTube</p>
+        <h2 id="youtube-heading" data-astro-cid-ctkvyxq6>{isEn ? 'Latest Videos' : 'Neueste Videos'}</h2>
+      </div>
+      <div class="video-grid" data-astro-cid-ctkvyxq6>
+        {youtubeVideos.map((track) => (
+          <a href={track.youtube.url} target="_blank" rel="noopener" class="video-card" data-astro-cid-ctkvyxq6>
+            <div class="video-thumb" data-astro-cid-ctkvyxq6>
+              <img
+                src={`/media/youtube/thumb-${track.youtube.videoId}-maxres.jpg`}
+                alt={track.title}
+                width="400"
+                height="225"
+                loading="lazy"
+                decoding="async"
+                data-astro-cid-ctkvyxq6
+              />
+              <span class="play-icon" aria-hidden="true" data-astro-cid-ctkvyxq6>▶</span>
+            </div>
+            <div class="video-info" data-astro-cid-ctkvyxq6>
+              <h3 data-astro-cid-ctkvyxq6>{track.title}</h3>
+              <span class="track-genre" data-astro-cid-ctkvyxq6>{track.genre}</span>
+            </div>
+          </a>
+        ))}
+        <a href="https://www.youtube.com/@DJExcept4" target="_blank" rel="noopener" class="video-card video-card-channel" data-astro-cid-ctkvyxq6>
+          <div class="channel-banner" data-astro-cid-ctkvyxq6>
+            <img src="/media/youtube/channel-banner.webp" alt="DJ Except4 YouTube Channel" width="400" height="225" loading="lazy" decoding="async" data-astro-cid-ctkvyxq6 />
+            <div class="channel-overlay" data-astro-cid-ctkvyxq6>
+              <img src="/media/youtube/avatar-900.webp" alt="DJ Except4" width="64" height="64" loading="lazy" decoding="async" data-astro-cid-ctkvyxq6 />
+              <span data-astro-cid-ctkvyxq6>YouTube Channel</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Track -->
+  <section class="latest-track" aria-labelledby="latest-heading" data-astro-cid-ctkvyxq6>
+    <div class="container" data-astro-cid-ctkvyxq6>
+      <div class="section-heading" data-astro-cid-ctkvyxq6>
+        <p class="eyebrow" data-astro-cid-ctkvyxq6>{isEn ? 'Latest Release' : 'Neueste Veröffentlichung'}</p>
+        <h2 id="latest-heading" data-astro-cid-ctkvyxq6>{isEn ? 'Latest Track' : 'Neuester Track'}</h2>
       </div>
       {tracks.length > 0 && (
-        <div class="latest-grid">
-          <div class="latest-cover">
+        <div class="latest-grid" data-astro-cid-ctkvyxq6>
+          <div class="latest-cover" data-astro-cid-ctkvyxq6>
             <img
-              src={tracks[0].files.cover}
-              alt={`Cover von ${tracks[0].title}`}
+              src={`/media/youtube/thumb-${primaryTrack.youtube.videoId}-maxres.jpg`}
+              alt={`Cover von ${primaryTrack.title}`}
               width="400"
               height="400"
               loading="eager"
+              data-astro-cid-ctkvyxq6
             />
           </div>
-          <div class="latest-info">
-            <span class="track-genre">{tracks[0].genre}</span>
-            <h3>{tracks[0].title}</h3>
-            <p>{isEn ? tracks[0].descriptionEn : tracks[0].descriptionDE || tracks[0].description}</p>
-            <Player
-              trackId={tracks[0].id}
-              mp3Url={tracks[0].files.mp3}
-              coverUrl={tracks[0].files.cover}
-              title={tracks[0].title}
-            />
-            <div class="latest-actions">
-              {tracks[0].youtube?.videoId && (
-                <a href={tracks[0].youtube.url} target="_blank" rel="noopener" class="button button-secondary">
+          <div class="latest-info" data-astro-cid-ctkvyxq6>
+            <span class="track-genre" data-astro-cid-ctkvyxq6>{primaryTrack.genre}</span>
+            <h3 data-astro-cid-ctkvyxq6>{primaryTrack.title}</h3>
+            <p data-astro-cid-ctkvyxq6>{isEn ? primaryTrack.descriptionEn : primaryTrack.descriptionDE || primaryTrack.description}</p>
+            <div class="player-container" id={`player-${primaryTrack.id}`} role="region" aria-label={`Audio-Player: ${primaryTrack.title}`} data-astro-cid-g2mknjow>
+              <div class="player-wrapper" data-astro-cid-g2mknjow>
+                <div class="player-cover" data-astro-cid-g2mknjow>
+                  <img src={`/media/youtube/thumb-${primaryTrack.youtube.videoId}-maxres.jpg`} alt={`Cover von ${primaryTrack.title}`} width="200" height="200" loading="lazy" decoding="async" data-astro-cid-g2mknjow />
+                </div>
+                <div class="player-info" data-astro-cid-g2mknjow>
+                  <h3 class="player-title" data-astro-cid-g2mknjow>{primaryTrack.title}</h3>
+                  <p class="player-artist" data-astro-cid-g2mknjow>DJ Except4</p>
+                </div>
+                <div class="player-waveform" id={`waveform-${primaryTrack.id}`} aria-hidden="true" data-astro-cid-g2mknjow></div>
+                <div class="player-controls" data-astro-cid-g2mknjow>
+                  <button class="player-btn" id={`btn-play-${primaryTrack.id}`} aria-label="Abspielen" type="button" data-astro-cid-g2mknjow>
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" data-astro-cid-g2mknjow><path d="M8 5v14l11-7z" data-astro-cid-g2mknjow></path></svg>
+                  </button>
+                  <button class="player-btn" id={`btn-pause-${primaryTrack.id}`} aria-label="Pause" type="button" style="display:none" data-astro-cid-g2mknjow>
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" data-astro-cid-g2mknjow><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" data-astro-cid-g2mknjow></path></svg>
+                  </button>
+                  <div class="player-progress" data-astro-cid-g2mknjow>
+                    <span class="player-time" id={`time-current-${primaryTrack.id}`} aria-live="polite" data-astro-cid-g2mknjow>0:00</span>
+                    <div class="progress-bar" id={`progress-${primaryTrack.id}`} role="progressbar" aria-label="Wiedergabe-Fortschritt" data-astro-cid-g2mknjow>
+                      <div class="progress-fill" id={`fill-${primaryTrack.id}`} data-astro-cid-g2mknjow></div>
+                    </div>
+                    <span class="player-time" id={`time-duration-${primaryTrack.id}`} data-astro-cid-g2mknjow>0:00</span>
+                  </div>
+                  <div class="player-volume" data-astro-cid-g2mknjow>
+                    <label for={`volume-${primaryTrack.id}`} class="sr-only" data-astro-cid-g2mknjow>Lautstärke</label>
+                    <input type="range" id={`volume-${primaryTrack.id}`} class="volume-slider" min="0" max="100" value="80" aria-label="Lautstärke" data-astro-cid-g2mknjow />
+                  </div>
+                </div>
+              </div>
+              <audio id={`audio-${primaryTrack.id}`} preload="metadata" crossorigin="anonymous" data-track-id={primaryTrack.id} data-astro-cid-g2mknjow>
+                <source src={primaryTrack.files.mp3} type="audio/mpeg" data-astro-cid-g2mknjow />
+                <source src={primaryTrack.files.flac} type="audio/flac" data-astro-cid-g2mknjow />
+                Dein Browser unterstützt das Audio-Element nicht.
+              </audio>
+            </div>
+            <div class="latest-actions" data-astro-cid-ctkvyxq6>
+              {primaryTrack.youtube?.videoId && (
+                <a href={primaryTrack.youtube.url} target="_blank" rel="noopener" class="button button-secondary" data-astro-cid-ctkvyxq6>
                   ▶ YouTube
                 </a>
               )}
-              <a href={`/${locale}/tracks/${tracks[0].slug}/`} class="button button-primary">
+              <a href={`/${locale}/tracks/${primaryTrack.slug}/`} class="button button-primary" data-astro-cid-ctkvyxq6>
                 {isEn ? 'Details' : 'Details ansehen'}
               </a>
             </div>
@@ -76,13 +156,14 @@ const isEn = locale === 'en';
     </div>
   </section>
 
-  <section class="tracks-section" aria-labelledby="tracks-heading">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">{isEn ? 'Discography' : 'Diskografie'}</p>
-        <h2 id="tracks-heading">{isEn ? 'All Tracks' : 'Alle Tracks'}</h2>
+  <!-- Tracks Grid -->
+  <section class="tracks-section" aria-labelledby="tracks-heading" data-astro-cid-ctkvyxq6>
+    <div class="container" data-astro-cid-ctkvyxq6>
+      <div class="section-heading" data-astro-cid-ctkvyxq6>
+        <p class="eyebrow" data-astro-cid-ctkvyxq6>{isEn ? 'Discography' : 'Diskografie'}</p>
+        <h2 id="tracks-heading" data-astro-cid-ctkvyxq6>{isEn ? 'All Tracks' : 'Alle Tracks'}</h2>
       </div>
-      <div class="track-grid">
+      <div class="track-grid" data-astro-cid-ctkvyxq6>
         {tracks.map((track) => (
           <TrackCard track={track} locale={locale} />
         ))}
@@ -90,16 +171,72 @@ const isEn = locale === 'en';
     </div>
   </section>
 
-  <section class="social-section" aria-labelledby="social-heading">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">{isEn ? 'Follow' : 'Folge mir'}</p>
-        <h2 id="social-heading">{isEn ? 'Follow DJ Except4' : 'Folge DJ Except4'}</h2>
+  <!-- DistroKid Promotion -->
+  <section class="promo-section" aria-labelledby="promo-heading" data-astro-cid-ctkvyxq6>
+    <div class="container" data-astro-cid-ctkvyxq6>
+      <div class="promo-card" data-astro-cid-ctkvyxq6>
+        <div class="promo-image" data-astro-cid-ctkvyxq6>
+          <img src="/media/youtube/channel-banner.webp" alt="DistroKid Music Distribution" width="600" height="200" loading="lazy" decoding="async" data-astro-cid-ctkvyxq6 />
+        </div>
+        <div class="promo-content" data-astro-cid-ctkvyxq6>
+          <span class="track-genre" data-astro-cid-ctkvyxq6>🎵 {isEn ? 'For Musicians' : 'Für Musiker'}</span>
+          <h3 id="promo-heading" data-astro-cid-ctkvyxq6>{isEn ? 'DistroKid — Distribute Your Music' : 'DistroKid — Verteile deine Musik'}</h3>
+          <p data-astro-cid-ctkvyxq6>{isEn ? 'Upload your tracks to Spotify, Apple Music, TikTok, and 30+ platforms. Free to join, keep 100% of your royalties.' : 'Lade deine Tracks auf Spotify, Apple Music, TikTok und 30+ Plattformen hoch. Kostenlos, 100% deiner Tantiemen bleiben dir.'}</p>
+          <a href="https://distrokid.com/djexcept4" target="_blank" rel="noopener" class="button button-primary" data-astro-cid-ctkvyxq6>
+            {isEn ? '🎧 Join DistroKid' : '🎧 Jetzt bei DistroKid'}
+          </a>
+        </div>
       </div>
-      <div class="social-links">
+    </div>
+  </section>
+
+  <!-- Music Platform Logos -->
+  <section class="logos-section" aria-labelledby="logos-heading" data-astro-cid-ctkvyxq6>
+    <div class="container" data-astro-cid-ctkvyxq6>
+      <div class="section-heading" data-astro-cid-ctkvyxq6>
+        <p class="eyebrow" data-astro-cid-ctkvyxq6>▶ {isEn ? 'Available On' : 'Erhältlich auf'}</p>
+        <h2 id="logos-heading" data-astro-cid-ctkvyxq6>{isEn ? 'Listen Everywhere' : 'Überall hören'}</h2>
+      </div>
+      <div class="logos-grid" data-astro-cid-ctkvyxq6>
+        <div class="logo-item" data-astro-cid-ctkvyxq6>
+          <img src="/logos/spotify.svg" alt="Spotify" width="48" height="48" loading="lazy" decoding="async" data-astro-cid-ctkvyxq6 />
+          <span data-astro-cid-ctkvyxq6>Spotify</span>
+        </div>
+        <div class="logo-item" data-astro-cid-ctkvyxq6>
+          <img src="/logos/apple-music.svg" alt="Apple Music" width="48" height="48" loading="lazy" decoding="async" data-astro-cid-ctkvyxq6 />
+          <span data-astro-cid-ctkvyxq6>Apple Music</span>
+        </div>
+        <div class="logo-item" data-astro-cid-ctkvyxq6>
+          <img src="/logos/youtube-music.svg" alt="YouTube Music" width="48" height="48" loading="lazy" decoding="async" data-astro-cid-ctkvyxq6 />
+          <span data-astro-cid-ctkvyxq6>YouTube Music</span>
+        </div>
+        <div class="logo-item" data-astro-cid-ctkvyxq6>
+          <img src="/logos/amazon-music.svg" alt="Amazon Music" width="48" height="48" loading="lazy" decoding="async" data-astro-cid-ctkvyxq6 />
+          <span data-astro-cid-ctkvyxq6>Amazon Music</span>
+        </div>
+        <div class="logo-item" data-astro-cid-ctkvyxq6>
+          <img src="/logos/deezer.svg" alt="Deezer" width="48" height="48" loading="lazy" decoding="async" data-astro-cid-ctkvyxq6 />
+          <span data-astro-cid-ctkvyxq6>Deezer</span>
+        </div>
+        <div class="logo-item" data-astro-cid-ctkvyxq6>
+          <img src="/logos/tiktok.svg" alt="TikTok" width="48" height="48" loading="lazy" decoding="async" data-astro-cid-ctkvyxq6 />
+          <span data-astro-cid-ctkvyxq6>TikTok</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Links -->
+  <section class="social-section" aria-labelledby="social-heading" data-astro-cid-ctkvyxq6>
+    <div class="container" data-astro-cid-ctkvyxq6>
+      <div class="section-heading" data-astro-cid-ctkvyxq6>
+        <p class="eyebrow" data-astro-cid-ctkvyxq6>{isEn ? 'Follow' : 'Folge mir'}</p>
+        <h2 id="social-heading" data-astro-cid-ctkvyxq6>{isEn ? 'Follow DJ Except4' : 'Folge DJ Except4'}</h2>
+      </div>
+      <div class="social-links" data-astro-cid-ctkvyxq6>
         {content.social.instagram.url && (
-          <a href={content.social.instagram.url} target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true">
+          <a href={content.social.instagram.url} target="_blank" rel="noopener" class="social-link" aria-label="Instagram" data-astro-cid-ctkvyxq6>
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true" data-astro-cid-ctkvyxq6>
               <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" fill="none"/>
               <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
               <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
@@ -108,8 +245,8 @@ const isEn = locale === 'en';
           </a>
         )}
         {content.social.distrokid.url && (
-          <a href={content.social.distrokid.url} target="_blank" rel="noopener" class="social-link" aria-label="DistroKid">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true">
+          <a href={content.social.distrokid.url} target="_blank" rel="noopener" class="social-link" aria-label="DistroKid" data-astro-cid-ctkvyxq6>
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true" data-astro-cid-ctkvyxq6>
               <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2" fill="none"/>
               <text x="12" y="17" text-anchor="middle" font-size="10" font-weight="bold" fill="currentColor">DK</text>
             </svg>
@@ -117,8 +254,8 @@ const isEn = locale === 'en';
           </a>
         )}
         {content.social.youtube.url && (
-          <a href={content.social.youtube.url} target="_blank" rel="noopener" class="social-link" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true">
+          <a href={content.social.youtube.url} target="_blank" rel="noopener" class="social-link" aria-label="YouTube" data-astro-cid-ctkvyxq6>
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true" data-astro-cid-ctkvyxq6>
               <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" fill="none"/>
               <polygon points="9.5,7 16.5,12 9.5,17" fill="currentColor" stroke="none"/>
             </svg>
@@ -129,39 +266,65 @@ const isEn = locale === 'en';
     </div>
   </section>
 
-  <section class="faq-section" aria-labelledby="faq-heading">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">FAQ</p>
-        <h2 id="faq-heading">{isEn ? 'Frequently Asked Questions' : 'Häufige Fragen'}</h2>
+  <!-- FAQ Section -->
+  <section class="faq-section" aria-labelledby="faq-heading" data-astro-cid-ctkvyxq6>
+    <div class="container" data-astro-cid-ctkvyxq6>
+      <div class="section-heading" data-astro-cid-ctkvyxq6>
+        <p class="eyebrow" data-astro-cid-ctkvyxq6>FAQ</p>
+        <h2 id="faq-heading" data-astro-cid-ctkvyxq6>{isEn ? 'Frequently Asked Questions' : 'Häufige Fragen'}</h2>
       </div>
-      <div class="faq-list">
-        <details>
-          <summary>{isEn ? 'Who is DJ Except4?' : 'Wer ist DJ Except4?'}</summary>
-          <p>{isEn ? content.faq.a1 : content.faq.a1}</p>
-        </details>
-        <details>
-          <summary>{isEn ? 'How can I listen to the music?' : 'Wie kann ich die Musik hören?'}</summary>
-          <p>{isEn ? content.faq.a2 : content.faq.a2}</p>
-        </details>
-        <details>
-          <summary>{isEn ? 'How can I book DJ Except4?' : 'Wie kann ich DJ Except4 buchen?'}</summary>
-          <p>{isEn ? content.faq.a3 : content.faq.a3}</p>
-        </details>
-        <details>
-          <summary>{isEn ? 'Where can I find the music on streaming platforms?' : 'Wo finde ich die Musik auf Streaming-Plattformen?'}</summary>
-          <p>{isEn ? content.faq.a4 : content.faq.a4}</p>
-        </details>
+      <div class="faq-list" data-astro-cid-ctkvyxq6>
+        {content.faq.map((item) => (
+          <details data-astro-cid-ctkvyxq6>
+            <summary data-astro-cid-ctkvyxq6>{isEn ? (item.qEn || item.q) : item.q}</summary>
+            <p data-astro-cid-ctkvyxq6>{isEn ? (item.aEn || item.a) : (item.aDE || item.a)}</p>
+          </details>
+        ))}
       </div>
     </div>
   </section>
 </Layout>
 
 <style>
+  /* Hero with wallpaper background */
   .hero {
+    position: relative;
     padding: clamp(4rem, 10vw, 8rem) 0;
     text-align: center;
-    background: linear-gradient(180deg, var(--dj-bg-primary) 0%, var(--dj-bg-secondary) 100%);
+    overflow: hidden;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10,10,20,0.7) 0%, rgba(10,10,20,0.9) 100%),
+      url('/media/youtube/channel-banner.webp') center/cover no-repeat;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-avatar {
+    margin: 0 auto var(--space-lg);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--dj-accent-cyan);
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0,255,200,0.3);
+  }
+
+  .hero-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .lead {
@@ -179,6 +342,115 @@ const isEn = locale === 'en';
     margin-top: var(--space-xl);
   }
 
+  /* YouTube Video Grid */
+  .youtube-section {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+    background: var(--dj-bg-secondary);
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .video-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .video-thumb {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--dj-bg-primary);
+  }
+
+  .video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .video-card:hover .video-thumb img {
+    transform: scale(1.05);
+  }
+
+  .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: white;
+    pointer-events: none;
+  }
+
+  .video-info {
+    padding: var(--space-md);
+  }
+
+  .video-info h3 {
+    font-size: 1rem;
+    margin: 0 0 var(--space-xs);
+  }
+
+  .channel-banner {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--dj-bg-primary);
+  }
+
+  .channel-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .channel-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(10,10,20,0.9) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    color: white;
+  }
+
+  .channel-overlay img {
+    border-radius: 50%;
+    border: 2px solid var(--dj-accent-cyan);
+  }
+
+  .channel-overlay span {
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  /* Latest Track */
   .latest-track {
     padding: clamp(3rem, 7vw, 5rem) 0;
   }
@@ -217,6 +489,78 @@ const isEn = locale === 'en';
     gap: var(--space-lg);
   }
 
+  /* DistroKid Promo */
+  .promo-section {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+    background: var(--dj-bg-primary);
+  }
+
+  .promo-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .promo-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .promo-content {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .promo-content h3 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  /* Music Platform Logos */
+  .logos-section {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+    background: var(--dj-bg-secondary);
+  }
+
+  .logos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--space-lg);
+    text-align: center;
+  }
+
+  .logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-md);
+    transition: transform var(--transition-fast);
+  }
+
+  .logo-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--dj-accent-cyan);
+  }
+
+  .logo-item span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--dj-text-secondary);
+  }
+
+  /* Social Links */
   .social-links {
     display: flex;
     flex-wrap: wrap;
@@ -231,12 +575,18 @@ const isEn = locale === 'en';
     gap: var(--space-sm);
     color: var(--dj-text-secondary);
     transition: color var(--transition-fast);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--dj-border);
+    min-width: 100px;
   }
 
   .social-link:hover {
     color: var(--dj-accent-cyan);
+    border-color: var(--dj-accent-cyan);
   }
 
+  /* FAQ */
   .faq-section {
     padding: clamp(3rem, 7vw, 5rem) 0;
     background: var(--dj-bg-secondary);
@@ -277,15 +627,27 @@ const isEn = locale === 'en';
     .latest-grid {
       grid-template-columns: 1fr 1fr;
     }
+    .promo-card {
+      grid-template-columns: 2fr 1fr;
+    }
+    .promo-image {
+      order: -1;
+    }
   }
 
   @media (max-width: 640px) {
     .hero {
       padding: var(--space-3xl) 0;
+      min-height: auto;
     }
-
     .track-grid {
       grid-template-columns: 1fr;
+    }
+    .video-grid {
+      grid-template-columns: 1fr;
+    }
+    .logos-grid {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 </style>

@@ -20,14 +20,14 @@
           "keyShort": "Am",
           "files": {
             "mp3": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.mp3",
-        "flac": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.flac",
-        "mp4": "/media/BBH/Bound_Beneath_Heavens.mp4",
-        "cover": "/media/BBH/BBH_1000x1000.png",
-        "youtubeThumb": "/media/BBH/BBH_Youtube.png"
-      },
+            "flac": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.flac",
+            "mp4": "/media/BBH/Bound_Beneath_Heavens.mp4",
+            "cover": "/media/youtube/thumb-BBH-maxres.jpg",
+            "youtubeThumb": "/media/BBH/BBH_Youtube.png"
+          },
       "youtube": {
-        "videoId": "",
-        "url": "",
+        "videoId": "9ZPO6fr4vBw",
+        "url": "https://www.youtube.com/watch?v=9ZPO6fr4vBw",
         "description": "DJ Except4 – Bound Beneath Heavens"
       },
       "distrokid": {
@@ -66,14 +66,14 @@
           "keyShort": "C#m",
           "files": {
             "mp3": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.mp3",
-        "flac": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.flac",
-        "mp4": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.mp4",
-        "cover": "/media/GOAG/GOAG_1000x1000px.png",
-        "youtubeThumb": "/media/GOAG/GOAG_Youtube.png"
-      },
+            "flac": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.flac",
+            "mp4": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.mp4",
+            "cover": "/media/youtube/thumb-GOAG-maxres.jpg",
+            "youtubeThumb": "/media/GOAG/GOAG_Youtube.png"
+          },
       "youtube": {
-        "videoId": "",
-        "url": "",
+        "videoId": "eI4CzfZYdVg",
+        "url": "https://www.youtube.com/watch?v=eI4CzfZYdVg",
         "description": "DJ Except4 – Ghost of a Garden"
       },
       "distrokid": {
@@ -110,14 +110,14 @@
           "keyShort": "F#m",
           "files": {
             "mp3": "/media/MWTB/DJ_Except4-My_Way_to_Breathe.mp3",
-        "flac": "/media/MWTB/DJ_Except4-My_Way_to_Breathe.flac",
-        "mp4": "/media/MWTB/My_Way_to_Breathe.mp4",
-        "cover": "/media/MWTB/MWTB_1000x1000.png",
-        "youtubeThumb": "/media/MWTB/MWTB_Youtube.png"
-      },
+            "flac": "/media/MWTB/DJ_Except4-My_Way_to_Breathe.flac",
+            "mp4": "/media/MWTB/My_Way_to_Breathe.mp4",
+            "cover": "/media/youtube/thumb-MWTB-maxres.jpg",
+            "youtubeThumb": "/media/MWTB/MWTB_Youtube.png"
+          },
       "youtube": {
-        "videoId": "",
-        "url": "",
+        "videoId": "R2oIhhh9Pvg",
+        "url": "https://www.youtube.com/watch?v=R2oIhhh9Pvg",
         "description": "DJ Except4 – My Way to Breathe"
       },
       "distrokid": {
@@ -138,17 +138,17 @@
   ],
   "social": {
     "instagram": {
-      "url": "",
+      "url": "https://www.instagram.com/djexcept4/",
       "label": "Instagram",
       "icon": "instagram"
     },
     "distrokid": {
-      "url": "",
+      "url": "https://distrokid.com/djexcept4",
       "label": "DistroKid",
       "icon": "distrokid"
     },
     "youtube": {
-      "url": "",
+      "url": "https://www.youtube.com/@DJExcept4",
       "label": "YouTube",
       "icon": "youtube"
     }
@@ -157,9 +157,9 @@
     {
       "id": "distrokid-promo",
       "title": "DistroKid — Music Distribution",
-      "url": "",
+      "url": "https://distrokid.com/djexcept4",
       "description": "Distribute your music to all platforms. Free to join, keep 100% of your royalties.",
-      "image": "",
+      "image": "/media/youtube/channel-banner.webp",
       "position": "footer",
       "active": true
     }

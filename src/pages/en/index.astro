@@ -6,31 +6,79 @@ const locale = Astro.currentLocale || 'de';
 const isEn = locale === 'en';
 const tracks = content.tracks;
 const site = content.site;
+const primaryTrack = tracks[0];
+const youtubeVideos = tracks.filter(t => t.youtube?.videoId).slice(0, 4);
 ---
 
 <Layout
   title={site.name + ' — ' + (isEn ? site.taglineEn : site.tagline)}
   description={isEn ? site.descriptionEn : site.description}
-  image={`/assets/DJ_Except4-Logo.png`}
+  image="/assets/DJ_Except4-Logo-1200.webp"
   type="website"
   locale={locale}
 >
+  <!-- Hero Section with Wallpaper Background -->
   <section class="hero" aria-labelledby="hero-heading">
-    <div class="container">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <div class="hero-avatar">
+        <img src="/media/youtube/avatar-900.webp" alt="DJ Except4 Avatar" width="120" height="120" loading="eager" />
+      </div>
       <p class="eyebrow">{isEn ? 'DJ & Producer' : 'DJ & Producer'}</p>
       <h1 id="hero-heading">{isEn ? 'DJ Except4' : 'DJ Except4'}</h1>
       <p class="lead">{isEn ? site.taglineEn : site.tagline}</p>
       <div class="hero-actions">
         <a href={`/${locale}/tracks/`} class="button button-primary">
-          {isEn ? 'Listen Now' : 'Musik hören'}
+          {isEn ? '♫ Listen Now' : '♫ Musik hören'}
         </a>
         <a href={`/${locale}/bio/`} class="button button-secondary">
-          {isEn ? 'Read Bio' : 'Bio lesen'}
+          {isEn ? '📖 Read Bio' : '📖 Bio lesen'}
         </a>
       </div>
     </div>
   </section>
 
+  <!-- YouTube Video Showcase -->
+  <section class="youtube-section" aria-labelledby="youtube-heading">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">▶ YouTube</p>
+        <h2 id="youtube-heading">{isEn ? 'Latest Videos' : 'Neueste Videos'}</h2>
+      </div>
+      <div class="video-grid">
+        {youtubeVideos.map((track) => (
+          <a href={track.youtube.url} target="_blank" rel="noopener" class="video-card">
+            <div class="video-thumb">
+              <img
+                src={`/media/youtube/thumb-${track.youtube.videoId}-maxres.jpg`}
+                alt={track.title}
+                width="400"
+                height="225"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="play-icon" aria-hidden="true">▶</span>
+            </div>
+            <div class="video-info">
+              <h3>{track.title}</h3>
+              <span class="track-genre">{track.genre}</span>
+            </div>
+          </a>
+        ))}
+        <a href="https://www.youtube.com/@DJExcept4" target="_blank" rel="noopener" class="video-card video-card-channel">
+          <div class="channel-banner">
+            <img src="/media/youtube/channel-banner.webp" alt="DJ Except4 YouTube Channel" width="400" height="225" loading="lazy" decoding="async" />
+            <div class="channel-overlay">
+              <img src="/media/youtube/avatar-900.webp" alt="DJ Except4" width="64" height="64" loading="lazy" decoding="async" />
+              <span>YouTube Channel</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Track -->
   <section class="latest-track" aria-labelledby="latest-heading">
     <div class="container">
       <div class="section-heading">
@@ -41,24 +89,24 @@ const site = content.site;
         <div class="latest-grid">
           <div class="latest-cover">
             <img
-              src={tracks[0].files.cover}
-              alt={`Cover von ${tracks[0].title}`}
+              src={`/media/youtube/thumb-${primaryTrack.youtube.videoId}-maxres.jpg`}
+              alt={`Cover von ${primaryTrack.title}`}
               width="400"
               height="400"
               loading="eager"
             />
           </div>
           <div class="latest-info">
-            <span class="track-genre">{tracks[0].genre}</span>
-            <h3>{tracks[0].title}</h3>
-            <p>{isEn ? tracks[0].descriptionEn : tracks[0].descriptionDE || tracks[0].description}</p>
+            <span class="track-genre">{primaryTrack.genre}</span>
+            <h3>{primaryTrack.title}</h3>
+            <p>{isEn ? primaryTrack.descriptionEn : primaryTrack.descriptionDE || primaryTrack.description}</p>
             <div class="latest-actions">
-              {tracks[0].youtube?.videoId && (
-                <a href={tracks[0].youtube.url} target="_blank" rel="noopener" class="button button-secondary">
+              {primaryTrack.youtube?.videoId && (
+                <a href={primaryTrack.youtube.url} target="_blank" rel="noopener" class="button button-secondary">
                   ▶ YouTube
                 </a>
               )}
-              <a href={`/${locale}/tracks/${tracks[0].slug}/`} class="button button-primary">
+              <a href={`/${locale}/tracks/${primaryTrack.slug}/`} class="button button-primary">
                 {isEn ? 'Details' : 'Details ansehen'}
               </a>
             </div>
@@ -68,6 +116,7 @@ const site = content.site;
     </div>
   </section>
 
+  <!-- Tracks Grid -->
   <section class="tracks-section" aria-labelledby="tracks-heading">
     <div class="container">
       <div class="section-heading">
@@ -79,7 +128,7 @@ const site = content.site;
           <article class="track-card" aria-labelledby={`track-${track.slug}`}>
             <div class="track-card-cover">
               <img
-                src={track.files.cover}
+                src={`/media/youtube/thumb-${track.youtube.videoId}-maxres.jpg`}
                 alt={`Cover von ${track.title}`}
                 width="400"
                 height="400"
@@ -110,6 +159,62 @@ const site = content.site;
     </div>
   </section>
 
+  <!-- DistroKid Promotion -->
+  <section class="promo-section" aria-labelledby="promo-heading">
+    <div class="container">
+      <div class="promo-card">
+        <div class="promo-image">
+          <img src="/media/youtube/channel-banner.webp" alt="DistroKid Music Distribution" width="600" height="200" loading="lazy" decoding="async" />
+        </div>
+        <div class="promo-content">
+          <span class="track-genre">🎵 {isEn ? 'For Musicians' : 'Für Musiker'}</span>
+          <h3 id="promo-heading">{isEn ? 'DistroKid — Distribute Your Music' : 'DistroKid — Verteile deine Musik'}</h3>
+          <p>{isEn ? 'Upload your tracks to Spotify, Apple Music, TikTok, and 30+ platforms. Free to join, keep 100% of your royalties.' : 'Lade deine Tracks auf Spotify, Apple Music, TikTok und 30+ Plattformen hoch. Kostenlos, 100% deiner Tantiemen bleiben dir.'}</p>
+          <a href="https://distrokid.com/djexcept4" target="_blank" rel="noopener" class="button button-primary">
+            {isEn ? '🎧 Join DistroKid' : '🎧 Jetzt bei DistroKid'}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Music Platform Logos -->
+  <section class="logos-section" aria-labelledby="logos-heading">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">▶ {isEn ? 'Available On' : 'Erhältlich auf'}</p>
+        <h2 id="logos-heading">{isEn ? 'Listen Everywhere' : 'Überall hören'}</h2>
+      </div>
+      <div class="logos-grid">
+        <div class="logo-item">
+          <img src="/logos/spotify.svg" alt="Spotify" width="48" height="48" loading="lazy" decoding="async" />
+          <span>Spotify</span>
+        </div>
+        <div class="logo-item">
+          <img src="/logos/apple-music.svg" alt="Apple Music" width="48" height="48" loading="lazy" decoding="async" />
+          <span>Apple Music</span>
+        </div>
+        <div class="logo-item">
+          <img src="/logos/youtube-music.svg" alt="YouTube Music" width="48" height="48" loading="lazy" decoding="async" />
+          <span>YouTube Music</span>
+        </div>
+        <div class="logo-item">
+          <img src="/logos/amazon-music.svg" alt="Amazon Music" width="48" height="48" loading="lazy" decoding="async" />
+          <span>Amazon Music</span>
+        </div>
+        <div class="logo-item">
+          <img src="/logos/deezer.svg" alt="Deezer" width="48" height="48" loading="lazy" decoding="async" />
+          <span>Deezer</span>
+        </div>
+        <div class="logo-item">
+          <img src="/logos/tiktok.svg" alt="TikTok" width="48" height="48" loading="lazy" decoding="async" />
+          <span>TikTok</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Links -->
   <section class="social-section" aria-labelledby="social-heading">
     <div class="container">
       <div class="section-heading">
@@ -149,6 +254,7 @@ const site = content.site;
     </div>
   </section>
 
+  <!-- FAQ Section -->
   <section class="faq-section" aria-labelledby="faq-heading">
     <div class="container">
       <div class="section-heading">
@@ -156,22 +262,12 @@ const site = content.site;
         <h2 id="faq-heading">{isEn ? 'Frequently Asked Questions' : 'Häufige Fragen'}</h2>
       </div>
       <div class="faq-list">
-        <details>
-          <summary>{isEn ? 'Who is DJ Except4?' : 'Wer ist DJ Except4?'}</summary>
-          <p>{isEn ? content.faq.a1 : content.faq.a1}</p>
-        </details>
-        <details>
-          <summary>{isEn ? 'How can I listen to the music?' : 'Wie kann ich die Musik hören?'}</summary>
-          <p>{isEn ? content.faq.a2 : content.faq.a2}</p>
-        </details>
-        <details>
-          <summary>{isEn ? 'How can I book DJ Except4?' : 'Wie kann ich DJ Except4 buchen?'}</summary>
-          <p>{isEn ? content.faq.a3 : content.faq.a3}</p>
-        </details>
-        <details>
-          <summary>{isEn ? 'Where can I find the music on streaming platforms?' : 'Wo finde ich die Musik auf Streaming-Plattformen?'}</summary>
-          <p>{isEn ? content.faq.a4 : content.faq.a4}</p>
-        </details>
+        {content.faq.map((item) => (
+          <details>
+            <summary>{isEn ? (item.qEn || item.q) : item.q}</summary>
+            <p>{isEn ? (item.aEn || item.a) : (item.aDE || item.a)}</p>
+          </details>
+        ))}
       </div>
     </div>
   </section>
@@ -179,9 +275,43 @@ const site = content.site;
 
 <style>
   .hero {
+    position: relative;
     padding: clamp(4rem, 10vw, 8rem) 0;
     text-align: center;
-    background: linear-gradient(180deg, var(--dj-bg-primary) 0%, var(--dj-bg-secondary) 100%);
+    overflow: hidden;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10,10,20,0.7) 0%, rgba(10,10,20,0.9) 100%),
+      url('/media/youtube/channel-banner.webp') center/cover no-repeat;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-avatar {
+    margin: 0 auto var(--space-lg);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--dj-accent-cyan);
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0,255,200,0.3);
+  }
+
+  .hero-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .lead {
@@ -197,6 +327,113 @@ const site = content.site;
     justify-content: center;
     gap: var(--space-md);
     margin-top: var(--space-xl);
+  }
+
+  .youtube-section {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+    background: var(--dj-bg-secondary);
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .video-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .video-thumb {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--dj-bg-primary);
+  }
+
+  .video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .video-card:hover .video-thumb img {
+    transform: scale(1.05);
+  }
+
+  .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: white;
+    pointer-events: none;
+  }
+
+  .video-info {
+    padding: var(--space-md);
+  }
+
+  .video-info h3 {
+    font-size: 1rem;
+    margin: 0 0 var(--space-xs);
+  }
+
+  .channel-banner {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--dj-bg-primary);
+  }
+
+  .channel-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .channel-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(10,10,20,0.9) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    color: white;
+  }
+
+  .channel-overlay img {
+    border-radius: 50%;
+    border: 2px solid var(--dj-accent-cyan);
+  }
+
+  .channel-overlay span {
+    font-weight: 700;
+    font-size: 0.85rem;
   }
 
   .latest-track {
@@ -237,6 +474,75 @@ const site = content.site;
     gap: var(--space-lg);
   }
 
+  .promo-section {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+    background: var(--dj-bg-primary);
+  }
+
+  .promo-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .promo-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .promo-content {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .promo-content h3 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .logos-section {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+    background: var(--dj-bg-secondary);
+  }
+
+  .logos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--space-lg);
+    text-align: center;
+  }
+
+  .logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-md);
+    transition: transform var(--transition-fast);
+  }
+
+  .logo-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--dj-accent-cyan);
+  }
+
+  .logo-item span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--dj-text-secondary);
+  }
+
   .social-links {
     display: flex;
     flex-wrap: wrap;
@@ -251,10 +557,15 @@ const site = content.site;
     gap: var(--space-sm);
     color: var(--dj-text-secondary);
     transition: color var(--transition-fast);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--dj-border);
+    min-width: 100px;
   }
 
   .social-link:hover {
     color: var(--dj-accent-cyan);
+    border-color: var(--dj-accent-cyan);
   }
 
   .faq-section {
@@ -297,15 +608,27 @@ const site = content.site;
     .latest-grid {
       grid-template-columns: 1fr 1fr;
     }
+    .promo-card {
+      grid-template-columns: 2fr 1fr;
+    }
+    .promo-image {
+      order: -1;
+    }
   }
 
   @media (max-width: 640px) {
     .hero {
       padding: var(--space-3xl) 0;
+      min-height: auto;
     }
-
     .track-grid {
       grid-template-columns: 1fr;
+    }
+    .video-grid {
+      grid-template-columns: 1fr;
+    }
+    .logos-grid {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 </style>
