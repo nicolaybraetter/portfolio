@@ -3,15 +3,15 @@
     {
       "id": "bound-beneath-heavens",
       "slug": "bound-beneath-heavens",
-      "title": "Bound Beneath Heavens",
-      "titleEn": "Bound Beneath Heavens",
+      "title": "Valhalla Calling",
+      "titleEn": "Valhalla Calling",
       "genre": "Uplifting Trance / Vocal Trance / Emotional Trance",
       "genreEn": "Uplifting Trance / Vocal Trance / Emotional Trance",
       "style": "Epic, melodic, cinematic and euphoric",
       "styleEn": "Epic, melodic, cinematic and euphoric",
-      "description": "Bound Beneath Heavens is an emotional journey through unfulfilled dreams, silent expectations and the painful distance that can grow between two people beneath the same sky.",
-      "descriptionEn": "Bound Beneath Heavens is an emotional journey through unfulfilled dreams, silent expectations and the painful distance that can grow between two people beneath the same sky.",
-      "descriptionDE": "Bound Beneath Heavens ist eine emotionale Reise durch unerfüllte Träume, stille Erwartungen und die schmerzhafte Distanz, die zwischen zwei Menschen unter demselben Himmel wachsen kann.",
+      "description": "Valhalla Calling is a preview track — now available on most platforms. Epic, melodic and cinematic trance with driving energy and emotional melodies.",
+      "descriptionEn": "Valhalla Calling is a preview track — now available on most platforms. Epic, melodic and cinematic trance with driving energy and emotional melodies.",
+      "descriptionDE": "Valhalla Calling ist ein Preview-Track — jetzt auf den meisten Plattformen verfügbar. Epische, melodische und cinematische Trance mit treibender Energie und emotionalen Melodien.",
       "cinematic": true,
           "releaseYear": 2026,
           "releaseDate": "2026-01-15",
@@ -133,50 +133,6 @@
         "melodic trance",
         "DJ Except4",
         "my way to breathe"
-      ]
-    },
-    {
-      "id": "ghost-of-a-garden-spotify",
-      "slug": "ghost-of-a-garden-spotify",
-      "title": "Ghost of a Garden",
-      "titleEn": "Ghost of a Garden",
-      "genre": "Uplifting Trance / Melodic Trance / Atmospheric Trance",
-      "genreEn": "Uplifting Trance / Melodic Trance / Atmospheric Trance",
-      "style": "Mysterious, emotional, futuristic and euphoric",
-      "styleEn": "Mysterious, emotional, futuristic and euphoric",
-      "description": "Ghost of a Garden is a hypnotic uplifting trance journey through fading memories, neon light and a place that still seems alive long after everyone has gone.",
-      "descriptionEn": "Ghost of a Garden is a hypnotic uplifting trance journey through fading memories, neon light and a place that still seems alive long after everyone has gone.",
-      "descriptionDE": "Ghost of a Garden ist eine hypnotische uplifting-trance Reise durch verblassende Erinnerungen, Neonlicht und einen Ort, der noch lebendig scheint, lange nachdem alle gegangen sind.",
-      "cinematic": true,
-      "releaseYear": 2026,
-      "releaseDate": "2026-07-31",
-      "bpm": 140,
-      "key": "C# minor",
-      "keyShort": "C#m",
-      "youtube": {
-        "videoId": "Z4XokcGb2h4",
-        "url": "https://www.youtube.com/watch?v=Z4XokcGb2h4",
-        "description": "DJ Except4 – Ghost of a Garden - Now on Spotify and more"
-      },
-      "files": {
-        "mp3": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.mp3",
-        "flac": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.flac",
-        "mp4": "/media/GOAG/Ghost_of_a_Garden.mp4",
-        "cover": "/media/youtube/thumb-Z4XokcGb2h4-maxres.jpg",
-        "youtubeThumb": "/media/GOAG/GOAG_Youtube.png"
-      },
-      "distrokid": {
-        "url": "",
-        "playlist": ""
-      },
-      "youtubeDescription": "DJ Except4 – Ghost of a Garden - Now on Spotify and more",
-      "keywords": [
-        "uplifting trance",
-        "melodic trance",
-        "atmospheric trance",
-        "cinematic trance",
-        "DJ Except4",
-        "ghost of a garden"
       ]
     }
   ],
