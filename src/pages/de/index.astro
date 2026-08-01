@@ -109,7 +109,7 @@ const youtube = content.youtube || {};
         </a>
       </div>
       <div class="grid-cards youtube-grid">
-        {tracks.slice(0, 3).map((track) => (
+        {tracks.map((track) => (
           <a href={track.youtube?.url || '#'} target="_blank" rel="noopener" class="youtube-card card">
             <div class="youtube-thumb">
               <img
