@@ -1,5 +1,13 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+export async function getStaticPaths() {
+  const content = await import('../../../data/content.json');
+  return content.tracks.map((track) => ({
+    params: { slug: track.slug },
+  }));
+}
+
+import Layout from '../../../layouts/Layout.astro';
+import Player from '../../../components/Player.astro';
 import content from '../../../data/content.json';
 
 const { slug } = Astro.params;

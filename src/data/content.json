@@ -31,7 +31,16 @@
         "playlist": ""
       },
       "youtubeDescription": "DJ Except4 – Bound Beneath Heavens\n\nBound Beneath Heavens by DJ Except4 is an emotional journey through unfulfilled dreams, silent expectations and the painful distance that can grow between two people beneath the same sky.\n\n🎧 Best experienced with headphones\n💙 Turn up the volume and let the music take over\n🔔 Subscribe for more uplifting, emotional and cinematic trance from DJ Except4",
-      "keywords": ["uplifting trance", "vocal trance", "emotional trance", "cinematic trance", "melodic trance", "euphoric trance", "DJ Except4", "bound beneath heavens"]
+      "keywords": [
+        "uplifting trance",
+        "vocal trance",
+        "emotional trance",
+        "cinematic trance",
+        "melodic trance",
+        "euphoric trance",
+        "DJ Except4",
+        "bound beneath heavens"
+      ]
     },
     {
       "id": "ghost-of-a-garden",
@@ -64,7 +73,14 @@
         "playlist": ""
       },
       "youtubeDescription": "DJ Except4 – Ghost of a Garden\n\nGhost of a Garden by DJ Except4 is a hypnotic uplifting trance journey through fading memories, neon light and a place that still seems alive long after everyone has gone.\n\n🎧 Best experienced with headphones\n🌌 Enter the neon garden\n🔔 Subscribe for more emotional, melodic and uplifting trance from DJ Except4",
-      "keywords": ["uplifting trance", "melodic trance", "atmospheric trance", "cinematic trance", "DJ Except4", "ghost of a garden"]
+      "keywords": [
+        "uplifting trance",
+        "melodic trance",
+        "atmospheric trance",
+        "cinematic trance",
+        "DJ Except4",
+        "ghost of a garden"
+      ]
     },
     {
       "id": "my-way-to-breathe",
@@ -97,7 +113,15 @@
         "playlist": ""
       },
       "youtubeDescription": "DJ Except4 – My Way to Breathe\n\nMy Way to Breathe combines driving trance energy, cinematic atmosphere, powerful melodies and emotional vocals.\n\n🎧 Best experienced with headphones\n💙 Turn up the volume and enter the journey\n🔔 Subscribe for more uplifting, emotional and cinematic trance music from DJ Except4",
-      "keywords": ["uplifting trance", "vocal trance", "emotional trance", "cinematic trance", "melodic trance", "DJ Except4", "my way to breathe"]
+      "keywords": [
+        "uplifting trance",
+        "vocal trance",
+        "emotional trance",
+        "cinematic trance",
+        "melodic trance",
+        "DJ Except4",
+        "my way to breathe"
+      ]
     }
   ],
   "social": {
@@ -145,5 +169,47 @@
       "cinematic trance",
       "melodic trance"
     ]
-  }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "titleEn": "Contact",
+    "description": "Hast du Fragen, möchtest du buchen oder zusammenarbeiten? Schreib mir!",
+    "descriptionEn": "Have questions, want to book, or collaborate? Reach out!",
+    "name": "Dein Name",
+    "nameEn": "Your Name",
+    "emailLabel": "E-Mail",
+    "emailLabelEn": "Email",
+    "message": "Nachricht",
+    "messageEn": "Message",
+    "send": "Nachricht senden",
+    "sendEn": "Send Message",
+    "success": "Danke! Ich melde mich bald.",
+    "successEn": "Thanks! I will get back to you soon."
+  },
+  "faq": [
+    {
+      "q": "Was macht DJ Except4?",
+      "a": "DJ Except4 ist ein DJ und Producer, der sich auf Uplifting Trance, Vocal Trance und emotionale elektronische Musik spezialisiert hat.",
+      "qEn": "What does DJ Except4 do?",
+      "aEn": "DJ Except4 is a DJ and producer specializing in uplifting trance, vocal trance, and emotional electronic music."
+    },
+    {
+      "q": "Wo kann ich die Musik hören?",
+      "a": "Du kannst die Tracks auf Spotify, Apple Music, YouTube und allen gängigen Streaming-Plattformen finden.",
+      "qEn": "Where can I listen to the music?",
+      "aEn": "You can find the tracks on Spotify, Apple Music, YouTube, and all major streaming platforms."
+    },
+    {
+      "q": "Kann ich DJ Except4 für ein Event buchen?",
+      "a": "Ja! Schreib mir eine E-Mail an info@djexcept4.de mit deinen Wünschen und ich melde mich zeitnah zurück.",
+      "qEn": "Can I book DJ Except4 for an event?",
+      "aEn": "Yes! Send me an email to info@djexcept4.de with your requests and I will get back to you shortly."
+    },
+    {
+      "q": "Welche Software wird für das Mixing verwendet?",
+      "a": "DJ Except4 nutzt aktuelle DAW-Software und DJ-Hardware für professionelle Live-Sets und Studio-Produktionen.",
+      "qEn": "What software is used for mixing?",
+      "aEn": "DJ Except4 uses current DAW software and DJ hardware for professional live sets and studio productions."
+    }
+  ]
 }
