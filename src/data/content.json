@@ -134,6 +134,43 @@
         "DJ Except4",
         "my way to breathe"
       ]
+    },
+    {
+      "id": "ghost-of-a-garden-spotify",
+      "slug": "ghost-of-a-garden-spotify",
+      "title": "Ghost of a Garden",
+      "titleEn": "Ghost of a Garden",
+      "genre": "Uplifting Trance / Melodic Trance / Atmospheric Trance",
+      "genreEn": "Uplifting Trance / Melodic Trance / Atmospheric Trance",
+      "style": "Mysterious, emotional, futuristic and euphoric",
+      "styleEn": "Mysterious, emotional, futuristic and euphoric",
+      "description": "Ghost of a Garden is a hypnotic uplifting trance journey through fading memories, neon light and a place that still seems alive long after everyone has gone.",
+      "descriptionEn": "Ghost of a Garden is a hypnotic uplifting trance journey through fading memories, neon light and a place that still seems alive long after everyone has gone.",
+      "descriptionDE": "Ghost of a Garden ist eine hypnotische uplifting-trance Reise durch verblassende Erinnerungen, Neonlicht und einen Ort, der noch lebendig scheint, lange nachdem alle gegangen sind.",
+      "cinematic": true,
+      "releaseYear": 2026,
+      "releaseDate": "2026-07-31",
+      "bpm": 140,
+      "key": "C# minor",
+      "keyShort": "C#m",
+      "youtube": {
+        "videoId": "Z4XokcGb2h4",
+        "url": "https://www.youtube.com/watch?v=Z4XokcGb2h4",
+        "description": "DJ Except4 – Ghost of a Garden - Now on Spotify and more"
+      },
+      "distrokid": {
+        "url": "",
+        "playlist": ""
+      },
+      "youtubeDescription": "DJ Except4 – Ghost of a Garden - Now on Spotify and more",
+      "keywords": [
+        "uplifting trance",
+        "melodic trance",
+        "atmospheric trance",
+        "cinematic trance",
+        "DJ Except4",
+        "ghost of a garden"
+      ]
     }
   ],
   "social": {
