@@ -81,11 +81,6 @@ const faqs = content.faq || [];
             </p>
             <p class="track-description">{latestTrack.description}</p>
             <div class="track-actions">
-              {latestTrack.files?.mp3 && (
-                <a href={latestTrack.files.mp3} class="btn btn-primary" download>
-                  {isEn ? 'Download MP3' : 'MP3 herunterladen'}
-                </a>
-              )}
               {latestTrack.youtube?.url && (
                 <a href={latestTrack.youtube.url} class="btn btn-secondary" target="_blank" rel="noopener">
                   {isEn ? 'Watch on YouTube' : 'Auf YouTube ansehen'}

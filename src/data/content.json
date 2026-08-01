@@ -19,7 +19,6 @@
       "key": "A minor",
       "keyShort": "Am",
       "files": {
-        "mp3": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.mp3",
         "flac": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.flac",
         "mp4": "/media/BBH/Bound_Beneath_Heavens.mp4",
         "cover": "/media/youtube/thumb-BBH-maxres.jpg",
@@ -65,7 +64,6 @@
       "key": "C# minor",
       "keyShort": "C#m",
       "files": {
-        "mp3": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.mp3",
         "flac": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.flac",
         "mp4": "/media/BBH/Bound_Beneath_Heavens.mp4",
         "cover": "/media/youtube/thumb-eI4CzfZYdVg-maxres.jpg",
@@ -110,7 +108,6 @@
       "key": "F# minor",
       "keyShort": "F#m",
       "files": {
-        "mp3": "/media/MWTB/DJ_Except4-My_Way_to_Breathe.mp3",
         "flac": "/media/MWTB/DJ_Except4-My_Way_to_Breathe.flac",
         "mp4": "/media/MWTB/My_Way_to_Breathe.mp4",
         "cover": "/media/youtube/thumb-MWTB-maxres.jpg",
@@ -155,7 +152,6 @@
       "key": "C# minor",
       "keyShort": "C#m",
       "files": {
-        "mp3": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.mp3",
         "flac": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.flac",
         "mp4": "/media/GOAG/Ghost_of_a_Garden.mp4",
         "cover": "/media/youtube/thumb-Z4XokcGb2h4-maxres.jpg",
