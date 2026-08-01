@@ -159,7 +159,11 @@
         "description": "DJ Except4 – Ghost of a Garden - Now on Spotify and more"
       },
       "files": {
-        "cover": "/media/youtube/thumb-Z4XokcGb2h4-maxres.jpg"
+        "mp3": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.mp3",
+        "flac": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.flac",
+        "mp4": "/media/GOAG/Ghost_of_a_Garden.mp4",
+        "cover": "/media/youtube/thumb-Z4XokcGb2h4-maxres.jpg",
+        "youtubeThumb": "/media/GOAG/GOAG_Youtube.png"
       },
       "distrokid": {
         "url": "",
