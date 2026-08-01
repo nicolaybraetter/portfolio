@@ -1,0 +1,255 @@
+---
+import Layout from '../../layouts/AdminLayout.astro';
+import content from '../../../data/content.json';
+
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+---
+
+<Layout title={isEn ? 'Admin — Werbung' : 'Admin — Werbung'}>
+  <h1>{isEn ? 'Advertising Management' : 'Werbeverwaltung'}</h1>
+
+  <div class="admin-section">
+    <h2>{isEn ? 'Ad Links' : 'Werbelinks'}</h2>
+    <div class="ad-list" id="ad-list">
+      {content.ads.map((ad) => (
+        <div class="ad-item" data-id={ad.id}>
+          <div class="ad-info">
+            <strong>{ad.title}</strong>
+            <p>{ad.description}</p>
+            <span class={ad.active ? 'status-active' : 'status-inactive'}>
+              {ad.active ? (isEn ? 'Active' : 'Aktiv') : (isEn ? 'Inactive' : 'Inaktiv')}
+            </span>
+          </div>
+          <div class="ad-actions">
+            <button class="btn-edit" data-id={ad.id} aria-label={`Edit ${ad.title}`}>
+              {isEn ? 'Edit' : 'Bearbeiten'}
+            </button>
+            <button class="btn-toggle" data-id={ad.id} aria-label={ad.active ? (isEn ? 'Deactivate' : 'Deaktivieren') : (isEn ? 'Activate' : 'Aktivieren')}>
+              {ad.active ? (isEn ? 'Deactivate' : 'Deaktivieren') : (isEn ? 'Activate' : 'Aktivieren')}
+            </button>
+            <button class="btn-delete" data-id={ad.id} aria-label={`Delete ${ad.title}`}>
+              {isEn ? 'Delete' : 'Löschen'}
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <button class="btn-add" id="btn-add-ad">
+      {isEn ? '+ Add Ad' : '+ Werbung hinzufügen'}
+    </button>
+  </div>
+
+  <!-- Edit Form (hidden by default) -->
+  <div class="admin-form" id="ad-form" style="display: none;">
+    <h3 id="ad-form-title">{isEn ? 'Add New Ad' : 'Neue Werbung hinzufügen'}</h3>
+    <form id="form-ad">
+      <div class="form-group">
+        <label for="ad-title">{isEn ? 'Title' : 'Titel'}</label>
+        <input type="text" id="ad-title" name="title" required />
+      </div>
+      <div class="form-group">
+        <label for="ad-url">{isEn ? 'URL' : 'URL'}</label>
+        <input type="url" id="ad-url" name="url" />
+      </div>
+      <div class="form-group">
+        <label for="ad-description">{isEn ? 'Description' : 'Beschreibung'}</label>
+        <textarea id="ad-description" name="description" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="ad-position">{isEn ? 'Position' : 'Position'}</label>
+        <select id="ad-position" name="position">
+          <option value="hero">{isEn ? 'Hero' : 'Hero'}</option>
+          <option value="sidebar">{isEn ? 'Sidebar' : 'Sidebar'}</option>
+          <option value="inline">{isEn ? 'Inline' : 'Inline'}</option>
+          <option value="footer">{isEn ? 'Footer' : 'Footer'}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="ad-image">{isEn ? 'Image' : 'Bild'}</label>
+        <input type="file" id="ad-image" name="image" accept="image/*" />
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="button button-primary">
+          {isEn ? 'Save' : 'Speichern'}
+        </button>
+        <button type="button" class="button button-secondary" id="btn-cancel-ad">
+          {isEn ? 'Cancel' : 'Abbrechen'}
+        </button>
+      </div>
+    </form>
+  </div>
+</Layout>
+
+<script define:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnAdd = document.getElementById('btn-add-ad');
+    const form = document.getElementById('ad-form');
+    const btnCancel = document.getElementById('btn-cancel-ad');
+
+    if (btnAdd && form) {
+      btnAdd.addEventListener('click', () => {
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+      });
+    }
+
+    if (btnCancel && form) {
+      btnCancel.addEventListener('click', () => {
+        form.style.display = 'none';
+      });
+    }
+
+    // Toggle ad active state
+    document.querySelectorAll('.btn-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        const item = document.querySelector(`.ad-item[data-id="${id}"]`);
+        if (item) {
+          const status = item.querySelector('.status-active, .status-inactive');
+          if (status) {
+            const isActive = status.classList.contains('status-active');
+            status.classList.toggle('status-active', !isActive);
+            status.classList.toggle('status-inactive', isActive);
+            status.textContent = isActive
+              ? (document.documentElement.lang === 'en' ? 'Inactive' : 'Inaktiv')
+              : (document.documentElement.lang === 'en' ? 'Active' : 'Aktiv');
+          }
+        }
+      });
+    });
+
+    // Delete ad
+    document.querySelectorAll('.btn-delete').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        const item = document.querySelector(`.ad-item[data-id="${id}"]`);
+        if (item && confirm('Are you sure you want to delete this ad?')) {
+          item.remove();
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .admin-section {
+    padding: var(--space-xl);
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .ad-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .ad-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md);
+    background: var(--dj-bg-primary);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-md);
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .ad-info strong {
+    color: var(--dj-text-primary);
+  }
+
+  .ad-info p {
+    color: var(--dj-text-secondary);
+    font-size: 0.85rem;
+  }
+
+  .status-active {
+    color: var(--dj-success);
+    font-weight: 700;
+    font-size: 0.8rem;
+  }
+
+  .status-inactive {
+    color: var(--dj-text-muted);
+    font-weight: 700;
+    font-size: 0.8rem;
+  }
+
+  .ad-actions {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  .btn-edit, .btn-toggle, .btn-delete {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--dj-text-primary);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+  }
+
+  .btn-edit:hover { border-color: var(--dj-accent-cyan); color: var(--dj-accent-cyan); }
+  .btn-toggle:hover { border-color: var(--dj-accent-gold); color: var(--dj-accent-gold); }
+  .btn-delete:hover { border-color: var(--dj-error); color: var(--dj-error); }
+
+  .btn-add {
+    padding: 0.6rem 1.2rem;
+    background: var(--dj-accent-cyan);
+    color: var(--dj-bg-primary);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+
+  .admin-form {
+    padding: var(--space-xl);
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-lg);
+    margin-top: var(--space-xl);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+  }
+
+  .form-group label {
+    font-weight: 600;
+    color: var(--dj-text-primary);
+    font-size: 0.85rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 0.6rem 0.8rem;
+    background: var(--dj-bg-primary);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-sm);
+    color: var(--dj-text-primary);
+    font-family: inherit;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  h1 { margin-bottom: var(--space-xl); }
+  h2 { margin-bottom: var(--space-md); }
+  h3 { margin-bottom: var(--space-md); }
+</style>

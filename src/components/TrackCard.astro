@@ -1,0 +1,191 @@
+---
+import { Image } from 'astro:assets';
+
+export interface Track {
+  id: string;
+  slug: string;
+  title: string;
+  genre: string;
+  description: string;
+  files: {
+    mp3: string;
+    cover: string;
+  };
+  youtube?: {
+    videoId: string;
+    url: string;
+  };
+  keywords: string[];
+}
+
+interface Props {
+  track: Track;
+  locale: string;
+}
+
+const { track, locale } = Astro.props;
+const isEn = locale === 'en';
+---
+
+<article class="track-card" aria-labelledby={`track-${track.slug}`}>
+  <div class="track-card-cover">
+    <img
+      src={track.files.cover}
+      alt={`Cover von ${track.title}`}
+      width="400"
+      height="400"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="track-card-body">
+    <span class="track-genre">{isEn ? track.genre : track.genre}</span>
+    <h3 id={`track-${track.slug}`} class="track-title">
+      <a href={`/${locale}/tracks/${track.slug}/`}>{track.title}</a>
+    </h3>
+    <p class="track-description">{isEn ? track.description : track.description}</p>
+    <div class="track-actions">
+      <a href={`/${locale}/tracks/${track.slug}/`} class="button button-primary">
+        {isEn ? 'Details' : 'Details ansehen'}
+      </a>
+      {track.youtube?.videoId && (
+        <a
+          href={track.youtube.url}
+          target="_blank"
+          rel="noopener"
+          class="button button-secondary"
+          aria-label={`${track.title} auf YouTube ansehen`}
+        >
+          ▶ YouTube
+        </a>
+      )}
+    </div>
+  </div>
+</article>
+
+<style>
+  .track-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-top: 4px solid var(--dj-accent-cyan);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .track-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .track-card-cover {
+    overflow: hidden;
+    background: var(--dj-bg-primary);
+  }
+
+  .track-card-cover img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .track-card:hover .track-card-cover img {
+    transform: scale(1.05);
+  }
+
+  .track-card-body {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .track-genre {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--dj-accent-cyan);
+  }
+
+  .track-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .track-title a {
+    color: var(--dj-text-primary);
+    text-decoration: none;
+  }
+
+  .track-title a:hover {
+    color: var(--dj-accent-cyan);
+  }
+
+  .track-description {
+    font-size: 0.9rem;
+    color: var(--dj-text-secondary);
+    line-height: 1.5;
+  }
+
+  .track-actions {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: auto;
+    padding-top: var(--space-md);
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.6rem 1.2rem;
+    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .button-primary {
+    color: var(--dj-bg-primary);
+    background: var(--dj-accent-cyan);
+  }
+
+  .button-primary:hover {
+    background: var(--dj-accent-pink);
+    color: var(--dj-bg-primary);
+  }
+
+  .button-secondary {
+    color: var(--dj-text-primary);
+    background: transparent;
+    border-color: var(--dj-border);
+  }
+
+  .button-secondary:hover {
+    border-color: var(--dj-accent-cyan);
+    color: var(--dj-accent-cyan);
+  }
+
+  @media (max-width: 768px) {
+    .track-card-body {
+      padding: var(--space-md);
+    }
+
+    .track-actions {
+      flex-direction: column;
+    }
+
+    .button {
+      width: 100%;
+    }
+  }
+</style>

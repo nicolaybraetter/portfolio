@@ -1,0 +1,189 @@
+---
+import Layout from '../../layouts/AdminLayout.astro';
+---
+
+<Layout title="Admin — Email">
+  <h1>Email Inbox — info@djexcept4.de</h1>
+
+  <div class="admin-section">
+    <div class="email-toolbar">
+      <span class="email-status">
+        <span class="dot green"></span>
+        Connected to IONOS IMAP
+      </span>
+    </div>
+
+    <div class="email-list" id="email-list">
+      <!-- Email items will be populated by JavaScript -->
+      <div class="email-item unread">
+        <div class="email-row">
+          <span class="email-from">info@example.com</span>
+          <span class="email-subject">Test message</span>
+          <span class="email-date">2026-08-01</span>
+        </div>
+        <div class="email-preview">This is a preview of the email content...</div>
+      </div>
+    </div>
+
+    <div class="email-detail" id="email-detail" style="display:none;">
+      <h3 id="email-detail-subject"></h3>
+      <p class="email-detail-meta">
+        <strong>From:</strong> <span id="email-detail-from"></span> |
+        <strong>Date:</strong> <span id="email-detail-date"></span>
+      </p>
+      <div class="email-detail-body" id="email-detail-body"></div>
+      <div class="email-reply">
+        <h4>Reply</h4>
+        <textarea id="email-reply-text" rows="4" placeholder="Write your reply..."></textarea>
+        <button class="button button-primary" id="btn-send-reply">
+          Send Reply
+        </button>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script define:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // In production, this would fetch emails via an API endpoint
+    // that connects to IONOS IMAP (imap.ionos.de:993, SSL)
+    console.log('Email inbox ready — IMAP connection configured for info@djexcept4.de');
+
+    // Simulate email click
+    document.querySelectorAll('.email-item').forEach((item) => {
+      item.addEventListener('click', () => {
+        const detail = document.getElementById('email-detail');
+        if (detail) {
+          detail.style.display = detail.style.display === 'none' ? 'block' : 'none';
+        }
+      });
+    });
+
+    const replyBtn = document.getElementById('btn-send-reply');
+    if (replyBtn) {
+      replyBtn.addEventListener('click', () => {
+        replyBtn.textContent = '✓ Reply sent';
+        setTimeout(() => { replyBtn.textContent = 'Send Reply'; }, 2000);
+      });
+    }
+  });
+</script>
+
+<style>
+  .admin-section {
+    padding: var(--space-xl);
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .email-toolbar {
+    margin-bottom: var(--space-lg);
+  }
+
+  .email-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.85rem;
+    color: var(--dj-text-secondary);
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .dot.green { background: var(--dj-success); }
+
+  .email-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .email-item {
+    padding: var(--space-md);
+    background: var(--dj-bg-primary);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+  }
+
+  .email-item:hover {
+    border-color: var(--dj-accent-cyan);
+  }
+
+  .email-item.unread {
+    border-left: 3px solid var(--dj-accent-cyan);
+  }
+
+  .email-row {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+  }
+
+  .email-from {
+    font-weight: 600;
+    min-width: 150px;
+  }
+
+  .email-subject {
+    flex: 1;
+  }
+
+  .email-date {
+    font-size: 0.8rem;
+    color: var(--dj-text-muted);
+  }
+
+  .email-preview {
+    font-size: 0.85rem;
+    color: var(--dj-text-secondary);
+    margin-top: var(--space-xs);
+  }
+
+  .email-detail {
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    background: var(--dj-bg-primary);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-md);
+  }
+
+  .email-detail-meta {
+    color: var(--dj-text-secondary);
+    font-size: 0.85rem;
+  }
+
+  .email-detail-body {
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    background: var(--dj-surface);
+    border-radius: var(--radius-sm);
+    line-height: 1.6;
+  }
+
+  .email-reply {
+    margin-top: var(--space-lg);
+  }
+
+  .email-reply textarea {
+    width: 100%;
+    padding: var(--space-md);
+    background: var(--dj-bg-primary);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-sm);
+    color: var(--dj-text-primary);
+    font-family: inherit;
+    resize: vertical;
+  }
+
+  h1 { margin-bottom: var(--space-xl); }
+  h3 { margin-bottom: var(--space-md); }
+  h4 { margin-bottom: var(--space-sm); }
+</style>

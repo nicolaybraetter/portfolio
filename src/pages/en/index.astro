@@ -1,0 +1,311 @@
+---
+import Layout from '../layouts/Layout.astro';
+import content from '../data/content.json';
+
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+const tracks = content.tracks;
+const site = content.site;
+---
+
+<Layout
+  title={site.name + ' — ' + (isEn ? site.taglineEn : site.tagline)}
+  description={isEn ? site.descriptionEn : site.description}
+  image={`/assets/DJ_Except4-Logo.png`}
+  type="website"
+  locale={locale}
+>
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="container">
+      <p class="eyebrow">{isEn ? 'DJ & Producer' : 'DJ & Producer'}</p>
+      <h1 id="hero-heading">{isEn ? 'DJ Except4' : 'DJ Except4'}</h1>
+      <p class="lead">{isEn ? site.taglineEn : site.tagline}</p>
+      <div class="hero-actions">
+        <a href={`/${locale}/tracks/`} class="button button-primary">
+          {isEn ? 'Listen Now' : 'Musik hören'}
+        </a>
+        <a href={`/${locale}/bio/`} class="button button-secondary">
+          {isEn ? 'Read Bio' : 'Bio lesen'}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="latest-track" aria-labelledby="latest-heading">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">{isEn ? 'Latest Release' : 'Neueste Veröffentlichung'}</p>
+        <h2 id="latest-heading">{isEn ? 'Latest Track' : 'Neuester Track'}</h2>
+      </div>
+      {tracks.length > 0 && (
+        <div class="latest-grid">
+          <div class="latest-cover">
+            <img
+              src={tracks[0].files.cover}
+              alt={`Cover von ${tracks[0].title}`}
+              width="400"
+              height="400"
+              loading="eager"
+            />
+          </div>
+          <div class="latest-info">
+            <span class="track-genre">{tracks[0].genre}</span>
+            <h3>{tracks[0].title}</h3>
+            <p>{isEn ? tracks[0].descriptionEn : tracks[0].descriptionDE || tracks[0].description}</p>
+            <div class="latest-actions">
+              {tracks[0].youtube?.videoId && (
+                <a href={tracks[0].youtube.url} target="_blank" rel="noopener" class="button button-secondary">
+                  ▶ YouTube
+                </a>
+              )}
+              <a href={`/${locale}/tracks/${tracks[0].slug}/`} class="button button-primary">
+                {isEn ? 'Details' : 'Details ansehen'}
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="tracks-section" aria-labelledby="tracks-heading">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">{isEn ? 'Discography' : 'Diskografie'}</p>
+        <h2 id="tracks-heading">{isEn ? 'All Tracks' : 'Alle Tracks'}</h2>
+      </div>
+      <div class="track-grid">
+        {tracks.map((track) => (
+          <article class="track-card" aria-labelledby={`track-${track.slug}`}>
+            <div class="track-card-cover">
+              <img
+                src={track.files.cover}
+                alt={`Cover von ${track.title}`}
+                width="400"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="track-card-body">
+              <span class="track-genre">{track.genre}</span>
+              <h3 id={`track-${track.slug}`} class="track-title">
+                <a href={`/${locale}/tracks/${track.slug}/`}>{track.title}</a>
+              </h3>
+              <p class="track-description">{isEn ? track.descriptionEn : track.descriptionDE || track.description}</p>
+              <div class="track-actions">
+                <a href={`/${locale}/tracks/${track.slug}/`} class="button button-primary">
+                  {isEn ? 'Details' : 'Details ansehen'}
+                </a>
+                {track.youtube?.videoId && (
+                  <a href={track.youtube.url} target="_blank" rel="noopener" class="button button-secondary" aria-label={`${track.title} auf YouTube ansehen`}>
+                    ▶ YouTube
+                  </a>
+                )}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="social-section" aria-labelledby="social-heading">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">{isEn ? 'Follow' : 'Folge mir'}</p>
+        <h2 id="social-heading">{isEn ? 'Follow DJ Except4' : 'Folge DJ Except4'}</h2>
+      </div>
+      <div class="social-links">
+        {content.social.instagram.url && (
+          <a href={content.social.instagram.url} target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" fill="none"/>
+              <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+            </svg>
+            <span>Instagram</span>
+          </a>
+        )}
+        {content.social.distrokid.url && (
+          <a href={content.social.distrokid.url} target="_blank" rel="noopener" class="social-link" aria-label="DistroKid">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2" fill="none"/>
+              <text x="12" y="17" text-anchor="middle" font-size="10" font-weight="bold" fill="currentColor">DK</text>
+            </svg>
+            <span>DistroKid</span>
+          </a>
+        )}
+        {content.social.youtube.url && (
+          <a href={content.social.youtube.url} target="_blank" rel="noopener" class="social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" fill="none"/>
+              <polygon points="9.5,7 16.5,12 9.5,17" fill="currentColor" stroke="none"/>
+            </svg>
+            <span>YouTube</span>
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">{isEn ? 'Frequently Asked Questions' : 'Häufige Fragen'}</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>{isEn ? 'Who is DJ Except4?' : 'Wer ist DJ Except4?'}</summary>
+          <p>{isEn ? content.faq.a1 : content.faq.a1}</p>
+        </details>
+        <details>
+          <summary>{isEn ? 'How can I listen to the music?' : 'Wie kann ich die Musik hören?'}</summary>
+          <p>{isEn ? content.faq.a2 : content.faq.a2}</p>
+        </details>
+        <details>
+          <summary>{isEn ? 'How can I book DJ Except4?' : 'Wie kann ich DJ Except4 buchen?'}</summary>
+          <p>{isEn ? content.faq.a3 : content.faq.a3}</p>
+        </details>
+        <details>
+          <summary>{isEn ? 'Where can I find the music on streaming platforms?' : 'Wo finde ich die Musik auf Streaming-Plattformen?'}</summary>
+          <p>{isEn ? content.faq.a4 : content.faq.a4}</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding: clamp(4rem, 10vw, 8rem) 0;
+    text-align: center;
+    background: linear-gradient(180deg, var(--dj-bg-primary) 0%, var(--dj-bg-secondary) 100%);
+  }
+
+  .lead {
+    max-width: 600px;
+    margin-inline: auto;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    color: var(--dj-text-secondary);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+  }
+
+  .latest-track {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+  }
+
+  .latest-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .latest-cover img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .latest-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .track-genre {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--dj-accent-cyan);
+  }
+
+  .track-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+    justify-content: center;
+  }
+
+  .social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--dj-text-secondary);
+    transition: color var(--transition-fast);
+  }
+
+  .social-link:hover {
+    color: var(--dj-accent-cyan);
+  }
+
+  .faq-section {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+    background: var(--dj-bg-secondary);
+  }
+
+  .faq-list {
+    display: grid;
+    gap: var(--space-sm);
+    max-width: 800px;
+    margin-inline: auto;
+  }
+
+  .faq-list details {
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+  }
+
+  .faq-list summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--dj-text-primary);
+    padding: var(--space-sm) 0;
+  }
+
+  .faq-list p {
+    margin-top: var(--space-md);
+    color: var(--dj-text-secondary);
+  }
+
+  .section-heading {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  @media (min-width: 768px) {
+    .latest-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding: var(--space-3xl) 0;
+    }
+
+    .track-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

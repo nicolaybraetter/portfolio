@@ -1,0 +1,180 @@
+---
+import Layout from '../../layouts/AdminLayout.astro';
+import content from '../../../data/content.json';
+
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+---
+
+<Layout title={isEn ? 'Admin — Streaming' : 'Admin — Streaming'}>
+  <h1>{isEn ? 'YouTube & Streaming Links' : 'YouTube & Streaming-Links'}</h1>
+
+  <div class="admin-section">
+    <div class="streaming-list" id="streaming-list">
+      {content.tracks.map((track) => (
+        <div class="streaming-item" data-track-id={track.id}>
+          <div class="streaming-cover">
+            <img src={track.files.cover} alt={track.title} width="80" height="80" loading="lazy" />
+          </div>
+          <div class="streaming-info">
+            <strong>{track.title}</strong>
+            <span class="streaming-genre">{track.genre}</span>
+          </div>
+          <div class="streaming-fields">
+            <div class="field">
+              <label for={`yt-id-${track.id}`}>{isEn ? 'YouTube Video ID' : 'YouTube-Video-ID'}</label>
+              <input
+                type="text"
+                id={`yt-id-${track.id}`}
+                name={`yt-id-${track.id}`}
+                value={track.youtube?.videoId || ''}
+                placeholder="e.g. dQw4w9WgXcQ"
+              />
+            </div>
+            <div class="field">
+              <label for={`yt-url-${track.id}`}>{isEn ? 'YouTube URL' : 'YouTube-URL'}</label>
+              <input
+                type="url"
+                id={`yt-url-${track.id}`}
+                name={`yt-url-${track.id}`}
+                value={track.youtube?.url || ''}
+                placeholder="https://youtube.com/watch?v=..."
+              />
+            </div>
+          </div>
+          <div class="streaming-actions">
+            <button class="btn-save" data-track={track.id}>
+              {isEn ? 'Save' : 'Speichern'}
+            </button>
+            {track.youtube?.videoId && (
+              <a href={track.youtube.url} target="_blank" rel="noopener" class="btn-preview">
+                ▶ Preview
+              </a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<script define:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.btn-save').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const trackId = btn.dataset.track;
+        const ytId = document.getElementById(`yt-id-${trackId}`)?.value || '';
+        const ytUrl = document.getElementById(`yt-url-${trackId}`)?.value || '';
+        // In production, this would POST to an API endpoint
+        console.log('Saving streaming data for track:', trackId, { ytId, ytUrl });
+        btn.textContent = '✓ Saved';
+        setTimeout(() => { btn.textContent = 'Save'; }, 2000);
+      });
+    });
+  });
+</script>
+
+<style>
+  .admin-section {
+    padding: var(--space-xl);
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .streaming-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .streaming-item {
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    background: var(--dj-bg-primary);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-md);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .streaming-cover img {
+    border-radius: var(--radius-sm);
+  }
+
+  .streaming-info {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .streaming-info strong {
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .streaming-genre {
+    font-size: 0.75rem;
+    color: var(--dj-text-muted);
+  }
+
+  .streaming-fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--dj-text-secondary);
+    margin-bottom: 2px;
+  }
+
+  .field input {
+    width: 100%;
+    padding: 0.4rem 0.6rem;
+    background: var(--dj-bg-primary);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-sm);
+    color: var(--dj-text-primary);
+    font-size: 0.85rem;
+  }
+
+  .streaming-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .btn-save {
+    padding: 0.5rem 1rem;
+    background: var(--dj-accent-cyan);
+    color: var(--dj-bg-primary);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .btn-preview {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--dj-accent-pink);
+    color: var(--dj-accent-pink);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    .streaming-item {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+</style>

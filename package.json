@@ -1,0 +1,44 @@
+{
+  "name": "dj-except4-homepage",
+  "version": "1.0.0",
+  "description": "DJ Except4 — Modern DJ Homepage with Astro, Tailwind CSS, PWA",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port 4321",
+    "start": "astro dev --port 4321",
+    "build": "astro build",
+    "preview": "astro preview --port 4321",
+    "astro": "astro",
+    "deploy": "npm run build && rsync -avz --delete dist/ nicolay@staging1:/opt/dj-except4/dist/",
+    "deploy:docker": "npm run build && docker compose up -d --build",
+    "lint": "astro check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolaybraetter/portfolio.git"
+  },
+  "keywords": [
+    "DJ",
+    "trance",
+    "homepage",
+    "PWA",
+    "Astro"
+  ],
+  "author": "DJ Except4",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicolaybraetter/portfolio/issues"
+  },
+  "homepage": "https://djexcept4.de",
+  "dependencies": {
+    "astro": "^7.1.6",
+    "@astrojs/tailwind": "^6.0.2",
+    "tailwindcss": "^3.4.19",
+    "howler": "^2.2.4",
+    "@types/howler": "^2.2.13",
+    "wavesurfer.js": "^7.12.11"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}

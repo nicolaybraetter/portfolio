@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+---
+
+<Layout
+  title={isEn ? 'Legal Notice — DJ Except4' : 'Impressum — DJ Except4'}
+  description={isEn ? 'Legal notice for DJ Except4 — DJ Except4, info@djexcept4.de' : 'Impressum für DJ Except4 — DJ Except4, info@djexcept4.de'}
+  image={`/assets/DJ_Except4-Logo.png`}
+  type="website"
+  locale={locale}
+>
+  <section class="legal-page" aria-labelledby="legal-heading">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">{isEn ? 'Legal' : 'Rechtliches'}</p>
+        <h1 id="legal-heading">{isEn ? 'Legal Notice' : 'Impressum'}</h1>
+      </div>
+
+      <div class="legal-content">
+        <h2>{isEn ? 'Information according to § 5 TMG' : 'Angaben gemäß § 5 TMG'}</h2>
+        <p><strong>{isEn ? 'DJ Except4' : 'DJ Except4'}</strong></p>
+        <p>{isEn ? 'Email: info@djexcept4.de' : 'E-Mail: info@djexcept4.de'}</p>
+
+        <h2>{isEn ? 'Responsible for Content' : 'Verantwortlich für den Inhalt'}</h2>
+        <p>{isEn ? 'DJ Except4' : 'DJ Except4'}</p>
+
+        <h2>{isEn ? 'Disclaimer' : 'Haftungsausschluss'}</h2>
+        <p>
+          {isEn
+            ? 'As a service provider, we are responsible for our own content on these pages according to general laws (§ 7 para. 1 TMG). However, as a service provider, we are not obligated to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity. Obligations to remove or block the use of information under general laws remain unaffected. However, liability in this regard is only possible from the date of knowledge of a specific infringement. We will remove such content immediately upon becoming aware of it.'
+            : 'Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Als Diensteanbieter sind wir jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.'}
+        </p>
+
+        <h2>{isEn ? 'Copyright' : 'Urheberrecht'}</h2>
+        <p>
+          {isEn
+            ? 'The content and works on these pages are subject to German copyright law. Duplication, processing, distribution, and any form of exploitation beyond the scope of copyright law require the written consent of the author or creator.'
+            : 'Die Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des Autors bzw. Erstellers.'}
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+  }
+
+  .legal-content {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .legal-content h2 {
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-md);
+    font-size: 1.3rem;
+    color: var(--dj-text-primary);
+  }
+
+  .legal-content p {
+    color: var(--dj-text-secondary);
+    line-height: 1.7;
+  }
+
+  .section-heading {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+</style>

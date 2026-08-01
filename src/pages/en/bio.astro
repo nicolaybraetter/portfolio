@@ -1,0 +1,96 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import content from '../../../data/content.json';
+
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+const site = content.site;
+---
+
+<Layout
+  title={isEn ? 'Bio — DJ Except4' : 'Bio — DJ Except4'}
+  description={isEn ? site.bioEn : site.bio}
+  image={`/assets/DJ_Except4-Logo.png`}
+  type="website"
+  locale={locale}
+>
+  <section class="bio-page" aria-labelledby="bio-heading">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">{isEn ? 'About' : 'Über'}</p>
+        <h1 id="bio-heading">{isEn ? 'About DJ Except4' : 'Über DJ Except4'}</h1>
+      </div>
+
+      <div class="bio-content">
+        <p>{isEn ? site.bioEn : site.bio}</p>
+      </div>
+
+      <section class="bio-genres" aria-labelledby="genres-heading">
+        <h2 id="genres-heading">{isEn ? 'Genres' : 'Genres'}</h2>
+        <ul class="genre-list">
+          <li>Uplifting Trance</li>
+          <li>Vocal Trance</li>
+          <li>Emotional Trance</li>
+          <li>Melodic Trance</li>
+          <li>Atmospheric Trance</li>
+          <li>Cinematic Trance</li>
+        </ul>
+      </section>
+
+      <section class="bio-contact" aria-labelledby="bio-contact-heading">
+        <h2 id="bio-contact-heading">{isEn ? 'Get in Touch' : 'Kontakt'}</h2>
+        <p>{isEn ? 'For bookings, collaborations, or inquiries:' : 'Für Bookings, Kooperationen oder Anfragen:'}</p>
+        <a href="mailto:info@djexcept4.de" class="button button-primary">info@djexcept4.de</a>
+      </section>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .bio-page {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+  }
+
+  .bio-content {
+    max-width: 720px;
+    margin: var(--space-2xl) auto;
+  }
+
+  .bio-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--dj-text-secondary);
+  }
+
+  .bio-genres,
+  .bio-contact {
+    margin-top: var(--space-3xl);
+  }
+
+  .genre-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    list-style: none;
+    padding: 0;
+  }
+
+  .genre-list li {
+    padding: 0.3rem 0.8rem;
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    color: var(--dj-text-primary);
+  }
+
+  .bio-contact p {
+    color: var(--dj-text-secondary);
+    margin-bottom: var(--space-md);
+  }
+
+  .section-heading {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+</style>

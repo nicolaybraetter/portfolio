@@ -1,0 +1,149 @@
+{
+  "tracks": [
+    {
+      "id": "bound-beneath-heavens",
+      "slug": "bound-beneath-heavens",
+      "title": "Bound Beneath Heavens",
+      "titleEn": "Bound Beneath Heavens",
+      "genre": "Uplifting Trance / Vocal Trance / Emotional Trance",
+      "genreEn": "Uplifting Trance / Vocal Trance / Emotional Trance",
+      "style": "Epic, melodic, cinematic and euphoric",
+      "styleEn": "Epic, melodic, cinematic and euphoric",
+      "description": "Bound Beneath Heavens is an emotional journey through unfulfilled dreams, silent expectations and the painful distance that can grow between two people beneath the same sky.",
+      "descriptionEn": "Bound Beneath Heavens is an emotional journey through unfulfilled dreams, silent expectations and the painful distance that can grow between two people beneath the same sky.",
+      "descriptionDE": "Bound Beneath Heavens ist eine emotionale Reise durch unerfüllte Träume, stille Erwartungen und die schmerzhafte Distanz, die zwischen zwei Menschen unter demselben Himmel wachsen kann.",
+      "cinematic": true,
+      "releaseYear": 2026,
+      "files": {
+        "mp3": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.mp3",
+        "flac": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.flac",
+        "mp4": "/media/BBH/Bound_Beneath_Heavens.mp4",
+        "cover": "/media/BBH/BBH_1000x1000.png",
+        "youtubeThumb": "/media/BBH/BBH_Youtube.png"
+      },
+      "youtube": {
+        "videoId": "",
+        "url": "",
+        "description": "DJ Except4 – Bound Beneath Heavens"
+      },
+      "distrokid": {
+        "url": "",
+        "playlist": ""
+      },
+      "youtubeDescription": "DJ Except4 – Bound Beneath Heavens\n\nBound Beneath Heavens by DJ Except4 is an emotional journey through unfulfilled dreams, silent expectations and the painful distance that can grow between two people beneath the same sky.\n\n🎧 Best experienced with headphones\n💙 Turn up the volume and let the music take over\n🔔 Subscribe for more uplifting, emotional and cinematic trance from DJ Except4",
+      "keywords": ["uplifting trance", "vocal trance", "emotional trance", "cinematic trance", "melodic trance", "euphoric trance", "DJ Except4", "bound beneath heavens"]
+    },
+    {
+      "id": "ghost-of-a-garden",
+      "slug": "ghost-of-a-garden",
+      "title": "Ghost of a Garden",
+      "titleEn": "Ghost of a Garden",
+      "genre": "Uplifting Trance / Melodic Trance / Atmospheric Trance",
+      "genreEn": "Uplifting Trance / Melodic Trance / Atmospheric Trance",
+      "style": "Mysterious, emotional, futuristic and euphoric",
+      "styleEn": "Mysterious, emotional, futuristic and euphoric",
+      "description": "Ghost of a Garden is a hypnotic uplifting trance journey through fading memories, neon light and a place that still seems alive long after everyone has gone.",
+      "descriptionEn": "Ghost of a Garden is a hypnotic uplifting trance journey through fading memories, neon light and a place that still seems alive long after everyone has gone.",
+      "descriptionDE": "Ghost of a Garden ist eine hypnotische uplifting-trance Reise durch verblassende Erinnerungen, Neonlicht und einen Ort, der noch lebendig scheint, lange nachdem alle gegangen sind.",
+      "cinematic": true,
+      "releaseYear": 2026,
+      "files": {
+        "mp3": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.mp3",
+        "flac": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.flac",
+        "mp4": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.mp4",
+        "cover": "/media/GOAG/GOAG_1000x1000px.png",
+        "youtubeThumb": "/media/GOAG/GOAG_Youtube.png"
+      },
+      "youtube": {
+        "videoId": "",
+        "url": "",
+        "description": "DJ Except4 – Ghost of a Garden"
+      },
+      "distrokid": {
+        "url": "",
+        "playlist": ""
+      },
+      "youtubeDescription": "DJ Except4 – Ghost of a Garden\n\nGhost of a Garden by DJ Except4 is a hypnotic uplifting trance journey through fading memories, neon light and a place that still seems alive long after everyone has gone.\n\n🎧 Best experienced with headphones\n🌌 Enter the neon garden\n🔔 Subscribe for more emotional, melodic and uplifting trance from DJ Except4",
+      "keywords": ["uplifting trance", "melodic trance", "atmospheric trance", "cinematic trance", "DJ Except4", "ghost of a garden"]
+    },
+    {
+      "id": "my-way-to-breathe",
+      "slug": "my-way-to-breathe",
+      "title": "My Way to Breathe",
+      "titleEn": "My Way to Breathe",
+      "genre": "Uplifting Trance / Vocal Trance / Emotional Trance",
+      "genreEn": "Uplifting Trance / Vocal Trance / Emotional Trance",
+      "style": "Epic, cinematic, euphoric and melodic",
+      "styleEn": "Epic, cinematic, euphoric and melodic",
+      "description": "My Way to Breathe is an emotional and epic uplifting trance journey about finding the courage to express what the heart has kept hidden for far too long.",
+      "descriptionEn": "My Way to Breathe is an emotional and epic uplifting trance journey about finding the courage to express what the heart has kept hidden for far too long.",
+      "descriptionDE": "My Way to Breathe ist eine emotionale und epische uplifting-trance Reise darüber, den Mut zu finden, auszudrücken, was das Herz seit zu langer Zeit für sich behauptet hat.",
+      "cinematic": true,
+      "releaseYear": 2026,
+      "files": {
+        "mp3": "/media/MWTB/DJ_Except4-My_Way_to_Breathe.mp3",
+        "flac": "/media/MWTB/DJ_Except4-My_Way_to_Breathe.flac",
+        "mp4": "/media/MWTB/My_Way_to_Breathe.mp4",
+        "cover": "/media/MWTB/MWTB_1000x1000.png",
+        "youtubeThumb": "/media/MWTB/MWTB_Youtube.png"
+      },
+      "youtube": {
+        "videoId": "",
+        "url": "",
+        "description": "DJ Except4 – My Way to Breathe"
+      },
+      "distrokid": {
+        "url": "",
+        "playlist": ""
+      },
+      "youtubeDescription": "DJ Except4 – My Way to Breathe\n\nMy Way to Breathe combines driving trance energy, cinematic atmosphere, powerful melodies and emotional vocals.\n\n🎧 Best experienced with headphones\n💙 Turn up the volume and enter the journey\n🔔 Subscribe for more uplifting, emotional and cinematic trance music from DJ Except4",
+      "keywords": ["uplifting trance", "vocal trance", "emotional trance", "cinematic trance", "melodic trance", "DJ Except4", "my way to breathe"]
+    }
+  ],
+  "social": {
+    "instagram": {
+      "url": "",
+      "label": "Instagram",
+      "icon": "instagram"
+    },
+    "distrokid": {
+      "url": "",
+      "label": "DistroKid",
+      "icon": "distrokid"
+    },
+    "youtube": {
+      "url": "",
+      "label": "YouTube",
+      "icon": "youtube"
+    }
+  },
+  "ads": [
+    {
+      "id": "distrokid-promo",
+      "title": "DistroKid — Music Distribution",
+      "url": "",
+      "description": "Distribute your music to all platforms. Free to join, keep 100% of your royalties.",
+      "image": "",
+      "position": "footer",
+      "active": true
+    }
+  ],
+  "site": {
+    "name": "DJ Except4",
+    "tagline": "Uplifting Trance & Emotional Electronic Music",
+    "taglineEn": "Uplifting Trance & Emotional Electronic Music",
+    "email": "info@djexcept4.de",
+    "domain": "djexcept4.de",
+    "keywords": [
+      "DJ Except4",
+      "uplifting trance",
+      "vocal trance",
+      "emotional trance",
+      "electronic music",
+      "DJ",
+      "trance music",
+      "cinematic trance",
+      "melodic trance"
+    ]
+  }
+}

@@ -1,0 +1,299 @@
+---
+interface Props {
+  trackId: string;
+  mp3Url: string;
+  coverUrl: string;
+  title: string;
+  autoPlay?: boolean;
+}
+
+const { trackId, mp3Url, coverUrl, title, autoPlay = false } = Astro.props;
+---
+
+<div class="player-container" id={`player-${trackId}`} role="region" aria-label={`Audio-Player: ${title}`}>
+  <div class="player-wrapper">
+    <!-- Cover Art -->
+    <div class="player-cover">
+      <img
+        src={coverUrl}
+        alt={`Cover von ${title}`}
+        width="200"
+        height="200"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+    <!-- Track Info -->
+    <div class="player-info">
+      <h3 class="player-title">{title}</h3>
+      <p class="player-artist">DJ Except4</p>
+    </div>
+
+    <!-- Waveform -->
+    <div class="player-waveform" id={`waveform-${trackId}`} aria-hidden="true"></div>
+
+    <!-- Controls -->
+    <div class="player-controls">
+      <button class="player-btn" id={`btn-play-${trackId}`} aria-label="Abspielen" type="button">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      </button>
+      <button class="player-btn" id={`btn-pause-${trackId}`} aria-label="Pause" type="button" style="display:none">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </svg>
+      </button>
+      <div class="player-progress">
+        <span class="player-time" id={`time-current-${trackId}`} aria-live="polite">0:00</span>
+        <div class="progress-bar" id={`progress-${trackId}`} role="progressbar" aria-label="Wiedergabe-Fortschritt">
+          <div class="progress-fill" id={`fill-${trackId}`}></div>
+        </div>
+        <span class="player-time" id={`time-duration-${trackId}`}>0:00</span>
+      </div>
+      <div class="player-volume">
+        <label for={`volume-${trackId}`} class="sr-only">Lautstärke</label>
+        <input
+          type="range"
+          id={`volume-${trackId}`}
+          class="volume-slider"
+          min="0"
+          max="100"
+          value="80"
+          aria-label="Lautstärke"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden audio element -->
+  <audio
+    id={`audio-${trackId}`}
+    preload="metadata"
+    crossorigin="anonymous"
+    data-track-id={trackId}
+  >
+    <source src={mp3Url} type="audio/mpeg" />
+    <source src={mp3Url.replace('.mp3', '.flac')} type="audio/flac" />
+    Dein Browser unterstützt das Audio-Element nicht.
+  </audio>
+</div>
+
+<script define:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('audio-{trackId}');
+    const playBtn = document.getElementById('btn-play-{trackId}');
+    const pauseBtn = document.getElementById('btn-pause-{trackId}');
+    const progress = document.getElementById('progress-{trackId}');
+    const fill = document.getElementById('fill-{trackId}');
+    const currentTime = document.getElementById('time-current-{trackId}');
+    const duration = document.getElementById('time-duration-{trackId}');
+    const volumeSlider = document.getElementById('volume-{trackId}');
+
+    if (!audio) return;
+
+    // Play/Pause toggle
+    if (playBtn && pauseBtn) {
+      playBtn.addEventListener('click', () => {{
+        audio.play().catch(() => {{}});
+        playBtn.style.display = 'none';
+        pauseBtn.style.display = 'inline-flex';
+      }});
+      pauseBtn.addEventListener('click', () => {{
+        audio.pause();
+        pauseBtn.style.display = 'none';
+        playBtn.style.display = 'inline-flex';
+      }});
+    }
+
+    // Progress update
+    audio.addEventListener('timeupdate', () => {{
+      if (audio.duration && progress && fill) {{
+        const pct = (audio.currentTime / audio.duration) * 100;
+        fill.style.width = pct + '%';
+      }}
+      if (currentTime && audio.currentTime) {{
+        currentTime.textContent = formatTime(audio.currentTime);
+      }}
+    }});
+
+    audio.addEventListener('loadedmetadata', () => {{
+      if (duration && audio.duration) {{
+        duration.textContent = formatTime(audio.duration);
+      }}
+    }});
+
+    // Progress bar click to seek
+    if (progress) {{
+      progress.addEventListener('click', (e) => {{
+        const rect = progress.getBoundingClientRect();
+        const pct = (e.clientX - rect.left) / rect.width;
+        if (audio.duration) {{
+          audio.currentTime = pct * audio.duration;
+        }}
+      }});
+    }}
+
+    // Volume control
+    if (volumeSlider && audio) {{
+      volumeSlider.addEventListener('input', () => {{
+        audio.volume = volumeSlider.value / 100;
+      }});
+      audio.volume = 0.8;
+    }}
+
+    function formatTime(seconds) {{
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return mins + ':' + secs.toString().padStart(2, '0');
+    }}
+  });
+</script>
+
+<style>
+  .player-container {{
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    max-width: 600px;
+    margin: 0 auto;
+  }}
+
+  .player-wrapper {{
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }}
+
+  .player-cover img {{
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin: 0 auto;
+  }}
+
+  .player-info {{
+    text-align: center;
+  }}
+
+  .player-title {{
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 var(--space-xs);
+  }}
+
+  .player-artist {{
+    color: var(--dj-text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+  }}
+
+  .player-waveform {{
+    width: 100%;
+    height: 60px;
+    background: var(--dj-bg-primary);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }}
+
+  .player-controls {{
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }}
+
+  .player-btn {{
+    background: none;
+    border: none;
+    color: var(--dj-text-primary);
+    cursor: pointer;
+    padding: var(--space-sm);
+    border-radius: var(--radius-full);
+    transition: background var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }}
+
+  .player-btn:hover {{
+    background: var(--dj-surface-hover);
+  }}
+
+  .player-progress {{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    min-width: 100px;
+  }}
+
+  .player-time {{
+    font-size: 0.75rem;
+    color: var(--dj-text-muted);
+    font-family: var(--font-mono);
+    min-width: 35px;
+  }}
+
+  .progress-bar {{
+    flex: 1;
+    height: 6px;
+    background: var(--dj-border);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    position: relative;
+  }}
+
+  .progress-fill {{
+    height: 100%;
+    background: var(--dj-accent-cyan);
+    border-radius: var(--radius-full);
+    width: 0%;
+    transition: width 0.1s linear;
+  }}
+
+  .player-volume {{
+    display: flex;
+    align-items: center;
+  }}
+
+  .volume-slider {{
+    width: 80px;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--dj-border);
+    border-radius: var(--radius-full);
+    outline: none;
+  }}
+
+  .volume-slider::-webkit-slider-thumb {{
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--dj-accent-cyan);
+    cursor: pointer;
+  }}
+
+  @media (max-width: 640px) {{
+    .player-container {{
+      padding: var(--space-md);
+    }}
+
+    .player-controls {{
+      flex-direction: column;
+      align-items: stretch;
+    }}
+
+    .player-progress {{
+      order: -1;
+    }}
+  }}
+</style>

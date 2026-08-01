@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+---
+
+<Layout
+  title={isEn ? 'Privacy Policy — DJ Except4' : 'Datenschutz — DJ Except4'}
+  description={isEn ? 'Privacy policy for DJ Except4 — info@djexcept4.de' : 'Datenschutzerklärung für DJ Except4 — info@djexcept4.de'}
+  image={`/assets/DJ_Except4-Logo.png`}
+  type="website"
+  locale={locale}
+>
+  <section class="legal-page" aria-labelledby="privacy-heading">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">{isEn ? 'Privacy' : 'Datenschutz'}</p>
+        <h1 id="privacy-heading">{isEn ? 'Privacy Policy' : 'Datenschutzerklärung'}</h1>
+      </div>
+
+      <div class="legal-content">
+        <h2>{isEn ? 'Data Protection Statement' : 'Datenschutzbelehrung'}</h2>
+        <p>
+          {isEn
+            ? 'We take the protection of your personal data very seriously. We process your personal data only in accordance with the legal regulations, in particular the General Data Protection Regulation (GDPR) and the German Federal Data Protection Act (BDSG).'
+            : 'Wir nehmen den Schutz deiner persönlichen Daten sehr ernst. Wir verarbeiten deine personenbezogenen Daten nur im Einklang mit den gesetzlichen Bestimmungen, insbesondere der Datenschutz-Grundverordnung (DSGVO) und dem Bundesdatenschutzgesetz (BDSG).'}
+        </p>
+
+        <h2>{isEn ? 'Data Collection' : 'Datenerhebung'}</h2>
+        <p>
+          {isEn
+            ? 'When you visit our website, we collect access data (server log files). This data includes: name of the retrieved file, date and time of retrieval, amount of data transferred, browser type and version, operating system, referrer URL, IP address, and the requesting provider.'
+            : 'Wenn du unsere Website besuchst, erheben wir Zugriffsdaten (Server-Logfiles). Diese Daten umfassen: Name der abgerufenen Datei, Datum und Uhrzeit des Abrufs, übertragene Datenmenge, Browser-Typ und -Version, Betriebssystem, Referrer URL, IP-Adresse und den anfragenden Provider.'}
+        </p>
+
+        <h2>{isEn ? 'Contact Form' : 'Kontaktformular'}</h2>
+        <p>
+          {isEn
+            ? 'If you contact us via the contact form, the data you enter will be stored for the purpose of processing your request and for follow-up questions. We will delete this data after the request has been processed.'
+            : 'Wenn du uns über das Kontaktformular kontaktierst, werden die von dir eingegebenen Daten zur Bearbeitung deiner Anfrage und für Rückfragen gespeichert. Diese Daten werden nach Bearbeitung deiner Anfrage gelöscht.'}
+        </p>
+
+        <h2>{isEn ? 'Email Contact' : 'E-Mail-Kontakt'}</h2>
+        <p>
+          {isEn
+            ? 'If you contact us by email, your email address and the content of your message will be stored for processing your request. We will delete this data after the request has been processed.'
+            : 'Wenn du uns per E-Mail kontaktierst, werden deine E-Mail-Adresse und der Inhalt deiner Nachricht zur Bearbeitung deiner Anfrage gespeichert. Diese Daten werden nach Bearbeitung deiner Anfrage gelöscht.'}
+        </p>
+
+        <h2>{isEn ? 'Your Rights' : 'Deine Rechte'}</h2>
+        <p>
+          {isEn
+            ? 'You have the right to free information about your stored personal data, their origin, recipient, and purpose of processing, as well as the right to request correction, blocking, or deletion of this data.'
+            : 'Du hast das Recht auf unentgeltliche Auskunft über deine gespeicherten personenbezogenen Daten, deren Herkunft, Empfänger und Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten.'}
+        </p>
+
+        <h2>{isEn ? 'Contact' : 'Kontakt'}</h2>
+        <p>
+          {isEn
+            ? 'For questions about data protection, please contact us at:'
+            : 'Bei Fragen zum Datenschutz erreichst du uns unter:'}
+          <a href="mailto:info@djexcept4.de">info@djexcept4.de</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+  }
+
+  .legal-content {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .legal-content h2 {
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-md);
+    font-size: 1.3rem;
+    color: var(--dj-text-primary);
+  }
+
+  .legal-content p {
+    color: var(--dj-text-secondary);
+    line-height: 1.7;
+  }
+
+  .legal-content a {
+    color: var(--dj-accent-cyan);
+  }
+
+  .section-heading {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+</style>

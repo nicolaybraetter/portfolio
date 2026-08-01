@@ -1,0 +1,47 @@
+# Docker Compose für DJ Except4 Homepage
+# Deployed auf staging1 (192.168.0.201), Port 18082
+# Version: 2026-08-01
+
+version: '3.8'
+
+services:
+  dj-except4-web:
+    image: nginx:alpine
+    container_name: dj-except4-web
+    restart: unless-stopped
+    ports:
+      - "18082:80"
+    volumes:
+      - ./dist:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Optional: Admin API (für E-Mail und Medien-Upload)
+  # dj-except4-api:
+  #   image: node:22-alpine
+  #   container_name: dj-except4-api
+  #   restart: unless-stopped
+  #   ports:
+  #     - "18083:3000"
+  #   environment:
+  #     - ADMIN_TOKEN=${ADMIN_TOKEN}
+  #     - IONOS_SMTP_PASS=${IONOS_SMTP_PASS}
+  #     - IONOS_IMAP_PASS=${IONOS_IMAP_PASS}
+  #   volumes:
+  #     - ./admin-api:/app
+  #   working_dir: /app
+  #   command: npm start
+
+networks:
+  default:
+    driver: bridge

@@ -1,0 +1,165 @@
+---
+import '../styles/global.css';
+
+export interface SiteMetadata {
+  title: string;
+  description: string;
+  url: string;
+  image: string;
+  type: string;
+  locale: string;
+}
+
+export interface NavItem {
+  label: string;
+  href: string;
+}
+
+export interface SocialLink {
+  platform: string;
+  url: string;
+  icon: string;
+  label: string;
+}
+
+const { title, description, image, type, locale } = Astro.props;
+const siteUrl = 'https://djexcept4.de';
+const currentUrl = Astro.url.href;
+const canonicalUrl = currentUrl.replace(/^https?:\/\/djexcept4\.de/, 'https://djexcept4.de');
+
+const defaultTitle = 'DJ Except4 — Uplifting Trance & Emotional Electronic Music';
+const defaultDescription = 'DJ Except4 — Uplifting Trance, Vocal Trance und emotionales Electronic Music. Hör meine neuesten Tracks, abonniere meinen YouTube-Kanal und folge mir auf Instagram.';
+const defaultImage = `${siteUrl}/assets/DJ_Except4-Logo.png`;
+
+const metaTitle = title || defaultTitle;
+const metaDescription = description || defaultDescription;
+const metaImage = image || defaultImage;
+const metaType = type || 'website';
+const metaLocale = locale || 'de_DE';
+---
+
+<!doctype html>
+<html lang={locale === 'en' ? 'en' : 'de'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={metaDescription} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="DJ Except4" />
+    <meta name="theme-color" content="#0a0a14" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={metaType} />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:title" content={metaTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={metaImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="DJ Except4 Logo" />
+    <meta property="og:site_name" content="DJ Except4" />
+    <meta property="og:locale" content={metaLocale} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={currentUrl} />
+    <meta name="twitter:title" content={metaTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={metaImage} />
+    <meta name="twitter:image:alt" content="DJ Except4 Logo" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <title>{metaTitle}</title>
+
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "MusicGroup",
+        "name": "DJ Except4",
+        "url": siteUrl,
+        "description": "DJ & Producer für Uplifting Trance, Vocal Trance und Emotional Trance",
+        "genre": ["Trance", "Uplifting Trance", "Vocal Trance", "Emotional Trance"],
+        "sameAs": [
+          "https://www.instagram.com/djexcept4",
+          "https://www.distrokid.com/djexcept4",
+          "https://www.youtube.com/@djexcept4"
+        ],
+        "member": {
+          "@type": "Person",
+          "name": "DJ Except4"
+        }
+      })}
+    </script>
+
+    <script>
+      // PWA registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
+
+    <header role="banner">
+      <nav role="navigation" aria-label="Hauptnavigation">
+        <div class="container nav-container">
+          <a href="/{locale === 'en' ? 'en/' : ''}" class="brand" aria-label="DJ Except4 — Zur Startseite">
+            <img src="/assets/DJ_Except4-Logo.png" alt="DJ Except4 Logo" width="120" height="120" loading="eager" />
+          </a>
+          <button class="mobile-menu-toggle" aria-label="Menü öffnen" aria-expanded="false" id="menu-toggle">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+          <ul class="nav-links" id="nav-links" role="menubar">
+            <li role="none"><a href="/{locale === 'en' ? 'en/' : ''}" role="menuitem">Startseite</a></li>
+            <li role="none"><a href="/{locale === 'en' ? 'en/' : ''}tracks/" role="menuitem">Tracks</a></li>
+            <li role="none"><a href="/{locale === 'en' ? 'en/' : ''}bio/" role="menuitem">Bio</a></li>
+            <li role="none"><a href="/{locale === 'en' ? 'en/' : ''}contact/" role="menuitem">Kontakt</a></li>
+            <li role="none"><a href="/{locale === 'en' ? 'en/' : ''}admin/" role="menuitem" class="admin-link">Admin</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content" role="main">
+      <slot />
+    </main>
+
+    <footer role="contentinfo">
+      <div class="container footer-container">
+        <span>&copy; {new Date().getFullYear()} DJ Except4 · info@djexcept4.de</span>
+        <nav aria-label="Footer-Navigation">
+          <a href="/{locale === 'en' ? 'en/' : ''}impressum/">Impressum</a>
+          <a href="/{locale === 'en' ? 'en/' : ''}datenschutz/">Datenschutz</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const toggle = document.getElementById('menu-toggle');
+      const nav = document.getElementById('nav-links');
+      if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+          const expanded = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', String(!expanded));
+          nav.classList.toggle('open');
+        });
+      }
+    </script>
+  </body>
+</html>

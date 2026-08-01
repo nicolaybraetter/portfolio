@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://djexcept4.de/sitemap.xml
+
+# Disallow admin paths
+Disallow: /admin/

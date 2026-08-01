@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+---
+
+<Layout
+  title={isEn ? 'Page Not Found — DJ Except4' : 'Seite nicht gefunden — DJ Except4'}
+  description={isEn ? 'The page you are looking for does not exist.' : 'Die gesuchte Seite wurde nicht gefunden.'}
+  image={`/assets/DJ_Except4-Logo.png`}
+  type="website"
+  locale={locale}
+>
+  <section class="not-found" aria-labelledby="nf-heading">
+    <div class="container">
+      <h1 id="nf-heading">404</h1>
+      <p class="nf-text">
+        {isEn ? 'The page you are looking for does not exist or has been moved.' : 'Die gesuchte Seite wurde nicht gefunden oder wurde verschoben.'}
+      </p>
+      <a href={`/${locale}/`} class="button button-primary">
+        {isEn ? 'Back to Home' : 'Zurück zur Startseite'}
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .not-found {
+    padding: clamp(4rem, 10vw, 8rem) 0;
+    text-align: center;
+  }
+
+  .not-found h1 {
+    font-size: clamp(4rem, 10vw, 8rem);
+    color: var(--dj-accent-cyan);
+    margin-bottom: var(--space-md);
+  }
+
+  .nf-text {
+    font-size: 1.1rem;
+    color: var(--dj-text-secondary);
+    margin-bottom: var(--space-xl);
+  }
+</style>

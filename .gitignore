@@ -7,32 +7,41 @@ node_modules/
 dist/
 .build/
 
-# Environment
+# Environment variables
 .env
 .env.local
 .env.*.local
 
 # IDE
-.idea/
 .vscode/
+.idea/
 *.swp
 *.swo
 *~
 
-# OS
+# OS files
 .DS_Store
 Thumbs.db
 
-# Testing
-testing/
-
-# Temporary
-*.bak
-*.bak2
-*.tmp
-
-# Node
+# Debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
+
+# Astro
+.astro/
+
+# Admin uploads (runtime)
+public/media/
+public/uploads/
+
+# Logs
+*.log
+
+# Misc
+*.local
+coverage/
+.nyc_output
+
+# PWA icons (generated)
+public/icons/

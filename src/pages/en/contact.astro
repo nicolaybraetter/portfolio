@@ -1,0 +1,139 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import content from '../../../data/content.json';
+
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+const site = content.site;
+---
+
+<Layout
+  title={isEn ? 'Contact — DJ Except4' : 'Kontakt — DJ Except4'}
+  description={isEn ? 'Get in touch with DJ Except4 for bookings, collaborations, or inquiries.' : 'Kontaktiere DJ Except4 für Bookings, Kooperationen oder Anfragen.'}
+  image={`/assets/DJ_Except4-Logo.png`}
+  type="website"
+  locale={locale}
+>
+  <section class="contact-page" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">{isEn ? 'Contact' : 'Kontakt'}</p>
+        <h1 id="contact-heading">{isEn ? 'Contact' : 'Kontakt'}</h1>
+      </div>
+
+      <div class="contact-content">
+        <p>{isEn ? content.contact.descriptionEn : content.contact.description}</p>
+
+        <div class="contact-info">
+          <p>
+            <strong>E-Mail:</strong>
+            <a href="mailto:info@djexcept4.de">info@djexcept4.de</a>
+          </p>
+        </div>
+
+        <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden" aria-hidden="true">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+          <div class="form-group">
+            <label for="contact-name">{isEn ? content.contact.nameEn : content.contact.name}</label>
+            <input type="text" id="contact-name" name="name" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="contact-email">{isEn ? content.contact.emailLabelEn : content.contact.emailLabel}</label>
+            <input type="email" id="contact-email" name="email" required autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="contact-message">{isEn ? content.contact.messageEn : content.contact.message}</label>
+            <textarea id="contact-message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="button button-primary">
+            {isEn ? content.contact.sendEn : content.contact.send}
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-page {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+  }
+
+  .contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-info {
+    margin: var(--space-xl) 0;
+    padding: var(--space-lg);
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-md);
+  }
+
+  .contact-info a {
+    color: var(--dj-accent-cyan);
+    font-weight: 600;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .form-group label {
+    font-weight: 600;
+    color: var(--dj-text-primary);
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 0.75rem 1rem;
+    background: var(--dj-bg-primary);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-sm);
+    color: var(--dj-text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color var(--transition-fast);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--dj-accent-cyan);
+    box-shadow: 0 0 0 3px rgba(77, 201, 246, 0.2);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .hidden {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+  }
+
+  .section-heading {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+</style>

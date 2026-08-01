@@ -1,0 +1,196 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import content from '../../../../data/content.json';
+
+const { slug } = Astro.params;
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+const track = content.tracks.find((t) => t.slug === slug);
+
+if (!track) {
+  return Astro.redirect(`/${locale}/404`);
+}
+
+const title = isEn ? track.titleEn : track.title;
+const description = isEn ? track.descriptionEn : track.descriptionDE || track.description;
+---
+
+<Layout
+  title={title + ' — DJ Except4'}
+  description={description}
+  image={track.files.cover}
+  type="music.song"
+  locale={locale}
+>
+  <section class="track-detail" aria-labelledby="track-heading">
+    <div class="container">
+      <a href={`/${locale}/tracks/`} class="back-link">
+        ← {isEn ? 'Back to Tracks' : 'Zurück zu Tracks'}
+      </a>
+
+      <div class="track-hero">
+        <div class="track-cover">
+          <img
+            src={track.files.cover}
+            alt={`Cover von ${track.title}`}
+            width="400"
+            height="400"
+            loading="eager"
+          />
+        </div>
+        <div class="track-meta">
+          <span class="track-genre">{track.genre}</span>
+          <h1 id="track-heading">{track.title}</h1>
+          <p class="track-artist">DJ Except4</p>
+          <p class="track-style">{isEn ? track.styleEn : track.style}</p>
+          <p class="track-description">{isEn ? track.descriptionEn : track.descriptionDE || track.description}</p>
+
+          <div class="track-actions">
+            <Player
+              trackId={track.id}
+              mp3Url={track.files.mp3}
+              coverUrl={track.files.cover}
+              title={track.title}
+              autoPlay={false}
+            />
+            <div class="track-links">
+              {track.youtube?.videoId && (
+                <a href={track.youtube.url} target="_blank" rel="noopener" class="button button-secondary">
+                  ▶ YouTube
+                </a>
+              )}
+              {track.distrokid?.url && (
+                <a href={track.distrokid.url} target="_blank" rel="noopener" class="button button-secondary">
+                  🎵 DistroKid
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {track.youtubeDescription && (
+        <section class="track-yt-desc" aria-labelledby="yt-desc-heading">
+          <h2 id="yt-desc-heading">{isEn ? 'YouTube Description' : 'YouTube-Beschreibung'}</h2>
+          <pre class="yt-description">{track.youtubeDescription}</pre>
+          <p class="yt-hashtags">
+            {track.keywords.map((kw) => (
+              <span class="hashtag">#{kw}</span>
+            ))}
+          </p>
+        </section>
+      )}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .track-detail {
+    padding: clamp(2rem, 5vw, 4rem) 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: var(--space-xl);
+    color: var(--dj-accent-cyan);
+    font-weight: 600;
+  }
+
+  .track-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  .track-cover img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .track-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .track-genre {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--dj-accent-cyan);
+  }
+
+  .track-artist {
+    color: var(--dj-text-secondary);
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .track-style {
+    color: var(--dj-text-muted);
+    font-style: italic;
+    margin: 0;
+  }
+
+  .track-description {
+    color: var(--dj-text-secondary);
+    line-height: 1.7;
+  }
+
+  .track-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .track-links {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .track-yt-desc {
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-2xl);
+    border-top: 1px solid var(--dj-border);
+  }
+
+  .yt-description {
+    background: var(--dj-surface);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    white-space: pre-wrap;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--dj-text-secondary);
+    line-height: 1.6;
+  }
+
+  .yt-hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  .hashtag {
+    padding: 0.2rem 0.6rem;
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    color: var(--dj-accent-cyan);
+  }
+
+  @media (min-width: 768px) {
+    .track-hero {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

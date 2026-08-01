@@ -1,0 +1,86 @@
+{
+  "site": {
+    "name": "DJ Except4",
+    "tagline": "Uplifting Trance & Emotional Electronic Music",
+    "taglineEn": "Uplifting Trance & Emotional Electronic Music",
+    "description": "DJ & Producer for Uplifting Trance, Vocal Trance and Emotional Trance — atmospheric, melodic, euphoric.",
+    "descriptionEn": "DJ & Producer for Uplifting Trance, Vocal Trance and Emotional Trance — atmospheric, melodic, euphoric.",
+    "bio": "DJ Except4 combines cinematic atmosphere with driving trance arrangements. Emotional vocals, epic melodic lines and powerful drops define the sound. Every track tells a story — from longing through inner conflict to liberating euphoria.",
+    "bioEn": "DJ Except4 combines cinematic atmosphere with driving trance arrangements. Emotional vocals, epic melodic lines and powerful drops define the sound. Every track tells a story — from longing through inner conflict to liberating euphoria.",
+    "keywords": "DJ Except4, Uplifting Trance, Vocal Trance, Emotional Trance, Electronic Music, DJ, Trance Music, Cinematic Trance, Melodic Trance"
+  },
+  "nav": {
+    "home": "Home",
+    "homeEn": "Home",
+    "tracks": "Tracks",
+    "tracksEn": "Tracks",
+    "bio": "Bio",
+    "bioEn": "Bio",
+    "contact": "Contact",
+    "contactEn": "Contact",
+    "admin": "Admin",
+    "adminEn": "Admin"
+  },
+  "hero": {
+    "eyebrow": "DJ & Producer",
+    "headline": "DJ Except4",
+    "headlineEn": "DJ Except4",
+    "subtitle": "Uplifting Trance & Emotional Electronic Music",
+    "subtitleEn": "Uplifting Trance & Emotional Electronic Music",
+    "cta": "Listen Now",
+    "ctaEn": "Listen Now",
+    "cta2": "Read Bio",
+    "cta2En": "Read Bio"
+  },
+  "tracks": {
+    "title": "Tracks",
+    "titleEn": "Tracks",
+    "eyebrow": "Discography",
+    "eyebrowEn": "Discography",
+    "description": "Discover my latest productions — emotional, melodic and cinematic.",
+    "descriptionEn": "Discover my latest productions — emotional, melodic and cinematic."
+  },
+  "social": {
+    "title": "Follow Me",
+    "titleEn": "Follow Me",
+    "instagram": "Instagram",
+    "distrokid": "DistroKid",
+    "youtube": "YouTube"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "titleEn": "Frequently Asked Questions",
+    "q1": "Who is DJ Except4?",
+    "a1": "DJ Except4 is a DJ & Producer in the Uplifting Trance, Vocal Trance and Emotional Trance scene. The music combines cinematic atmosphere with driving rhythms and emotional vocals.",
+    "q2": "How can I listen to the music?",
+    "a2": "You can listen to the tracks directly on this site using the player, or follow the linked streaming platforms. All tracks are also distributed via DistroKid.",
+    "q3": "How can I book DJ Except4?",
+    "a3": "For booking inquiries, please send an email to info@djexcept4.de.",
+    "q4": "Where can I find the music on streaming platforms?",
+    "a4": "The tracks are available on all major streaming platforms. Follow DJ Except4 on DistroKid for updates on new releases."
+  },
+  "contact": {
+    "title": "Contact",
+    "titleEn": "Contact",
+    "eyebrow": "Contact",
+    "eyebrowEn": "Contact",
+    "description": "Have a question, a booking inquiry, or want to collaborate? Reach out!",
+    "descriptionEn": "Have a question, a booking inquiry, or want to collaborate? Reach out!",
+    "email": "info@djexcept4.de",
+    "name": "Your Name",
+    "nameEn": "Your Name",
+    "emailLabel": "Your Email",
+    "emailLabelEn": "Your Email",
+    "message": "Message",
+    "messageEn": "Message",
+    "send": "Send Message",
+    "sendEn": "Send Message",
+    "success": "Thank you! Your message has been sent.",
+    "successEn": "Thank you! Your message has been sent."
+  },
+  "footer": {
+    "copyright": "© {year} DJ Except4 · info@djexcept4.de",
+    "impressum": "Legal Notice",
+    "datenschutz": "Privacy Policy"
+  }
+}

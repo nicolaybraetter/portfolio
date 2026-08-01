@@ -1,0 +1,136 @@
+---
+// Admin Layout — shared shell for all admin pages
+const { title } = Astro.props;
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+---
+
+<!doctype html>
+<html lang={isEn ? 'en' : 'de'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — DJ Except4 Admin</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/admin.css" />
+  </head>
+  <body class="admin-body">
+    <div class="admin-layout">
+      <aside class="admin-sidebar" role="navigation" aria-label="Admin navigation">
+        <div class="admin-logo">
+          <img src="/assets/DJ_Except4-Logo.png" alt="DJ Except4" width="60" height="60" />
+          <span>Admin</span>
+        </div>
+        <nav>
+          <ul>
+            <li><a href={`/${locale}/admin/`}>{isEn ? 'Dashboard' : 'Übersicht'}</a></li>
+            <li><a href={`/${locale}/admin/werbung/`}>{isEn ? 'Advertising' : 'Werbung'}</a></li>
+            <li><a href={`/${locale}/admin/medien/`}>{isEn ? 'Media' : 'Medien'}</a></li>
+            <li><a href={`/${locale}/admin/streaming/`}>{isEn ? 'Streaming' : 'Streaming'}</a></li>
+            <li><a href={`/${locale}/admin/seo/`}>{isEn ? 'SEO' : 'SEO'}</a></li>
+            <li><a href={`/${locale}/admin/email/`}>{isEn ? 'Email' : 'E-Mail'}</a></li>
+          </ul>
+        </nav>
+        <div class="admin-logout">
+          <a href={`/${locale}/admin/login`}>{isEn ? 'Logout' : 'Abmelden'}</a>
+        </div>
+      </aside>
+      <main class="admin-main" role="main">
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>
+
+<style>
+  .admin-body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    background: var(--dj-bg-primary, #0a0a14);
+    color: var(--dj-text-primary, #e8e8f0);
+  }
+
+  .admin-layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .admin-sidebar {
+    width: 250px;
+    background: var(--dj-surface, #14142a);
+    border-right: 1px solid var(--dj-border, #2a2a4a);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .admin-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .admin-logo span {
+    font-weight: 900;
+    font-size: 1.1rem;
+  }
+
+  .admin-sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .admin-sidebar nav a {
+    display: block;
+    padding: 0.6rem 0.8rem;
+    color: var(--dj-text-secondary, #9494b8);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+  }
+
+  .admin-sidebar nav a:hover,
+  .admin-sidebar nav a.active {
+    background: var(--dj-surface-hover, #1a1a35);
+    color: var(--dj-accent-cyan, #4dc9f6);
+  }
+
+  .admin-logout {
+    margin-top: auto;
+  }
+
+  .admin-logout a {
+    color: var(--dj-error, #f87171);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .admin-main {
+    flex: 1;
+    padding: var(--space-2xl);
+    overflow-y: auto;
+  }
+
+  @media (max-width: 768px) {
+    .admin-layout {
+      flex-direction: column;
+    }
+
+    .admin-sidebar {
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: var(--space-md);
+    }
+
+    .admin-sidebar nav ul {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+</style>

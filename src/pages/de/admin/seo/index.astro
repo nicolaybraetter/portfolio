@@ -1,0 +1,174 @@
+---
+import Layout from '../../layouts/AdminLayout.astro';
+import content from '../../../data/content.json';
+
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+---
+
+<Layout title={isEn ? 'Admin — SEO' : 'Admin — SEO'}>
+  <h1>{isEn ? 'SEO Keyword Management' : 'SEO-Keyword-Pflege'}</h1>
+
+  <div class="admin-section">
+    <div class="seo-pages">
+      {content.tracks.map((track) => (
+        <div class="seo-page" data-track-id={track.id}>
+          <h3>{track.title}</h3>
+          <div class="form-group">
+            <label for={`seo-title-${track.id}`}>{isEn ? 'Meta Title (max 60 chars)' : 'Meta-Titel (max 60 Zeichen)'}</label>
+            <input type="text" id={`seo-title-${track.id}`} maxlength="60" value={track.title} />
+            <span class="char-count" id={`seo-title-count-${track.id}`}>0/60</span>
+          </div>
+          <div class="form-group">
+            <label for={`seo-desc-${track.id}`}>{isEn ? 'Meta Description (max 160 chars)' : 'Meta-Beschreibung (max 160 Zeichen)'}</label>
+            <textarea id={`seo-desc-${track.id}`} maxlength="160" rows="2">{track.description}</textarea>
+            <span class="char-count" id={`seo-desc-count-${track.id}`}>0/160</span>
+          </div>
+          <div class="form-group">
+            <label for={`seo-keywords-${track.id}`}>{isEn ? 'Keywords (comma-separated)' : 'Keywords (kommagetrennt)'}</label>
+            <input type="text" id={`seo-keywords-${track.id}`} value={track.keywords.join(', ')} />
+          </div>
+          <button class="btn-save-seo" data-track={track.id}>
+            {isEn ? 'Save SEO Data' : 'SEO-Daten speichern'}
+          </button>
+        </div>
+      ))}
+    </div>
+
+    <div class="seo-global">
+      <h3>{isEn ? 'Global SEO Settings' : 'Globale SEO-Einstellungen'}</h3>
+      <div class="form-group">
+        <label for="seo-site-title">{isEn ? 'Site Title' : 'Seitentitel'}</label>
+        <input type="text" id="seo-site-title" value={content.site.name} maxlength="60" />
+      </div>
+      <div class="form-group">
+        <label for="seo-site-desc">{isEn ? 'Site Description' : 'Seitenbeschreibung'}</label>
+        <textarea id="seo-site-desc" maxlength="160" rows="2">{content.site.description}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="seo-keywords-global">{isEn ? 'Global Keywords' : 'Globale Keywords'}</label>
+        <input type="text" id="seo-keywords-global" value={content.site.keywords.join(', ')} />
+      </div>
+      <button class="btn-save-seo" id="btn-save-global-seo">
+        {isEn ? 'Save Global SEO Settings' : 'Globale SEO-Einstellungen speichern'}
+      </button>
+    </div>
+  </div>
+</Layout>
+
+<script define:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Character counters
+    document.querySelectorAll('input[maxlength], textarea[maxlength]').forEach((el) => {
+      const max = parseInt(el.getAttribute('maxlength') || '0');
+      const countId = el.id + '-count';
+      const countEl = document.getElementById(countId);
+      if (countEl) {
+        const update = () => {
+          const len = el.value.length;
+          countEl.textContent = len + '/' + max;
+          countEl.style.color = len > max ? 'var(--dj-error)' : 'var(--dj-text-muted)';
+        };
+        el.addEventListener('input', update);
+        update();
+      }
+    });
+
+    // Save buttons
+    document.querySelectorAll('.btn-save-seo').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btn.textContent = '✓ Saved';
+        setTimeout(() => { btn.textContent = 'Save SEO Data'; }, 2000);
+      });
+    });
+
+    const globalBtn = document.getElementById('btn-save-global-seo');
+    if (globalBtn) {
+      globalBtn.addEventListener('click', () => {
+        globalBtn.textContent = '✓ Saved';
+        setTimeout(() => { globalBtn.textContent = 'Save Global SEO Settings'; }, 2000);
+      });
+    }
+  });
+</script>
+
+<style>
+  .admin-section {
+    padding: var(--space-xl);
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .seo-pages {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .seo-page {
+    padding: var(--space-lg);
+    background: var(--dj-bg-primary);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-md);
+  }
+
+  .seo-page h3 {
+    margin-bottom: var(--space-md);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+  }
+
+  .form-group label {
+    font-weight: 600;
+    color: var(--dj-text-primary);
+    font-size: 0.85rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 0.5rem 0.7rem;
+    background: var(--dj-bg-primary);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-sm);
+    color: var(--dj-text-primary);
+    font-family: inherit;
+  }
+
+  .char-count {
+    font-size: 0.75rem;
+    color: var(--dj-text-muted);
+    text-align: right;
+  }
+
+  .seo-global {
+    padding: var(--space-xl);
+    background: var(--dj-bg-primary);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-md);
+  }
+
+  .seo-global h3 {
+    margin-bottom: var(--space-md);
+  }
+
+  .btn-save-seo {
+    padding: 0.5rem 1rem;
+    background: var(--dj-accent-cyan);
+    color: var(--dj-bg-primary);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+
+  h1 { margin-bottom: var(--space-xl); }
+  h3 { margin-bottom: var(--space-md); }
+</style>
