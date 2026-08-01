@@ -10,18 +10,6 @@ export interface SiteMetadata {
   locale: string;
 }
 
-export interface NavItem {
-  label: string;
-  href: string;
-}
-
-export interface SocialLink {
-  platform: string;
-  url: string;
-  icon: string;
-  label: string;
-}
-
 const { title, description, image, type, locale } = Astro.props;
 const siteUrl = 'https://djexcept4.de';
 const currentUrl = Astro.url.href;
@@ -30,9 +18,9 @@ const effectiveLocale = locale || 'de';
 const isEn = effectiveLocale === 'en';
 const basePath = isEn ? 'en/' : 'de/';
 
-const defaultTitle = 'DJ Except4 — Uplifting Trance & Emotional Electronic Music';
+const defaultTitle = 'DJ Except4 — Uplifting Trance & Electronic Music';
 const defaultDescription = 'DJ Except4 — Uplifting Trance, Vocal Trance und emotionales Electronic Music. Hör meine neuesten Tracks, abonniere meinen YouTube-Kanal und folge mir auf Instagram.';
-const defaultImage = `${siteUrl}/assets/DJ_Except4-Logo.png`;
+const defaultImage = `${siteUrl}/assets/DJ_Except4-Logo-1200.webp`;
 
 const metaTitle = title || defaultTitle;
 const metaDescription = description || defaultDescription;
@@ -49,9 +37,8 @@ const metaLocale = effectiveLocale === 'en' ? 'en_US' : 'de_DE';
     <meta name="description" content={metaDescription} />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="DJ Except4" />
-    <meta name="theme-color" content="#0a0a14" />
+    <meta name="theme-color" content="#080810" />
 
-    <!-- Canonical URL -->
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph -->
@@ -59,7 +46,7 @@ const metaLocale = effectiveLocale === 'en' ? 'en_US' : 'de_DE';
     <meta property="og:url" content={currentUrl} />
     <meta property="og:title" content={metaTitle} />
     <meta property="og:description" content={metaDescription} />
-    <meta property="og:image" content="/assets/DJ_Except4-Logo-1200.webp" />
+    <meta property="og:image" content={metaImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="DJ Except4 Logo" />
@@ -71,7 +58,7 @@ const metaLocale = effectiveLocale === 'en' ? 'en_US' : 'de_DE';
     <meta name="twitter:url" content={canonicalUrl} />
     <meta name="twitter:title" content={metaTitle} />
     <meta name="twitter:description" content={metaDescription} />
-    <meta name="twitter:image" content="/assets/DJ_Except4-Logo-1200.webp" />
+    <meta name="twitter:image" content={metaImage} />
     <meta name="twitter:image:alt" content="DJ Except4 Logo" />
 
     <!-- Favicon -->
@@ -82,7 +69,7 @@ const metaLocale = effectiveLocale === 'en' ? 'en_US' : 'de_DE';
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- Plausible Analytics (privacy-friendly, no cookies) -->
+    <!-- Plausible Analytics -->
     <script defer data-domain="djexcept4.de" src="https://plausible.io/js/script.js"></script>
     <noscript><img src="https://plausible.io/js/script.outbound-links.js" alt="" /></noscript>
 
@@ -101,54 +88,64 @@ const metaLocale = effectiveLocale === 'en' ? 'en_US' : 'de_DE';
           "https://www.distrokid.com/djexcept4",
           "https://www.youtube.com/@djexcept4"
         ],
-        "member": {
-          "@type": "Person",
-          "name": "DJ Except4"
-        }
+        "member": { "@type": "Person", "name": "DJ Except4" }
       })}
-    </script>
-
-    <script>
-      // PWA registration
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js');
-        });
-      }
     </script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
 
-    <header role="banner">
-      <nav role="navigation" aria-label="Hauptnavigation">
-        <div class="container nav-container">
-          <a href={`/${basePath}`} class="brand" aria-label="DJ Except4 — Zur Startseite">
-            <img src="/assets/DJ_Except4-Logo-120.webp" alt="DJ Except4 Logo" width="120" height="120" loading="eager" />
-          </a>
-          <button class="mobile-menu-toggle" aria-label="Menü öffnen" aria-expanded="false" id="menu-toggle">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-          </button>
-          <ul class="nav-links" id="nav-links" role="menubar">
+    <!-- ── Navigation ── -->
+    <header role="banner" class="site-header">
+      <div class="container nav-container">
+        <a href={`/${basePath}`} class="brand" aria-label="DJ Except4 — Zur Startseite">
+          <img src="/assets/DJ_Except4-Logo-120.webp" alt="DJ Except4 Logo" width="40" height="40" loading="eager" />
+          <span class="brand-text">DJ Except4</span>
+        </a>
+
+        <button class="mobile-menu-toggle" aria-label="Menü öffnen" aria-expanded="false" id="menu-toggle">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="nav-desktop" aria-label="Hauptnavigation">
+          <ul role="menubar">
             <li role="none"><a href={`/${basePath}`} role="menuitem">Startseite</a></li>
             <li role="none"><a href={`/${basePath}tracks/`} role="menuitem">Tracks</a></li>
             <li role="none"><a href={`/${basePath}bio/`} role="menuitem">Bio</a></li>
             <li role="none"><a href={`/${basePath}contact/`} role="menuitem">Kontakt</a></li>
             <li role="none"><a href={`/${basePath}admin/`} role="menuitem" class="admin-link">Admin</a></li>
           </ul>
-        </div>
-      </nav>
+        </nav>
+      </div>
+
+      <!-- Mobile nav dropdown -->
+      <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+        <nav aria-label="Mobile Navigation">
+          <ul>
+            <li><a href={`/${basePath}`}>Startseite</a></li>
+            <li><a href={`/${basePath}tracks/`}>Tracks</a></li>
+            <li><a href={`/${basePath}bio/`}>Bio</a></li>
+            <li><a href={`/${basePath}contact/`}>Kontakt</a></li>
+            <li><a href={`/${basePath}admin/`}>Admin</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
+    <!-- ── Main Content ── -->
     <main id="main-content" role="main">
       <slot />
     </main>
 
-    <footer role="contentinfo">
+    <!-- ── Footer ── -->
+    <footer role="contentinfo" class="site-footer">
       <div class="container footer-container">
-        <span>&copy; {new Date().getFullYear()} DJ Except4 · info@djexcept4.de</span>
+        <div class="footer-brand">
+          <span class="footer-logo">DJ Except4</span>
+          <span class="footer-copy">&copy; {new Date().getFullYear()} · info@djexcept4.de</span>
+        </div>
         <nav aria-label="Footer-Navigation">
           <a href={`/${basePath}impressum/`}>Impressum</a>
           <a href={`/${basePath}datenschutz/`}>Datenschutz</a>
@@ -156,17 +153,182 @@ const metaLocale = effectiveLocale === 'en' ? 'en_US' : 'de_DE';
       </div>
     </footer>
 
+    <!-- ── Scripts ── -->
     <script>
       // Mobile menu toggle
       const toggle = document.getElementById('menu-toggle');
-      const nav = document.getElementById('nav-links');
-      if (toggle && nav) {
+      const mobileNav = document.getElementById('nav-mobile');
+      if (toggle && mobileNav) {
         toggle.addEventListener('click', () => {
           const expanded = toggle.getAttribute('aria-expanded') === 'true';
           toggle.setAttribute('aria-expanded', String(!expanded));
-          nav.classList.toggle('open');
+          mobileNav.setAttribute('aria-hidden', String(expanded));
+          mobileNav.classList.toggle('open');
         });
       }
     </script>
   </body>
 </html>
+
+<style>
+  /* ── Header ── */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8, 8, 16, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--dj-border-subtle);
+    height: var(--nav-height);
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: var(--dj-text-primary);
+    font-weight: 900;
+    font-size: 1.1rem;
+    transition: opacity var(--dur-fast);
+  }
+  .brand:hover { opacity: 0.8; }
+  .brand img { border-radius: var(--radius-full); }
+
+  .nav-desktop ul {
+    display: flex;
+    list-style: none;
+    gap: var(--space-1);
+  }
+
+  .nav-desktop a {
+    display: block;
+    padding: var(--space-2) var(--space-4);
+    color: var(--dj-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    transition: all var(--dur-fast);
+  }
+  .nav-desktop a:hover,
+  .nav-desktop a:focus-visible {
+    color: var(--dj-text-primary);
+    background: var(--dj-surface);
+  }
+
+  .admin-link {
+    color: var(--dj-accent) !important;
+  }
+
+  /* ── Mobile menu ── */
+  .mobile-menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+  }
+  .hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--dj-text-primary);
+    border-radius: 2px;
+    transition: all var(--dur-base);
+  }
+
+  .nav-mobile {
+    display: none;
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: rgba(8, 8, 16, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--dj-border-subtle);
+    padding: var(--space-4);
+  }
+  .nav-mobile.open { display: block; }
+
+  .nav-mobile ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .nav-mobile a {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    color: var(--dj-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    transition: all var(--dur-fast);
+  }
+  .nav-mobile a:hover {
+    color: var(--dj-text-primary);
+    background: var(--dj-surface);
+  }
+
+  @media (min-width: 768px) {
+    .mobile-menu-toggle { display: none; }
+    .nav-mobile { display: none !important; }
+  }
+
+  /* ── Footer ── */
+  .site-footer {
+    border-top: 1px solid var(--dj-border-subtle);
+    padding-block: var(--space-8);
+    margin-top: var(--space-16);
+  }
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: center;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .footer-container {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .footer-logo {
+    font-weight: 900;
+    font-size: 0.9375rem;
+    color: var(--dj-text-primary);
+  }
+  .footer-copy {
+    font-size: 0.8125rem;
+    color: var(--dj-text-muted);
+  }
+  .site-footer nav {
+    display: flex;
+    gap: var(--space-6);
+  }
+  .site-footer nav a {
+    font-size: 0.8125rem;
+    color: var(--dj-text-muted);
+    text-decoration: none;
+    transition: color var(--dur-fast);
+  }
+  .site-footer nav a:hover { color: var(--dj-accent); }
+</style>

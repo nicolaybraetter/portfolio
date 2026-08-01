@@ -4,631 +4,439 @@ import content from '../../data/content.json';
 
 const locale = Astro.currentLocale || 'de';
 const isEn = locale === 'en';
-const tracks = content.tracks;
-const site = content.site;
-const primaryTrack = tracks[0];
-const youtubeVideos = tracks.filter(t => t.youtube?.videoId).slice(0, 4);
+const basePath = isEn ? 'en/' : 'de/';
+const tracks = content.tracks || [];
+const latestTrack = tracks[0];
+const socialLinks = content.social || {};
+const ads = content.ads || [];
+const faqs = content.faq || [];
 ---
 
 <Layout
-  title={site.name + ' — ' + (isEn ? site.taglineEn : site.tagline)}
-  description={isEn ? site.descriptionEn : site.description}
-  image="/assets/DJ_Except4-Logo-1200.webp"
+  title={isEn ? 'DJ Except4 — Electronic Music Producer' : 'DJ Except4 — Electronic Music Producer'}
+  description={isEn ? 'DJ & Producer from Germany. Uplifting Trance, Vocal Trance and Emotional Electronic Music. Listen, follow, and stay connected.' : 'DJ & Producer aus Deutschland. Uplifting Trance, Vocal Trance und emotionales Electronic Music. Hören, folgen und vernetzen.'}
+  image={`/assets/DJ_Except4-Logo-1200.webp`}
   type="website"
   locale={locale}
 >
-  <!-- Hero Section with Wallpaper Background -->
+
+  <!-- ── Hero ── -->
   <section class="hero" aria-labelledby="hero-heading">
-    <div class="hero-bg"></div>
-    <div class="container hero-content">
-      <div class="hero-avatar">
-        <img src="/media/youtube/avatar-900.webp" alt="DJ Except4 Avatar" width="120" height="120" loading="eager" />
-      </div>
-      <p class="eyebrow">{isEn ? 'DJ & Producer' : 'DJ & Producer'}</p>
-      <h1 id="hero-heading">{isEn ? 'DJ Except4' : 'DJ Except4'}</h1>
-      <p class="lead">{isEn ? site.taglineEn : site.tagline}</p>
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <p class="eyebrow">{isEn ? 'Welcome to my world' : 'Willkommen in meiner Welt'}</p>
+      <h1 id="hero-heading">DJ Except4</h1>
+      <p class="hero-subtitle">
+        {isEn
+          ? 'Uplifting Trance · Vocal Trance · Emotional Electronic Music'
+          : 'Uplifting Trance · Vocal Trance · Emotionales Electronic Music'}
+      </p>
       <div class="hero-actions">
-        <a href={`/${locale}/tracks/`} class="button button-primary">
-          {isEn ? '♫ Listen Now' : '♫ Musik hören'}
+        <a href={`/${basePath}tracks/`} class="btn btn-primary">
+          {isEn ? 'Listen to Music' : 'Musik hören'}
         </a>
-        <a href={`/${locale}/bio/`} class="button button-secondary">
-          {isEn ? '📖 Read Bio' : '📖 Bio lesen'}
+        <a href={`/${basePath}contact/`} class="btn btn-secondary">
+          {isEn ? 'Get in Touch' : 'Kontakt aufnehmen'}
         </a>
       </div>
     </div>
   </section>
 
-  <!-- YouTube Video Showcase -->
-  <section class="youtube-section" aria-labelledby="youtube-heading">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">▶ YouTube</p>
-        <h2 id="youtube-heading">{isEn ? 'Latest Videos' : 'Neueste Videos'}</h2>
-      </div>
-      <div class="video-grid">
-        {youtubeVideos.map((track) => (
-          <a href={track.youtube.url} target="_blank" rel="noopener" class="video-card">
-            <div class="video-thumb">
-              <img
-                src={`/media/youtube/thumb-${track.youtube.videoId}-maxres.jpg`}
-                alt={track.title}
-                width="400"
-                height="225"
-                loading="lazy"
-                decoding="async"
-              />
-              <span class="play-icon" aria-hidden="true">▶</span>
-            </div>
-            <div class="video-info">
-              <h3>{track.title}</h3>
-              <span class="track-genre">{track.genre}</span>
-            </div>
+  <!-- ── Latest Track ── -->
+  {latestTrack && (
+    <section class="section" aria-labelledby="latest-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="latest-heading">{isEn ? 'Latest Release' : 'Neueste Veröffentlichung'}</h2>
+          <a href={`/${basePath}tracks/`} class="btn btn-ghost">
+            {isEn ? 'All Tracks →' : 'Alle Tracks →'}
           </a>
-        ))}
-        <a href="https://www.youtube.com/@DJExcept4" target="_blank" rel="noopener" class="video-card video-card-channel">
-          <div class="channel-banner">
-            <img src="/media/youtube/channel-banner.webp" alt="DJ Except4 YouTube Channel" width="400" height="225" loading="lazy" decoding="async" />
-            <div class="channel-overlay">
-              <img src="/media/youtube/avatar-900.webp" alt="DJ Except4" width="64" height="64" loading="lazy" decoding="async" />
-              <span>YouTube Channel</span>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Latest Track -->
-  <section class="latest-track" aria-labelledby="latest-heading">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">{isEn ? 'Latest Release' : 'Neueste Veröffentlichung'}</p>
-        <h2 id="latest-heading">{isEn ? 'Latest Track' : 'Neuester Track'}</h2>
-      </div>
-      {tracks.length > 0 && (
-        <div class="latest-grid">
-          <div class="latest-cover">
+        </div>
+        <div class="track-hero-card card">
+          <div class="track-hero-cover">
             <img
-              src={`/media/youtube/thumb-${primaryTrack.youtube.videoId}-maxres.jpg`}
-              alt={`Cover von ${primaryTrack.title}`}
+              src={latestTrack.files?.cover || '/assets/DJ_Except4-Logo-1200.webp'}
+              alt={latestTrack.title + ' Cover'}
               width="400"
               height="400"
               loading="eager"
             />
-          </div>
-          <div class="latest-info">
-            <span class="track-genre">{primaryTrack.genre}</span>
-            <h3>{primaryTrack.title}</h3>
-            <p>{isEn ? primaryTrack.descriptionEn : primaryTrack.descriptionDE || primaryTrack.description}</p>
-            <div class="latest-actions">
-              {primaryTrack.youtube?.videoId && (
-                <a href={primaryTrack.youtube.url} target="_blank" rel="noopener" class="button button-secondary">
-                  ▶ YouTube
-                </a>
-              )}
-              <a href={`/${locale}/tracks/${primaryTrack.slug}/`} class="button button-primary">
-                {isEn ? 'Details' : 'Details ansehen'}
+            <div class="track-hero-overlay">
+              <a href={latestTrack.files?.mp4 || latestTrack.youtube?.url || '#'} class="play-button" aria-label={isEn ? 'Play' : 'Abspielen'}>
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                  <circle cx="24" cy="24" r="23" stroke="white" stroke-width="2" fill="none"/>
+                  <path d="M19 16L34 24L19 32V16Z" fill="white"/>
+                </svg>
               </a>
             </div>
           </div>
-        </div>
-      )}
-    </div>
-  </section>
-
-  <!-- Tracks Grid -->
-  <section class="tracks-section" aria-labelledby="tracks-heading">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">{isEn ? 'Discography' : 'Diskografie'}</p>
-        <h2 id="tracks-heading">{isEn ? 'All Tracks' : 'Alle Tracks'}</h2>
-      </div>
-      <div class="track-grid">
-        {tracks.map((track) => (
-          <article class="track-card" aria-labelledby={`track-${track.slug}`}>
-            <div class="track-card-cover">
-              <img
-                src={`/media/youtube/thumb-${track.youtube.videoId}-maxres.jpg`}
-                alt={`Cover von ${track.title}`}
-                width="400"
-                height="400"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <div class="track-card-body">
-              <span class="track-genre">{track.genre}</span>
-              <h3 id={`track-${track.slug}`} class="track-title">
-                <a href={`/${locale}/tracks/${track.slug}/`}>{track.title}</a>
-              </h3>
-              <p class="track-description">{isEn ? track.descriptionEn : track.descriptionDE || track.description}</p>
-              <div class="track-actions">
-                <a href={`/${locale}/tracks/${track.slug}/`} class="button button-primary">
-                  {isEn ? 'Details' : 'Details ansehen'}
+          <div class="track-hero-info">
+            <p class="eyebrow">{latestTrack.title}</p>
+            <h3>{latestTrack.title}</h3>
+            <p class="track-meta">
+              {latestTrack.bpm} BPM · {latestTrack.key} · {latestTrack.releaseDate || ''}
+            </p>
+            <p class="track-description">{latestTrack.description}</p>
+            <div class="track-actions">
+              {latestTrack.files?.mp3 && (
+                <a href={latestTrack.files.mp3} class="btn btn-primary" download>
+                  {isEn ? 'Download MP3' : 'MP3 herunterladen'}
                 </a>
-                {track.youtube?.videoId && (
-                  <a href={track.youtube.url} target="_blank" rel="noopener" class="button button-secondary" aria-label={`${track.title} auf YouTube ansehen`}>
-                    ▶ YouTube
-                  </a>
-                )}
+              )}
+              {latestTrack.youtube?.url && (
+                <a href={latestTrack.youtube.url} class="btn btn-secondary" target="_blank" rel="noopener">
+                  {isEn ? 'Watch on YouTube' : 'Auf YouTube ansehen'}
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ── YouTube Showcase ── -->
+  <section class="section section-sm" aria-labelledby="youtube-heading">
+    <div class="container">
+      <div class="section-header">
+        <h2 id="youtube-heading">YouTube</h2>
+        <a href="https://www.youtube.com/@DJExcept4" target="_blank" rel="noopener" class="btn btn-ghost">
+          {isEn ? 'Subscribe →' : 'Abonnieren →'}
+        </a>
+      </div>
+      <div class="grid-cards youtube-grid">
+        {tracks.slice(0, 3).map((track) => (
+          <a href={track.youtube?.url || '#'} target="_blank" rel="noopener" class="youtube-card card">
+            <div class="youtube-thumb">
+              <img
+                src={track.files?.cover || '/media/youtube/thumb-' + track.id + '-maxres.jpg'}
+                alt={track.title + ' YouTube thumbnail'}
+                width="400"
+                height="225"
+                loading="lazy"
+              />
+              <div class="youtube-play">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                  <circle cx="20" cy="20" r="19" fill="rgba(0,0,0,0.6)" stroke="white" stroke-width="2"/>
+                  <path d="M15 14L28 20L15 26V14Z" fill="white"/>
+                </svg>
               </div>
             </div>
-          </article>
+            <div class="youtube-card-info">
+              <h3>{track.title}</h3>
+              <p class="track-meta">{track.bpm} BPM · {track.key}</p>
+            </div>
+          </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- DistroKid Promotion -->
-  <section class="promo-section" aria-labelledby="promo-heading">
+  <!-- ── DistroKid Promotion ── -->
+  {ads.length > 0 && ads[0] && (
+    <section class="section section-sm" aria-labelledby="ad-heading">
+      <div class="container">
+        <div class="promo-card card">
+          <div class="promo-content">
+            <h3>{ads[0].title}</h3>
+            <p>{ads[0].description}</p>
+            <a href={ads[0].url} class="btn btn-primary" target="_blank" rel="noopener">
+              {isEn ? 'Learn More' : 'Mehr erfahren'}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ── Music Platforms ── -->
+  <section class="section section-sm" aria-labelledby="platforms-heading">
     <div class="container">
-      <div class="promo-card">
-        <div class="promo-image">
-          <img src="/media/youtube/channel-banner.webp" alt="DistroKid Music Distribution" width="600" height="200" loading="lazy" decoding="async" />
-        </div>
-        <div class="promo-content">
-          <span class="track-genre">🎵 {isEn ? 'For Musicians' : 'Für Musiker'}</span>
-          <h3 id="promo-heading">{isEn ? 'DistroKid — Distribute Your Music' : 'DistroKid — Verteile deine Musik'}</h3>
-          <p>{isEn ? 'Upload your tracks to Spotify, Apple Music, TikTok, and 30+ platforms. Free to join, keep 100% of your royalties.' : 'Lade deine Tracks auf Spotify, Apple Music, TikTok und 30+ Plattformen hoch. Kostenlos, 100% deiner Tantiemen bleiben dir.'}</p>
-          <a href="https://distrokid.com/djexcept4" target="_blank" rel="noopener" class="button button-primary">
-            {isEn ? '🎧 Join DistroKid' : '🎧 Jetzt bei DistroKid'}
-          </a>
-        </div>
+      <h2 id="platforms-heading" class="section-title">{isEn ? 'Available on' : 'Verfügbar auf'}</h2>
+      <div class="platform-logos">
+        <a href="https://open.spotify.com/artist/djexcept4" target="_blank" rel="noopener" class="platform-logo" aria-label="Spotify">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.18-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </a>
+        <a href="https://music.apple.com/artist/djexcept4" target="_blank" rel="noopener" class="platform-logo" aria-label="Apple Music">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </a>
+        <a href="https://music.youtube.com/channel/UC74F7b6EKNZczMq-saELxWQ" target="_blank" rel="noopener" class="platform-logo" aria-label="YouTube Music">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M10 15l5.19-3L10 9v6zm11.56-7.83c.13.47.22 1.1.22 1.83s-.09 1.36-.22 1.83l.07.66c.18.7.28 1.44.28 2.17s-.1 1.47-.28 2.17l-.07.66c-.13.47-.22 1.1-.22 1.83s.09 1.36.22 1.83l-.07-.66c-.18-.7-.28-1.44-.28-2.17s.1-1.47.28-2.17l.07-.66zM12 15l-3-2 3-2v4z"/></svg>
+        </a>
+        <a href="https://www.amazon.com/music/player/artists/djexcept4" target="_blank" rel="noopener" class="platform-logo" aria-label="Amazon Music">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        </a>
+        <a href="https://www.deezer.com/en/artist/djexcept4" target="_blank" rel="noopener" class="platform-logo" aria-label="Deezer">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-4h2v2h-2zm1-10c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@djexcept4" target="_blank" rel="noopener" class="platform-logo" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Music Platform Logos -->
-  <section class="logos-section" aria-labelledby="logos-heading">
+  <!-- ── Social Links ── -->
+  <section class="section section-sm" aria-labelledby="social-heading">
     <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">▶ {isEn ? 'Available On' : 'Erhältlich auf'}</p>
-        <h2 id="logos-heading">{isEn ? 'Listen Everywhere' : 'Überall hören'}</h2>
-      </div>
-      <div class="logos-grid">
-        <div class="logo-item">
-          <img src="/logos/spotify.svg" alt="Spotify" width="48" height="48" loading="lazy" decoding="async" />
-          <span>Spotify</span>
-        </div>
-        <div class="logo-item">
-          <img src="/logos/apple-music.svg" alt="Apple Music" width="48" height="48" loading="lazy" decoding="async" />
-          <span>Apple Music</span>
-        </div>
-        <div class="logo-item">
-          <img src="/logos/youtube-music.svg" alt="YouTube Music" width="48" height="48" loading="lazy" decoding="async" />
-          <span>YouTube Music</span>
-        </div>
-        <div class="logo-item">
-          <img src="/logos/amazon-music.svg" alt="Amazon Music" width="48" height="48" loading="lazy" decoding="async" />
-          <span>Amazon Music</span>
-        </div>
-        <div class="logo-item">
-          <img src="/logos/deezer.svg" alt="Deezer" width="48" height="48" loading="lazy" decoding="async" />
-          <span>Deezer</span>
-        </div>
-        <div class="logo-item">
-          <img src="/logos/tiktok.svg" alt="TikTok" width="48" height="48" loading="lazy" decoding="async" />
-          <span>TikTok</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Social Links -->
-  <section class="social-section" aria-labelledby="social-heading">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">{isEn ? 'Follow' : 'Folge mir'}</p>
-        <h2 id="social-heading">{isEn ? 'Follow DJ Except4' : 'Folge DJ Except4'}</h2>
-      </div>
+      <h2 id="social-heading" class="section-title">{isEn ? 'Follow Me' : 'Folge mir'}</h2>
       <div class="social-links">
-        {content.social.instagram.url && (
-          <a href={content.social.instagram.url} target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true">
-              <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" fill="none"/>
-              <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
-              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
-            </svg>
+        {socialLinks.instagram && (
+          <a href={socialLinks.instagram.url} target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
             <span>Instagram</span>
           </a>
         )}
-        {content.social.distrokid.url && (
-          <a href={content.social.distrokid.url} target="_blank" rel="noopener" class="social-link" aria-label="DistroKid">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true">
-              <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2" fill="none"/>
-              <text x="12" y="17" text-anchor="middle" font-size="10" font-weight="bold" fill="currentColor">DK</text>
-            </svg>
-            <span>DistroKid</span>
+        {socialLinks.youtube && (
+          <a href={socialLinks.youtube.url} target="_blank" rel="noopener" class="social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span>YouTube</span>
           </a>
         )}
-        {content.social.youtube.url && (
-          <a href={content.social.youtube.url} target="_blank" rel="noopener" class="social-link" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true">
-              <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" fill="none"/>
-              <polygon points="9.5,7 16.5,12 9.5,17" fill="currentColor" stroke="none"/>
-            </svg>
-            <span>YouTube</span>
+        {socialLinks.distrokid && (
+          <a href={socialLinks.distrokid.url} target="_blank" rel="noopener" class="social-link" aria-label="DistroKid">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <span>DistroKid</span>
           </a>
         )}
       </div>
     </div>
   </section>
 
-  <!-- FAQ Section -->
-  <section class="faq-section" aria-labelledby="faq-heading">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">FAQ</p>
-        <h2 id="faq-heading">{isEn ? 'Frequently Asked Questions' : 'Häufige Fragen'}</h2>
+  <!-- ── FAQ ── -->
+  {faqs.length > 0 && (
+    <section class="section" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 id="faq-heading" class="section-title">{isEn ? 'FAQ' : 'Häufig gestellte Fragen'}</h2>
+        <dl class="faq-list">
+          {faqs.map((faq) => (
+            <div class="faq-item card">
+              <dt>{faq.question}</dt>
+              <dd>{faq.answer}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
-      <div class="faq-list">
-        {content.faq.map((item) => (
-          <details>
-            <summary>{isEn ? (item.qEn || item.q) : item.q}</summary>
-            <p>{isEn ? (item.aEn || item.a) : (item.aDE || item.a)}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
+
 </Layout>
 
 <style>
   .hero {
     position: relative;
-    padding: clamp(4rem, 10vw, 8rem) 0;
-    text-align: center;
-    overflow: hidden;
     min-height: 70vh;
     display: flex;
     align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--dj-bg-primary) 0%, var(--dj-bg-secondary) 50%, var(--dj-surface) 100%);
+    overflow: hidden;
   }
-
-  .hero-bg {
+  .hero-overlay {
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(180deg, rgba(10,10,20,0.7) 0%, rgba(10,10,20,0.9) 100%),
-      url('/media/youtube/channel-banner.webp') center/cover no-repeat;
-    z-index: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(77, 201, 246, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(244, 114, 182, 0.06) 0%, transparent 60%);
   }
-
   .hero-content {
     position: relative;
     z-index: 1;
+    text-align: center;
+    padding-block: var(--space-24);
   }
-
-  .hero-avatar {
-    margin: 0 auto var(--space-lg);
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid var(--dj-accent-cyan);
-    overflow: hidden;
-    box-shadow: 0 0 30px rgba(0,255,200,0.3);
-  }
-
-  .hero-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .lead {
-    max-width: 600px;
+  .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--dj-text-muted);
+    margin-top: var(--space-4);
+    max-width: 60ch;
     margin-inline: auto;
-    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-    color: var(--dj-text-secondary);
   }
-
   .hero-actions {
     display: flex;
-    flex-wrap: wrap;
+    gap: var(--space-4);
     justify-content: center;
-    gap: var(--space-md);
-    margin-top: var(--space-xl);
+    flex-wrap: wrap;
+    margin-top: var(--space-8);
   }
-
-  .youtube-section {
-    padding: clamp(3rem, 7vw, 5rem) 0;
-    background: var(--dj-bg-secondary);
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
   }
-
-  .video-grid {
+  .section-title {
+    margin-bottom: var(--space-6);
+  }
+  .track-hero-card {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    align-items: center;
   }
-
-  .video-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
+  @media (min-width: 768px) {
+    .track-hero-card { grid-template-columns: 1fr 1fr; }
+  }
+  .track-hero-cover {
+    position: relative;
+    aspect-ratio: 1;
     border-radius: var(--radius-lg);
     overflow: hidden;
     background: var(--dj-surface);
-    border: 1px solid var(--dj-border);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   }
-
-  .video-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-  }
-
-  .video-thumb {
-    position: relative;
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    background: var(--dj-bg-primary);
-  }
-
-  .video-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .video-card:hover .video-thumb img {
-    transform: scale(1.05);
-  }
-
-  .play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 48px;
-    height: 48px;
-    background: rgba(0,0,0,0.7);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: white;
-    pointer-events: none;
-  }
-
-  .video-info {
-    padding: var(--space-md);
-  }
-
-  .video-info h3 {
-    font-size: 1rem;
-    margin: 0 0 var(--space-xs);
-  }
-
-  .channel-banner {
-    position: relative;
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    background: var(--dj-bg-primary);
-  }
-
-  .channel-banner img {
+  .track-hero-cover img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-
-  .channel-overlay {
+  .track-hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 30%, rgba(10,10,20,0.9) 100%);
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--dur-base);
+  }
+  .track-hero-cover:hover .track-hero-overlay { opacity: 1; }
+  .play-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: var(--dj-accent);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-glow);
+    transition: transform var(--dur-base);
+  }
+  .play-button:hover { transform: scale(1.1); }
+  .track-hero-info h3 { margin-bottom: var(--space-2); }
+  .track-meta {
+    font-size: 0.875rem;
+    color: var(--dj-text-muted);
+    margin-bottom: var(--space-3);
+  }
+  .track-description { margin-bottom: var(--space-4); }
+  .track-actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .youtube-grid { grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .youtube-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .youtube-grid { grid-template-columns: repeat(3, 1fr); } }
+  .youtube-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    gap: var(--space-sm);
-    padding: var(--space-lg);
-    color: white;
-  }
-
-  .channel-overlay img {
-    border-radius: 50%;
-    border: 2px solid var(--dj-accent-cyan);
-  }
-
-  .channel-overlay span {
-    font-weight: 700;
-    font-size: 0.85rem;
-  }
-
-  .latest-track {
-    padding: clamp(3rem, 7vw, 5rem) 0;
-  }
-
-  .latest-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-    align-items: center;
-  }
-
-  .latest-cover img {
-    width: 100%;
-    max-width: 300px;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-  }
-
-  .latest-info {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-  }
-
-  .track-genre {
-    font-size: 0.75rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--dj-accent-cyan);
-  }
-
-  .track-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-lg);
-  }
-
-  .promo-section {
-    padding: clamp(3rem, 7vw, 5rem) 0;
-    background: var(--dj-bg-primary);
-  }
-
-  .promo-card {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-    align-items: center;
-    background: var(--dj-surface);
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-lg);
+    gap: var(--space-3);
+    padding: 0;
     overflow: hidden;
   }
-
-  .promo-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .promo-content {
-    padding: var(--space-xl);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-  }
-
-  .promo-content h3 {
-    font-size: 1.5rem;
-    margin: 0;
-  }
-
-  .logos-section {
-    padding: clamp(3rem, 7vw, 5rem) 0;
-    background: var(--dj-bg-secondary);
-  }
-
-  .logos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: var(--space-lg);
-    text-align: center;
-  }
-
-  .logo-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-md);
-    background: var(--dj-surface);
-    border: 1px solid var(--dj-border);
+  .youtube-thumb {
+    position: relative;
+    aspect-ratio: 16/9;
     border-radius: var(--radius-md);
-    transition: transform var(--transition-fast);
+    overflow: hidden;
+    background: var(--dj-surface);
   }
-
-  .logo-item:hover {
-    transform: translateY(-2px);
-    border-color: var(--dj-accent-cyan);
+  .youtube-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--dur-slow);
   }
-
-  .logo-item span {
-    font-size: 0.75rem;
-    font-weight: 600;
+  .youtube-card:hover .youtube-thumb img { transform: scale(1.05); }
+  .youtube-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity var(--dur-base);
+  }
+  .youtube-card:hover .youtube-play { opacity: 1; }
+  .youtube-card-info h3 { font-size: 1rem; margin-bottom: var(--space-1); }
+  .promo-card {
+    background: linear-gradient(135deg, var(--dj-surface) 0%, var(--dj-surface-elevated) 100%);
+    border: 1px solid var(--dj-accent-dim);
+  }
+  .promo-content {
+    text-align: center;
+    max-width: 60ch;
+    margin-inline: auto;
+  }
+  .promo-content h3 { margin-bottom: var(--space-3); }
+  .promo-content p { margin-bottom: var(--space-6); }
+  .platform-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+  }
+  .platform-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border-subtle);
     color: var(--dj-text-secondary);
+    transition: all var(--dur-base);
   }
-
+  .platform-logo:hover {
+    color: var(--dj-accent);
+    border-color: var(--dj-accent);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
   .social-links {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-lg);
+    gap: var(--space-4);
     justify-content: center;
   }
-
   .social-link {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: var(--space-sm);
-    color: var(--dj-text-secondary);
-    transition: color var(--transition-fast);
-    padding: var(--space-md);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--dj-border);
-    min-width: 100px;
-  }
-
-  .social-link:hover {
-    color: var(--dj-accent-cyan);
-    border-color: var(--dj-accent-cyan);
-  }
-
-  .faq-section {
-    padding: clamp(3rem, 7vw, 5rem) 0;
-    background: var(--dj-bg-secondary);
-  }
-
-  .faq-list {
-    display: grid;
-    gap: var(--space-sm);
-    max-width: 800px;
-    margin-inline: auto;
-  }
-
-  .faq-list details {
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
     background: var(--dj-surface);
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-md);
-    padding: var(--space-md);
-  }
-
-  .faq-list summary {
-    cursor: pointer;
-    font-weight: 700;
-    color: var(--dj-text-primary);
-    padding: var(--space-sm) 0;
-  }
-
-  .faq-list p {
-    margin-top: var(--space-md);
+    border: 1px solid var(--dj-border-subtle);
+    border-radius: var(--radius-full);
     color: var(--dj-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all var(--dur-base);
   }
-
-  .section-heading {
-    text-align: center;
-    margin-bottom: var(--space-2xl);
+  .social-link:hover {
+    color: var(--dj-text-primary);
+    border-color: var(--dj-accent);
+    background: var(--dj-surface-elevated);
   }
-
-  @media (min-width: 768px) {
-    .latest-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-    .promo-card {
-      grid-template-columns: 2fr 1fr;
-    }
-    .promo-image {
-      order: -1;
-    }
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
   }
-
-  @media (max-width: 640px) {
-    .hero {
-      padding: var(--space-3xl) 0;
-      min-height: auto;
-    }
-    .track-grid {
-      grid-template-columns: 1fr;
-    }
-    .video-grid {
-      grid-template-columns: 1fr;
-    }
-    .logos-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  .faq-item {
+    padding: var(--space-5) var(--space-6);
+  }
+  .faq-item dt {
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+    color: var(--dj-text-primary);
+  }
+  .faq-item dd {
+    color: var(--dj-text-secondary);
+    line-height: 1.7;
   }
 </style>
