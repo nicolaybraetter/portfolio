@@ -333,6 +333,74 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+// --- Admin Auth ---
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
+const ADMIN_SESSION_SECRET = process.env.ADMIN_SESSION_SECRET || 'change-me-in-production';
+const SESSION_COOKIE_NAME = 'dj_admin_session';
+
+// Simple token generation (not cryptographically secure — for admin panel only)
+function generateToken() {
+  return Buffer.from(Date.now().toString() + Math.random().toString()).toString('base64');
+}
+
+// Store active sessions in memory (resets on restart — acceptable for admin panel)
+const activeSessions = new Map();
+
+// Auth middleware
+function requireAdmin(req, res, next) {
+  const cookie = req.headers.cookie || '';
+  const match = cookie.match(new RegExp(SESSION_COOKIE_NAME + '=([^;]+)'));
+  if (!match) {
+    return res.status(401).json({ error: 'Not authenticated' });
+  }
+  const token = match[1];
+  const session = activeSessions.get(token);
+  if (!session || Date.now() > session.expiresAt) {
+    activeSessions.delete(token);
+    return res.status(401).json({ error: 'Session expired' });
+  }
+  req.adminSession = session;
+  next();
+}
+
+// POST /api/admin/login
+app.post('/api/admin/login', (req, res) => {
+  const { password } = req.body || {};
+  if (!ADMIN_PASSWORD) {
+    return res.status(503).json({ error: 'Admin password not configured' });
+  }
+  if (password !== ADMIN_PASSWORD) {
+    return res.status(401).json({ error: 'Invalid password' });
+  }
+  const token = generateToken();
+  const expiresAt = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
+  activeSessions.set(token, { token, expiresAt, createdAt: Date.now() });
+  res.cookie(SESSION_COOKIE_NAME, token, {
+    httpOnly: true,
+    secure: false, // Set to true in production with HTTPS
+    sameSite: 'strict',
+    maxAge: 24 * 60 * 60 * 1000,
+    path: '/',
+  });
+  res.json({ success: true, message: 'Logged in' });
+});
+
+// POST /api/admin/logout
+app.post('/api/admin/logout', requireAdmin, (req, res) => {
+  const cookie = req.headers.cookie || '';
+  const match = cookie.match(new RegExp(SESSION_COOKIE_NAME + '=([^;]+)'));
+  if (match) {
+    activeSessions.delete(match[1]);
+  }
+  res.clearCookie(SESSION_COOKIE_NAME, { path: '/' });
+  res.json({ success: true, message: 'Logged out' });
+});
+
+// GET /api/admin/verify
+app.get('/api/admin/verify', requireAdmin, (req, res) => {
+  res.json({ authenticated: true, session: req.adminSession });
+});
+
 // --- Start server ---
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`[API] DJ Except4 API server running on port ${PORT}`);

@@ -1,0 +1,124 @@
+---
+import Layout from '../../../layouts/AdminLayout.astro';
+
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+---
+
+<Layout title={isEn ? 'Admin Login' : 'Admin Login'}>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <img src="/assets/DJ_Except4-Logo.png" alt="DJ Except4" width="60" height="60" loading="eager" />
+        <h1>{isEn ? 'Admin Login' : 'Admin Login'}</h1>
+        <p>{isEn ? 'Sign in to manage your site' : 'Melde dich an, um deine Seite zu verwalten'}</p>
+      </div>
+      <form id="login-form" class="login-form" method="post" action={`/${locale}/admin/login`}>
+        <div class="form-group">
+          <label for="password">{isEn ? 'Password' : 'Passwort'}</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            autocomplete="current-password"
+            placeholder={isEn ? 'Enter password' : 'Passwort eingeben'}
+          />
+        </div>
+        <div id="login-error" class="login-error" style="display:none" role="alert"></div>
+        <button type="submit" class="button button-primary button-full">
+          {isEn ? 'Sign In' : 'Anmelden'}
+        </button>
+      </form>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--space-xl);
+    background: var(--dj-bg-primary, #0a0a14);
+  }
+
+  .login-card {
+    width: 100%;
+    max-width: 400px;
+    background: var(--dj-surface, #14142a);
+    border: 1px solid var(--dj-border, #2a2a4a);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .login-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .login-header img {
+    margin-bottom: var(--space-md);
+    border-radius: 50%;
+    border: 2px solid var(--dj-accent-cyan);
+  }
+
+  .login-header h1 {
+    margin: 0 0 var(--space-sm);
+    font-size: 1.5rem;
+  }
+
+  .login-header p {
+    margin: 0;
+    color: var(--dj-text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .form-group label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--dj-text-secondary);
+  }
+
+  .form-group input {
+    padding: 0.75rem 1rem;
+    background: var(--dj-bg-primary, #0a0a14);
+    border: 1px solid var(--dj-border, #2a2a4a);
+    border-radius: var(--radius-sm);
+    color: var(--dj-text-primary, #e8e8f0);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color var(--transition-fast);
+  }
+
+  .form-group input:focus {
+    border-color: var(--dj-accent-cyan);
+  }
+
+  .login-error {
+    padding: var(--space-md);
+    background: rgba(248, 113, 113, 0.1);
+    border: 1px solid var(--dj-error, #f87171);
+    border-radius: var(--radius-sm);
+    color: var(--dj-error, #f87171);
+    font-size: 0.85rem;
+  }
+
+  .button-full {
+    width: 100%;
+  }
+</style>

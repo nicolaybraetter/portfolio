@@ -1,0 +1,31 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+const locale = Astro.currentLocale || 'de';
+const isEn = locale === 'en';
+---
+
+<Layout title={isEn ? 'Admin' : 'Admin'} description="Admin Panel" type="website" locale={locale}>
+  <section class="admin-redirect" aria-labelledby="admin-heading">
+    <div class="container">
+      <h1 id="admin-heading">{isEn ? 'Admin Panel' : 'Admin-Bereich'}</h1>
+      <p>{isEn ? 'Please log in to access the admin panel.' : 'Bitte melde dich an, um den Admin-Bereich zu betreten.'}</p>
+      <a href={`/${locale}/admin/login/`} class="button button-primary">
+        {isEn ? 'Go to Login' : 'Zum Login'}
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .admin-redirect {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+    text-align: center;
+  }
+  .admin-redirect h1 {
+    margin-bottom: var(--space-md);
+  }
+  .admin-redirect p {
+    color: var(--dj-text-secondary);
+    margin-bottom: var(--space-xl);
+  }
+</style>
