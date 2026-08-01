@@ -1,6 +1,52 @@
 {
   "tracks": [
     {
+      "id": "valhalla-calling",
+      "slug": "valhalla-calling",
+      "title": "Valhalla Calling",
+      "titleEn": "Valhalla Calling",
+      "genre": "Uplifting Trance / Vocal Trance / Emotional Trance",
+      "genreEn": "Uplifting Trance / Vocal Trance / Emotional Trance",
+      "style": "Epic, melodic, cinematic and euphoric",
+      "styleEn": "Epic, melodic, cinematic and euphoric",
+      "description": "Valhalla Calling is a preview track — now available on most platforms. Epic, melodic and cinematic trance with driving energy and emotional melodies.",
+      "descriptionEn": "Valhalla Calling is a preview track — now available on most platforms. Epic, melodic and cinematic trance with driving energy and emotional melodies.",
+      "descriptionDE": "Valhalla Calling ist ein Preview-Track — jetzt auf den meisten Plattformen verfügbar. Epische, melodische und cinematische Trance mit treibender Energie und emotionalen Melodien.",
+      "cinematic": true,
+      "releaseYear": 2026,
+      "releaseDate": "2026-01-15",
+      "bpm": 138,
+      "key": "A minor",
+      "keyShort": "Am",
+      "files": {
+        "mp3": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.mp3",
+        "flac": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.flac",
+        "mp4": "/media/BBH/Bound_Beneath_Heavens.mp4",
+        "cover": "/media/youtube/thumb-BBH-maxres.jpg",
+        "youtubeThumb": "/media/BBH/BBH_Youtube.png"
+      },
+      "youtube": {
+        "videoId": "9ZPO6fr4vBw",
+        "url": "https://www.youtube.com/watch?v=9ZPO6fr4vBw",
+        "description": "DJ Except4 – Valhalla Calling"
+      },
+      "distrokid": {
+        "url": "",
+        "playlist": ""
+      },
+      "youtubeDescription": "DJ Except4 – Valhalla Calling\n\nValhalla Calling is a preview track — now available on most platforms.\n\n🎧 Best experienced with headphones\n🔔 Subscribe for more uplifting, emotional and cinematic trance from DJ Except4",
+      "keywords": [
+        "uplifting trance",
+        "vocal trance",
+        "emotional trance",
+        "cinematic trance",
+        "melodic trance",
+        "euphoric trance",
+        "DJ Except4",
+        "valhalla calling"
+      ]
+    },
+    {
       "id": "bound-beneath-heavens",
       "slug": "bound-beneath-heavens",
       "title": "Bound Beneath Heavens",
@@ -13,68 +59,22 @@
       "descriptionEn": "Bound Beneath Heavens is an emotional journey through unfulfilled dreams, silent expectations and the painful distance that can grow between two people beneath the same sky.",
       "descriptionDE": "Bound Beneath Heavens ist eine emotionale Reise durch unerfüllte Träume, stille Erwartungen und die schmerzhafte Distanz, die zwischen zwei Menschen unter demselben Himmel wachsen kann.",
       "cinematic": true,
-          "releaseYear": 2026,
-          "releaseDate": "2026-01-15",
-          "bpm": 138,
-          "key": "A minor",
-          "keyShort": "Am",
-          "files": {
-            "mp3": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.mp3",
-            "flac": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.flac",
-            "mp4": "/media/BBH/Bound_Beneath_Heavens.mp4",
-            "cover": "/media/youtube/thumb-BBH-maxres.jpg",
-            "youtubeThumb": "/media/BBH/BBH_Youtube.png"
-          },
-      "youtube": {
-        "videoId": "9ZPO6fr4vBw",
-        "url": "https://www.youtube.com/watch?v=9ZPO6fr4vBw",
-        "description": "DJ Except4 – Bound Beneath Heavens"
+      "releaseYear": 2026,
+      "releaseDate": "2026-03-22",
+      "bpm": 140,
+      "key": "C# minor",
+      "keyShort": "C#m",
+      "files": {
+        "mp3": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.mp3",
+        "flac": "/media/BBH/DJ_Except4-Bound_beneath_Heavens.flac",
+        "mp4": "/media/BBH/Bound_Beneath_Heavens.mp4",
+        "cover": "/media/youtube/thumb-eI4CzfZYdVg-maxres.jpg",
+        "youtubeThumb": "/media/BBH/BBH_Youtube.png"
       },
-      "distrokid": {
-        "url": "",
-        "playlist": ""
-      },
-      "youtubeDescription": "DJ Except4 – Bound Beneath Heavens\n\nBound Beneath Heavens by DJ Except4 is an emotional journey through unfulfilled dreams, silent expectations and the painful distance that can grow between two people beneath the same sky.\n\n🎧 Best experienced with headphones\n💙 Turn up the volume and let the music take over\n🔔 Subscribe for more uplifting, emotional and cinematic trance from DJ Except4",
-      "keywords": [
-        "uplifting trance",
-        "vocal trance",
-        "emotional trance",
-        "cinematic trance",
-        "melodic trance",
-        "euphoric trance",
-        "DJ Except4",
-        "bound beneath heavens"
-      ]
-    },
-    {
-      "id": "ghost-of-a-garden",
-      "slug": "ghost-of-a-garden",
-      "title": "Ghost of a Garden",
-      "titleEn": "Ghost of a Garden",
-      "genre": "Uplifting Trance / Melodic Trance / Atmospheric Trance",
-      "genreEn": "Uplifting Trance / Melodic Trance / Atmospheric Trance",
-      "style": "Mysterious, emotional, futuristic and euphoric",
-      "styleEn": "Mysterious, emotional, futuristic and euphoric",
-      "description": "Ghost of a Garden is a hypnotic uplifting trance journey through fading memories, neon light and a place that still seems alive long after everyone has gone.",
-      "descriptionEn": "Ghost of a Garden is a hypnotic uplifting trance journey through fading memories, neon light and a place that still seems alive long after everyone has gone.",
-      "descriptionDE": "Ghost of a Garden ist eine hypnotische uplifting-trance Reise durch verblassende Erinnerungen, Neonlicht und einen Ort, der noch lebendig scheint, lange nachdem alle gegangen sind.",
-      "cinematic": true,
-          "releaseYear": 2026,
-          "releaseDate": "2026-03-22",
-          "bpm": 140,
-          "key": "C# minor",
-          "keyShort": "C#m",
-          "files": {
-            "mp3": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.mp3",
-            "flac": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.flac",
-            "mp4": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.mp4",
-            "cover": "/media/youtube/thumb-GOAG-maxres.jpg",
-            "youtubeThumb": "/media/GOAG/GOAG_Youtube.png"
-          },
       "youtube": {
         "videoId": "eI4CzfZYdVg",
         "url": "https://www.youtube.com/watch?v=eI4CzfZYdVg",
-        "description": "DJ Except4 – Ghost of a Garden"
+        "description": "DJ Except4 – Bound Beneath Heavens"
       },
       "distrokid": {
         "url": "",
@@ -104,18 +104,18 @@
       "descriptionEn": "My Way to Breathe is an emotional and epic uplifting trance journey about finding the courage to express what the heart has kept hidden for far too long.",
       "descriptionDE": "My Way to Breathe ist eine emotionale und epische uplifting-trance Reise darüber, den Mut zu finden, auszudrücken, was das Herz seit zu langer Zeit für sich behauptet hat.",
       "cinematic": true,
-          "releaseYear": 2026,
-          "releaseDate": "2026-05-10",
-          "bpm": 136,
-          "key": "F# minor",
-          "keyShort": "F#m",
-          "files": {
-            "mp3": "/media/MWTB/DJ_Except4-My_Way_to_Breathe.mp3",
-            "flac": "/media/MWTB/DJ_Except4-My_Way_to_Breathe.flac",
-            "mp4": "/media/MWTB/My_Way_to_Breathe.mp4",
-            "cover": "/media/youtube/thumb-MWTB-maxres.jpg",
-            "youtubeThumb": "/media/MWTB/MWTB_Youtube.png"
-          },
+      "releaseYear": 2026,
+      "releaseDate": "2026-05-10",
+      "bpm": 136,
+      "key": "F# minor",
+      "keyShort": "F#m",
+      "files": {
+        "mp3": "/media/MWTB/DJ_Except4-My_Way_to_Breathe.mp3",
+        "flac": "/media/MWTB/DJ_Except4-My_Way_to_Breathe.flac",
+        "mp4": "/media/MWTB/My_Way_to_Breathe.mp4",
+        "cover": "/media/youtube/thumb-MWTB-maxres.jpg",
+        "youtubeThumb": "/media/MWTB/MWTB_Youtube.png"
+      },
       "youtube": {
         "videoId": "R2oIhhh9Pvg",
         "url": "https://www.youtube.com/watch?v=R2oIhhh9Pvg",
@@ -134,6 +134,50 @@
         "melodic trance",
         "DJ Except4",
         "my way to breathe"
+      ]
+    },
+    {
+      "id": "ghost-of-a-garden",
+      "slug": "ghost-of-a-garden",
+      "title": "Ghost of a Garden",
+      "titleEn": "Ghost of a Garden",
+      "genre": "Uplifting Trance / Melodic Trance / Atmospheric Trance",
+      "genreEn": "Uplifting Trance / Melodic Trance / Atmospheric Trance",
+      "style": "Mysterious, emotional, futuristic and euphoric",
+      "styleEn": "Mysterious, emotional, futuristic and euphoric",
+      "description": "Ghost of a Garden is a hypnotic uplifting trance journey through fading memories, neon light and a place that still seems alive long after everyone has gone.",
+      "descriptionEn": "Ghost of a Garden is a hypnotic uplifting trance journey through fading memories, neon light and a place that still seems alive long after everyone has gone.",
+      "descriptionDE": "Ghost of a Garden ist eine hypnotische uplifting-trance Reise durch verblassende Erinnerungen, Neonlicht und einen Ort, der noch lebendig scheint, lange nachdem alle gegangen sind.",
+      "cinematic": true,
+      "releaseYear": 2026,
+      "releaseDate": "2026-07-31",
+      "bpm": 140,
+      "key": "C# minor",
+      "keyShort": "C#m",
+      "files": {
+        "mp3": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.mp3",
+        "flac": "/media/GOAG/DJ_Except4-Ghost_of_a_Garden.flac",
+        "mp4": "/media/GOAG/Ghost_of_a_Garden.mp4",
+        "cover": "/media/youtube/thumb-Z4XokcGb2h4-maxres.jpg",
+        "youtubeThumb": "/media/GOAG/GOAG_Youtube.png"
+      },
+      "youtube": {
+        "videoId": "Z4XokcGb2h4",
+        "url": "https://www.youtube.com/watch?v=Z4XokcGb2h4",
+        "description": "DJ Except4 – Ghost of a Garden"
+      },
+      "distrokid": {
+        "url": "",
+        "playlist": ""
+      },
+      "youtubeDescription": "DJ Except4 – Ghost of a Garden\n\nGhost of a Garden by DJ Except4 is a hypnotic uplifting trance journey through fading memories, neon light and a place that still seems alive long after everyone has gone.\n\n🎧 Best experienced with headphones\n🌌 Enter the neon garden\n🔔 Subscribe for more emotional, melodic and uplifting trance from DJ Except4",
+      "keywords": [
+        "uplifting trance",
+        "melodic trance",
+        "atmospheric trance",
+        "cinematic trance",
+        "DJ Except4",
+        "ghost of a garden"
       ]
     }
   ],
