@@ -1,0 +1,7 @@
+# DJ Except4 API Server — .gitignore
+# Never commit actual credentials
+.env
+*.log
+node_modules/
+uploads/
+data/emails.json

@@ -1,0 +1,82 @@
+name: Deploy DJ Except4 to Staging
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint and type-check
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Verify build output
+        run: |
+          echo "Build output size:"
+          du -sh dist/
+          echo "File count:"
+          find dist/ -type f | wc -l
+          echo "Checking for critical files..."
+          test -f dist/index.html && echo "✓ index.html exists"
+          test -f dist/manifest.json && echo "✓ manifest.json exists"
+          test -f dist/sw.js && echo "✓ sw.js exists"
+
+      - name: Deploy to staging1
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          npm run deploy
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.STAGING_SSH_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
+
+      - name: Verify deployment
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          sleep 5
+          curl -f -s -o /dev/null -w "HTTP %{http_code}" http://192.168.0.201:18082/ || exit 1
+          echo "✓ Deployment verified"
+
+      - name: Run Lighthouse audit
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: |
+            https://djexcept4.de/
+            https://djexcept4.de/de/
+            https://djexcept4.de/en/
+            https://djexcept4.de/de/tracks/
+          configPath: ./lighthouserc.json
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7

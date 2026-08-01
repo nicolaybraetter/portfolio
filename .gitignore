@@ -45,3 +45,12 @@ coverage/
 
 # PWA icons (generated)
 public/icons/
+
+# API server
+api-server/.env
+api-server/uploads/
+api-server/data/emails.json
+api-server/node_modules/
+
+# Validation scripts
+scripts/
