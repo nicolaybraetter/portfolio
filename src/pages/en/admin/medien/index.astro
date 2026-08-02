@@ -14,21 +14,18 @@ const isEn = locale === 'en';
       <div class="admin-section">
         <div class="media-toolbar">
       <button class="btn btn-primary" id="btn-upload">
-        {isEn ? '+ Upload Media' : '+ Medien hochladen'}
+        {isEn ? '+ Upload Media' : '+ Medien hinzufügen'}
       </button>
-      <input type="file" id="media-upload" multiple accept="image/*" class="hidden" />
     </div>
 
     <div class="media-grid" id="media-grid">
-      <p class="media-empty">{isEn ? 'No media files uploaded yet.' : 'Noch keine Mediendateien hochgeladen.'}</p>
     </div>
   </div>
 
   <!-- Upload Modal -->
   <div class="upload-modal" id="upload-modal" class="hidden">
     <div class="modal-content">
-      <h3>{isEn ? 'Upload Media' : 'Medien hochladen'}</h3>
-      <p>{isEn ? 'Drag & drop files or click to select' : 'Dateien per Drag & Drop ablegen oder klicken zum Auswählen'}</p>
+      <h3>{isEn ? 'Upload Media' : 'Medien hinzufügen'}</h3>
       <input type="file" id="file-input" multiple accept="image/png,image/jpeg,image/webp,image/svg" />
       <div class="upload-preview" id="upload-preview"></div>
       <div class="form-actions">
@@ -132,7 +129,6 @@ const isEn = locale === 'en';
         const title = editMediaTitle ? editMediaTitle.value : '';
         const alt = editMediaAlt ? editMediaAlt.value : '';
 
-        // Update the media card in the grid
         const card = document.querySelector('.media-card[data-id="' + id + '"]');
         if (card) {
           const titleEl = card.querySelector('.media-card-title');
