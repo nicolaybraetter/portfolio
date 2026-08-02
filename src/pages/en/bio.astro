@@ -22,7 +22,28 @@ const site = content.site;
       </div>
 
       <div class="bio-content">
-        <p>{isEn ? site.bioEn : site.bio}</p>
+        <p class="bio-lead">DJ Except4 creates emotional, uplifting and cinematic trance music.</p>
+        <p>Discover original Vocal Trance, Uplifting Trance, Melodic Trance and Progressive Trance featuring driving basslines, powerful synths, atmospheric breakdowns and euphoric drops.</p>
+
+        <h3>{isEn ? 'On this channel' : 'Auf diesem Kanal'}</h3>
+        <ul>
+          <li>{isEn ? 'Original trance releases' : 'Original Trance-Releases'}</li>
+          <li>{isEn ? 'Official audio and music visualizers' : 'Offizielle Audios und Musik-Visualizer'}</li>
+          <li>{isEn ? 'Emotional and cinematic trance' : 'Emotionale und cineastische Trance'}</li>
+          <li>{isEn ? 'Vocal, melodic and progressive trance' : 'Vocal, Melodic und Progressive Trance'}</li>
+          <li>{isEn ? 'Trance Shorts, previews and DJ mixes' : 'Trance Shorts, Previews und DJ-Mixes'}</li>
+        </ul>
+
+        <p class="bio-cta">{isEn ? 'Subscribe and join DJ Except4 on a journey through emotion, energy and electronic music.' : 'Abonniere und begleite DJ Except4 auf einer Reise durch Emotion, Energie und elektronische Musik.'}</p>
+        <p>{isEn ? 'New music released regularly.' : 'Neue Musik wird regelmäßig veröffentlicht.'}</p>
+
+        <div class="bio-details">
+          <p><strong>{isEn ? 'Artist' : 'Künstler'}:</strong> DJ Except4</p>
+          <p><strong>{isEn ? 'Styles' : 'Stile'}:</strong> {isEn ? 'Uplifting Trance / Vocal Trance / Melodic Trance / Progressive Trance / Epic Trance' : 'Uplifting Trance / Vocal Trance / Melodic Trance / Progressive Trance / Epic Trance'}</p>
+        </div>
+
+        <p class="bio-thanks">{isEn ? 'Streaming, social media and support links can be found in the channel links.' : 'Streaming-, Social-Media- und Support-Links findest du in den Kanallinks.'}</p>
+        <p class="bio-thanks">{isEn ? 'Thank you for listening, sharing and supporting independent trance music.' : 'Danke fürs Zuhören, Teilen und Unterstützen unabhängiger Trance-Musik.'}</p>
       </div>
 
       <section class="bio-genres" aria-labelledby="genres-heading">
@@ -60,6 +81,81 @@ const site = content.site;
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--dj-text-secondary);
+  }
+
+  .bio-lead {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--dj-text-primary);
+    margin-bottom: var(--space-lg);
+  }
+
+  .bio-content h3 {
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-md);
+    font-size: 1.1rem;
+    color: var(--dj-text-primary);
+  }
+
+  .bio-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-xl) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .bio-content li {
+    position: relative;
+    padding-left: var(--space-xl);
+    color: var(--dj-text-secondary);
+    line-height: 1.6;
+  }
+
+  .bio-content li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--dj-accent);
+  }
+
+  .bio-cta {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--dj-text-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .bio-details {
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .bio-details p {
+    margin: 0 0 var(--space-sm) 0;
+    font-size: 0.95rem;
+    color: var(--dj-text-secondary);
+  }
+
+  .bio-details p:last-child {
+    margin-bottom: 0;
+  }
+
+  .bio-thanks {
+    margin-top: var(--space-xl);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--dj-text-muted);
+    font-style: italic;
+  }
+
+  .bio-thanks:last-child {
+    margin-bottom: 0;
   }
 
   .bio-genres,
