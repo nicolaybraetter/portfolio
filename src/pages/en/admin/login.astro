@@ -1,41 +1,95 @@
 ---
-import Layout from '../../../layouts/AdminLayout.astro';
+import Layout from '../../../layouts/Layout.astro';
 
 const locale = Astro.currentLocale || 'de';
 const isEn = locale === 'en';
 ---
 
-<Layout title={isEn ? 'Admin Login' : 'Admin Login'}>
-  <div class="login-container">
-    <div class="login-card">
-      <div class="login-header">
-        <img src="/assets/DJ_Except4-Logo.png" alt="DJ Except4" width="60" height="60" loading="eager" />
-        <h1>{isEn ? 'Admin Login' : 'Admin Login'}</h1>
-        <p>{isEn ? 'Sign in to manage your site' : 'Melde dich an, um deine Seite zu verwalten'}</p>
-      </div>
-      <form id="login-form" class="login-form" method="post" action={`/${locale}/admin/login`}>
-        <div class="form-group">
-          <label for="password">{isEn ? 'Password' : 'Passwort'}</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            required
-            autocomplete="current-password"
-            placeholder={isEn ? 'Enter password' : 'Passwort eingeben'}
-          />
+<Layout
+  title={isEn ? 'Admin Login — DJ Except4' : 'Admin Login — DJ Except4'}
+  description={isEn ? 'Sign in to manage your site.' : 'Melde dich an, um deine Seite zu verwalten.'}
+  image={`/assets/DJ_Except4-Logo.png`}
+  type="website"
+  locale={locale}
+>
+  <section class="login-page" aria-labelledby="login-heading">
+    <div class="login-container">
+      <div class="login-card">
+        <div class="login-header">
+          <img src="/assets/DJ_Except4-Logo.png" alt="DJ Except4" width="60" height="60" loading="eager" />
+          <h1 id="login-heading">{isEn ? 'Admin Login' : 'Admin Login'}</h1>
+          <p>{isEn ? 'Sign in to manage your site' : 'Melde dich an, um deine Seite zu verwalten'}</p>
         </div>
-        <div id="login-error" class="login-error" style="display:none" role="alert"></div>
-        <button type="submit" class="button button-primary button-full">
-          {isEn ? 'Sign In' : 'Anmelden'}
-        </button>
-      </form>
+        <form id="login-form" class="login-form" novalidate>
+          <div class="form-group">
+            <label for="password">{isEn ? 'Password' : 'Passwort'}</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              autocomplete="current-password"
+              placeholder={isEn ? 'Enter password' : 'Passwort eingeben'}
+            />
+          </div>
+          <div id="login-error" class="login-error" style="display:none" role="alert"></div>
+          <button type="submit" class="button button-primary button-full" id="login-submit">
+            {isEn ? 'Sign In' : 'Anmelden'}
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('login-form');
+      const submitBtn = document.getElementById('login-submit');
+      const errorDiv = document.getElementById('login-error');
+      if (!form) return;
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!submitBtn || !errorDiv) return;
+
+        const password = (document.getElementById('password') as HTMLInputElement)?.value || '';
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Verifying...';
+        errorDiv.style.display = 'none';
+        errorDiv.textContent = '';
+
+        try {
+          const response = await fetch('/api/admin/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password }),
+            credentials: 'same-origin',
+          });
+
+          const data = await response.json();
+
+          if (response.ok && data.success) {
+            window.location.href = '/' + (document.documentElement.lang === 'en' ? 'en' : 'de') + '/admin/';
+          } else {
+            errorDiv.textContent = data.error || 'Invalid password.';
+            errorDiv.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Sign In';
+          }
+        } catch (err) {
+          errorDiv.textContent = 'Connection error. Please try again.';
+          errorDiv.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Sign In';
+        }
+      });
+    });
+  </script>
 </Layout>
 
 <style>
-  .login-container {
+  .login-page {
     display: flex;
     align-items: center;
     justify-content: center;

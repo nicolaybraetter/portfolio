@@ -26,11 +26,11 @@ const isEn = locale === 'en';
             document.getElementById('admin-auth-check').style.display = 'none';
             document.querySelector('.admin-layout').style.display = 'flex';
           } else {
-            window.location.href = '/' + locale + '/admin/login';
+            window.location.href = '/' + locale + '/admin/login/';
           }
         })
         .catch(() => {
-          window.location.href = '/' + locale + '/admin/login';
+          window.location.href = '/' + locale + '/admin/login/';
         });
     </script>
     <div class="admin-layout" style="display:none">
