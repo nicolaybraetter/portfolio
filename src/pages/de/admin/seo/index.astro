@@ -58,7 +58,6 @@ const isEn = locale === 'en';
 
 <script define:inline>
   document.addEventListener('DOMContentLoaded', () => {
-    // Character counters
     document.querySelectorAll('input[maxlength], textarea[maxlength]').forEach((el) => {
       const max = parseInt(el.getAttribute('maxlength') || '0');
       const countId = el.id + '-count';
@@ -74,7 +73,6 @@ const isEn = locale === 'en';
       }
     });
 
-    // Save buttons
     document.querySelectorAll('.btn-save-seo').forEach((btn) => {
       btn.addEventListener('click', () => {
         btn.textContent = '✓ Saved';
@@ -91,84 +89,3 @@ const isEn = locale === 'en';
     }
   });
 </script>
-
-<style>
-  .admin-section {
-    padding: var(--space-xl);
-    background: var(--dj-surface);
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-lg);
-  }
-
-  .seo-pages {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
-    margin-bottom: var(--space-2xl);
-  }
-
-  .seo-page {
-    padding: var(--space-lg);
-    background: var(--dj-bg-primary);
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-md);
-  }
-
-  .seo-page h3 {
-    margin-bottom: var(--space-md);
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    margin-bottom: var(--space-md);
-  }
-
-  .form-group label {
-    font-weight: 600;
-    color: var(--dj-text-primary);
-    font-size: 0.85rem;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    padding: 0.5rem 0.7rem;
-    background: var(--dj-bg-primary);
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-sm);
-    color: var(--dj-text-primary);
-    font-family: inherit;
-  }
-
-  .char-count {
-    font-size: 0.75rem;
-    color: var(--dj-text-muted);
-    text-align: right;
-  }
-
-  .seo-global {
-    padding: var(--space-xl);
-    background: var(--dj-bg-primary);
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-md);
-  }
-
-  .seo-global h3 {
-    margin-bottom: var(--space-md);
-  }
-
-  .btn-save-seo {
-    padding: 0.5rem 1rem;
-    background: var(--dj-accent-cyan);
-    color: var(--dj-bg-primary);
-    border: none;
-    border-radius: var(--radius-sm);
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 0.85rem;
-  }
-
-  h1 { margin-bottom: var(--space-xl); }
-  h3 { margin-bottom: var(--space-md); }
-</style>

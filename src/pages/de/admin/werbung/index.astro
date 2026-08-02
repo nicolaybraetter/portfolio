@@ -71,10 +71,10 @@ const isEn = locale === 'en';
         <input type="file" id="ad-image" name="image" accept="image/*" />
       </div>
       <div class="form-actions">
-        <button type="submit" class="button button-primary">
+        <button type="submit" class="btn btn-primary">
           {isEn ? 'Save' : 'Speichern'}
         </button>
-        <button type="button" class="button button-secondary" id="btn-cancel-ad">
+        <button type="button" class="btn btn-secondary" id="btn-cancel-ad">
           {isEn ? 'Cancel' : 'Abbrechen'}
         </button>
       </div>
@@ -131,125 +131,3 @@ const isEn = locale === 'en';
     });
   });
 </script>
-
-<style>
-  .admin-section {
-    padding: var(--space-xl);
-    background: var(--dj-surface);
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-lg);
-  }
-
-  .ad-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    margin-bottom: var(--space-xl);
-  }
-
-  .ad-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--space-md);
-    background: var(--dj-bg-primary);
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-md);
-    flex-wrap: wrap;
-    gap: var(--space-md);
-  }
-
-  .ad-info strong {
-    color: var(--dj-text-primary);
-  }
-
-  .ad-info p {
-    color: var(--dj-text-secondary);
-    font-size: 0.85rem;
-  }
-
-  .status-active {
-    color: var(--dj-success);
-    font-weight: 700;
-    font-size: 0.8rem;
-  }
-
-  .status-inactive {
-    color: var(--dj-text-muted);
-    font-weight: 700;
-    font-size: 0.8rem;
-  }
-
-  .ad-actions {
-    display: flex;
-    gap: var(--space-sm);
-  }
-
-  .btn-edit, .btn-toggle, .btn-delete {
-    padding: 0.4rem 0.8rem;
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-sm);
-    background: transparent;
-    color: var(--dj-text-primary);
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transition: all var(--transition-fast);
-  }
-
-  .btn-edit:hover { border-color: var(--dj-accent-cyan); color: var(--dj-accent-cyan); }
-  .btn-toggle:hover { border-color: var(--dj-accent-gold); color: var(--dj-accent-gold); }
-  .btn-delete:hover { border-color: var(--dj-error); color: var(--dj-error); }
-
-  .btn-add {
-    padding: 0.6rem 1.2rem;
-    background: var(--dj-accent-cyan);
-    color: var(--dj-bg-primary);
-    border: none;
-    border-radius: var(--radius-sm);
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 0.9rem;
-  }
-
-  .admin-form {
-    padding: var(--space-xl);
-    background: var(--dj-surface);
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-lg);
-    margin-top: var(--space-xl);
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    margin-bottom: var(--space-md);
-  }
-
-  .form-group label {
-    font-weight: 600;
-    color: var(--dj-text-primary);
-    font-size: 0.85rem;
-  }
-
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    padding: 0.6rem 0.8rem;
-    background: var(--dj-bg-primary);
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-sm);
-    color: var(--dj-text-primary);
-    font-family: inherit;
-  }
-
-  .form-actions {
-    display: flex;
-    gap: var(--space-sm);
-  }
-
-  h1 { margin-bottom: var(--space-xl); }
-  h2 { margin-bottom: var(--space-md); }
-  h3 { margin-bottom: var(--space-md); }
-</style>

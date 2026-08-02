@@ -1,5 +1,8 @@
 ---
 // Admin Layout — shared shell for all admin pages
+// Uses the same design system as the homepage (global.css)
+import '../styles/global.css';
+
 const { title } = Astro.props;
 const locale = Astro.currentLocale || 'de';
 const isEn = locale === 'en';
@@ -12,10 +15,10 @@ const isEn = locale === 'en';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} — DJ Except4 Admin</title>
     <meta name="robots" content="noindex, nofollow" />
-    <link rel="stylesheet" href="/admin.css" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body class="admin-body" data-locale={isEn ? 'en' : 'de'}>
-    <div id="admin-auth-check" style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:Inter,sans-serif;color:#9494b8;">
+    <div id="admin-auth-check">
       <p>Prüfe Authentifizierung...</p>
     </div>
     <script>
@@ -59,96 +62,3 @@ const isEn = locale === 'en';
     </div>
   </body>
 </html>
-
-<style>
-  .admin-body {
-    margin: 0;
-    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-    background: var(--dj-bg-primary, #0a0a14);
-    color: var(--dj-text-primary, #e8e8f0);
-  }
-
-  .admin-layout {
-    display: flex;
-    min-height: 100vh;
-  }
-
-  .admin-sidebar {
-    width: 250px;
-    background: var(--dj-surface, #14142a);
-    border-right: 1px solid var(--dj-border, #2a2a4a);
-    padding: var(--space-xl);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
-  }
-
-  .admin-logo {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-  }
-
-  .admin-logo span {
-    font-weight: 900;
-    font-size: 1.1rem;
-  }
-
-  .admin-sidebar nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-  }
-
-  .admin-sidebar nav a {
-    display: block;
-    padding: 0.6rem 0.8rem;
-    color: var(--dj-text-secondary, #9494b8);
-    text-decoration: none;
-    border-radius: var(--radius-sm);
-    transition: all var(--transition-fast);
-  }
-
-  .admin-sidebar nav a:hover,
-  .admin-sidebar nav a.active {
-    background: var(--dj-surface-hover, #1a1a35);
-    color: var(--dj-accent-cyan, #4dc9f6);
-  }
-
-  .admin-logout {
-    margin-top: auto;
-  }
-
-  .admin-logout a {
-    color: var(--dj-error, #f87171);
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  .admin-main {
-    flex: 1;
-    padding: var(--space-2xl);
-    overflow-y: auto;
-  }
-
-  @media (max-width: 768px) {
-    .admin-layout {
-      flex-direction: column;
-    }
-
-    .admin-sidebar {
-      width: 100%;
-      flex-direction: row;
-      flex-wrap: wrap;
-      padding: var(--space-md);
-    }
-
-    .admin-sidebar nav ul {
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-  }
-</style>

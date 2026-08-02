@@ -11,14 +11,13 @@ const isEn = locale === 'en';
 
   <div class="admin-section">
     <div class="media-toolbar">
-      <button class="btn-add" id="btn-upload">
+      <button class="btn btn-primary" id="btn-upload">
         {isEn ? '+ Upload Media' : '+ Medien hochladen'}
       </button>
       <input type="file" id="media-upload" multiple accept="image/*" style="display:none" />
     </div>
 
     <div class="media-grid" id="media-grid">
-      {/* Media items will be populated by JavaScript */}
       <p class="media-empty">{isEn ? 'No media files uploaded yet.' : 'Noch keine Mediendateien hochgeladen.'}</p>
     </div>
   </div>
@@ -31,10 +30,10 @@ const isEn = locale === 'en';
       <input type="file" id="file-input" multiple accept="image/png,image/jpeg,image/webp,image/svg" />
       <div class="upload-preview" id="upload-preview"></div>
       <div class="form-actions">
-        <button type="button" class="button button-primary" id="btn-do-upload">
+        <button type="button" class="btn btn-primary" id="btn-do-upload">
           {isEn ? 'Upload' : 'Hochladen'}
         </button>
-        <button type="button" class="button button-secondary" id="btn-cancel-upload">
+        <button type="button" class="btn btn-secondary" id="btn-cancel-upload">
           {isEn ? 'Cancel' : 'Abbrechen'}
         </button>
       </div>
@@ -86,68 +85,3 @@ const isEn = locale === 'en';
     }
   });
 </script>
-
-<style>
-  .admin-section {
-    padding: var(--space-xl);
-    background: var(--dj-surface);
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-lg);
-  }
-
-  .media-toolbar {
-    display: flex;
-    gap: var(--space-md);
-    margin-bottom: var(--space-xl);
-  }
-
-  .media-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: var(--space-md);
-  }
-
-  .media-empty {
-    color: var(--dj-text-muted);
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: var(--space-2xl);
-  }
-
-  .upload-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-  }
-
-  .modal-content {
-    background: var(--dj-surface);
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-xl);
-    max-width: 500px;
-    width: 90%;
-  }
-
-  .upload-item {
-    padding: var(--space-sm);
-    background: var(--dj-bg-primary);
-    border: 1px solid var(--dj-border);
-    border-radius: var(--radius-sm);
-    font-size: 0.8rem;
-    word-break: break-all;
-  }
-
-  .form-actions {
-    display: flex;
-    gap: var(--space-sm);
-    margin-top: var(--space-lg);
-  }
-
-  h1 { margin-bottom: var(--space-xl); }
-  h3 { margin-bottom: var(--space-md); }
-</style>
