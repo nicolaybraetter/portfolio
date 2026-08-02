@@ -7,11 +7,11 @@ const isEn = locale === 'en';
 ---
 
 <Layout title={isEn ? 'Admin — Werbung' : 'Admin — Werbung'}>
-  <h1>{isEn ? 'Advertising Management' : 'Werbeverwaltung'}</h1>
+  <section class="section" aria-labelledby="admin-heading">
+    <div class="container">
+      <h1 id="admin-heading">{isEn ? 'Advertising Management' : 'Werbeverwaltung'}</h1>
 
-  <div class="admin-section">
-    <h2>{isEn ? 'Ad Links' : 'Werbelinks'}</h2>
-    <div class="ad-list" id="ad-list">
+      <div class="ad-list" id="ad-list">
       {content.ads.map((ad) => (
         <div class="ad-item" data-id={ad.id}>
           <div class="ad-info">
@@ -39,47 +39,48 @@ const isEn = locale === 'en';
     <button class="btn-add" id="btn-add-ad">
       {isEn ? '+ Add Ad' : '+ Werbung hinzufügen'}
     </button>
-  </div>
 
-  <!-- Edit Form (hidden by default) -->
-  <div class="admin-form" id="ad-form" style="display: none;">
-    <h3 id="ad-form-title">{isEn ? 'Add New Ad' : 'Neue Werbung hinzufügen'}</h3>
-    <form id="form-ad">
-      <div class="form-group">
-        <label for="ad-title">{isEn ? 'Title' : 'Titel'}</label>
-        <input type="text" id="ad-title" name="title" required />
-      </div>
-      <div class="form-group">
-        <label for="ad-url">{isEn ? 'URL' : 'URL'}</label>
-        <input type="url" id="ad-url" name="url" />
-      </div>
-      <div class="form-group">
-        <label for="ad-description">{isEn ? 'Description' : 'Beschreibung'}</label>
-        <textarea id="ad-description" name="description" rows="3"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="ad-position">{isEn ? 'Position' : 'Position'}</label>
-        <select id="ad-position" name="position">
-          <option value="hero">{isEn ? 'Hero' : 'Hero'}</option>
-          <option value="sidebar">{isEn ? 'Sidebar' : 'Sidebar'}</option>
-          <option value="inline">{isEn ? 'Inline' : 'Inline'}</option>
-          <option value="footer">{isEn ? 'Footer' : 'Footer'}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="ad-image">{isEn ? 'Image' : 'Bild'}</label>
-        <input type="file" id="ad-image" name="image" accept="image/*" />
-      </div>
-      <div class="form-actions">
-        <button type="submit" class="btn btn-primary">
-          {isEn ? 'Save' : 'Speichern'}
-        </button>
-        <button type="button" class="btn btn-secondary" id="btn-cancel-ad">
-          {isEn ? 'Cancel' : 'Abbrechen'}
-        </button>
-      </div>
-    </form>
-  </div>
+    <!-- Edit Form (hidden by default) -->
+    <div class="admin-form" id="ad-form" class="hidden">
+      <h3 id="ad-form-title">{isEn ? 'Add New Ad' : 'Neue Werbung hinzufügen'}</h3>
+      <form id="form-ad">
+        <div class="form-group">
+          <label for="ad-title">{isEn ? 'Title' : 'Titel'}</label>
+          <input type="text" id="ad-title" name="title" required />
+        </div>
+        <div class="form-group">
+          <label for="ad-url">{isEn ? 'URL' : 'URL'}</label>
+          <input type="url" id="ad-url" name="url" />
+        </div>
+        <div class="form-group">
+          <label for="ad-description">{isEn ? 'Description' : 'Beschreibung'}</label>
+          <textarea id="ad-description" name="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="ad-position">{isEn ? 'Position' : 'Position'}</label>
+          <select id="ad-position" name="position">
+            <option value="hero">{isEn ? 'Hero' : 'Hero'}</option>
+            <option value="sidebar">{isEn ? 'Sidebar' : 'Sidebar'}</option>
+            <option value="inline">{isEn ? 'Inline' : 'Inline'}</option>
+            <option value="footer">{isEn ? 'Footer' : 'Footer'}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="ad-image">{isEn ? 'Image' : 'Bild'}</label>
+          <input type="file" id="ad-image" name="image" accept="image/*" />
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">
+            {isEn ? 'Save' : 'Speichern'}
+          </button>
+          <button type="button" class="btn btn-secondary" id="btn-cancel-ad">
+            {isEn ? 'Cancel' : 'Abbrechen'}
+          </button>
+        </div>
+      </form>
+    </div>
+    </div>
+  </section>
 </Layout>
 
 <script define:inline>

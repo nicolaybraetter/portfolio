@@ -3,10 +3,12 @@ import Layout from '../../../../layouts/AdminLayout.astro';
 ---
 
 <Layout title="Admin — Email">
-  <h1>Email Inbox — info@djexcept4.de</h1>
+  <section class="section" aria-labelledby="admin-heading">
+    <div class="container">
+      <h1 id="admin-heading">Email Inbox — info@djexcept4.de</h1>
 
-  <div class="admin-section">
-    <div class="email-toolbar">
+      <div class="admin-section">
+        <div class="email-toolbar">
       <span class="email-status">
         <span class="dot green"></span>
         Connected to IONOS IMAP
@@ -24,7 +26,7 @@ import Layout from '../../../../layouts/AdminLayout.astro';
       </div>
     </div>
 
-    <div class="email-detail" id="email-detail" style="display:none;">
+    <div class="email-detail" id="email-detail" class="hidden">
       <h3 id="email-detail-subject"></h3>
       <p class="email-detail-meta">
         <strong>From:</strong> <span id="email-detail-from"></span> |
@@ -40,6 +42,8 @@ import Layout from '../../../../layouts/AdminLayout.astro';
       </div>
     </div>
   </div>
+    </div>
+  </section>
 </Layout>
 
 <script define:inline>

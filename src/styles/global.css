@@ -420,6 +420,8 @@ hr {
   padding: var(--space-2xl);
   overflow-y: auto;
   max-width: 900px;
+  margin-inline: auto;
+  width: 100%;
 }
 
 .admin-main h1 {
@@ -441,12 +443,12 @@ hr {
   border-radius: var(--radius-lg);
 }
 
-/* ── Admin Cards (use .card where possible) ── */
-.admin-card {
-  padding: var(--space-xl);
-  background: var(--dj-surface);
-  border: 1px solid var(--dj-border);
-  border-radius: var(--radius-lg);
+/* ── Admin Grid (card layout) ── */
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-2xl);
 }
 
 /* ── Admin Tables ── */
@@ -810,6 +812,11 @@ hr {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ── Utility: hidden ── */
+.hidden {
+  display: none !important;
 }
 
 /* ============================================================

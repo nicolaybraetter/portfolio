@@ -7,10 +7,12 @@ const isEn = locale === 'en';
 ---
 
 <Layout title={isEn ? 'Admin — Streaming' : 'Admin — Streaming'}>
-  <h1>{isEn ? 'YouTube & Streaming Links' : 'YouTube & Streaming-Links'}</h1>
+  <section class="section" aria-labelledby="admin-heading">
+    <div class="container">
+      <h1 id="admin-heading">{isEn ? 'YouTube & Streaming Links' : 'YouTube & Streaming-Links'}</h1>
 
-  <div class="admin-section">
-    <div class="streaming-list" id="streaming-list">
+      <div class="admin-section">
+        <div class="streaming-list" id="streaming-list">
       {content.tracks.map((track) => (
         <div class="streaming-item" data-track-id={track.id}>
           <div class="streaming-cover">
@@ -56,6 +58,8 @@ const isEn = locale === 'en';
       ))}
     </div>
   </div>
+    </div>
+  </section>
 </Layout>
 
 <script define:inline>

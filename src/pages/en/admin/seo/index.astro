@@ -7,10 +7,12 @@ const isEn = locale === 'en';
 ---
 
 <Layout title={isEn ? 'Admin — SEO' : 'Admin — SEO'}>
-  <h1>{isEn ? 'SEO Keyword Management' : 'SEO-Keyword-Pflege'}</h1>
+  <section class="section" aria-labelledby="admin-heading">
+    <div class="container">
+      <h1 id="admin-heading">{isEn ? 'SEO Keyword Management' : 'SEO-Keyword-Pflege'}</h1>
 
-  <div class="admin-section">
-    <div class="seo-pages">
+      <div class="admin-section">
+        <div class="seo-pages">
       {content.tracks.map((track) => (
         <div class="seo-page" data-track-id={track.id}>
           <h3>{track.title}</h3>
@@ -54,6 +56,8 @@ const isEn = locale === 'en';
       </button>
     </div>
   </div>
+    </div>
+  </section>
 </Layout>
 
 <script define:inline>

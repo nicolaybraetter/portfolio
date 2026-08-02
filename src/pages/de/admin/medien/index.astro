@@ -7,14 +7,16 @@ const isEn = locale === 'en';
 ---
 
 <Layout title={isEn ? 'Admin — Media' : 'Admin — Medien'}>
-  <h1>{isEn ? 'Media Library' : 'Mediathek'}</h1>
+  <section class="section" aria-labelledby="admin-heading">
+    <div class="container">
+      <h1 id="admin-heading">{isEn ? 'Media Library' : 'Mediathek'}</h1>
 
-  <div class="admin-section">
-    <div class="media-toolbar">
+      <div class="admin-section">
+        <div class="media-toolbar">
       <button class="btn btn-primary" id="btn-upload">
         {isEn ? '+ Upload Media' : '+ Medien hochladen'}
       </button>
-      <input type="file" id="media-upload" multiple accept="image/*" style="display:none" />
+      <input type="file" id="media-upload" multiple accept="image/*" class="hidden" />
     </div>
 
     <div class="media-grid" id="media-grid">
@@ -23,7 +25,7 @@ const isEn = locale === 'en';
   </div>
 
   <!-- Upload Modal -->
-  <div class="upload-modal" id="upload-modal" style="display:none;">
+  <div class="upload-modal" id="upload-modal" class="hidden">
     <div class="modal-content">
       <h3>{isEn ? 'Upload Media' : 'Medien hochladen'}</h3>
       <p>{isEn ? 'Drag & drop files or click to select' : 'Dateien per Drag & Drop ablegen oder klicken zum Auswählen'}</p>
@@ -39,6 +41,8 @@ const isEn = locale === 'en';
       </div>
     </div>
   </div>
+    </div>
+  </section>
 </Layout>
 
 <script define:inline>
