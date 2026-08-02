@@ -64,15 +64,15 @@ const youtube = content.youtube || {};
 
   <!-- ── Latest Track ── -->
   {latestTrack && (
-    <section class="section" aria-labelledby="latest-heading">
+    <section class="section reveal" aria-labelledby="latest-heading">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal-up">
           <h2 id="latest-heading">{isEn ? 'Latest Release' : 'Neueste Veröffentlichung'}</h2>
           <a href={`/${basePath}tracks/`} class="btn btn-ghost">
             {isEn ? 'All Tracks →' : 'Alle Tracks →'}
           </a>
         </div>
-        <div class="track-hero-card card-accent">
+        <div class="track-hero-card card-accent reveal-scale">
           <div class="track-hero-cover">
             <img
               src={latestTrack.files?.cover || '/assets/DJ_Except4-Logo-1200.webp'}
@@ -111,17 +111,17 @@ const youtube = content.youtube || {};
   )}
 
   <!-- ── YouTube Showcase ── -->
-  <section class="section section-sm" aria-labelledby="youtube-heading">
+  <section class="section section-sm reveal" aria-labelledby="youtube-heading">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal-up">
         <h2 id="youtube-heading">{isEn ? 'YouTube' : 'YouTube'}</h2>
         <a href="https://www.youtube.com/@DJExcept4" target="_blank" rel="noopener" class="btn btn-ghost">
           {isEn ? 'Subscribe →' : 'Abonnieren →'}
         </a>
       </div>
-      <div class="grid-cards youtube-grid">
+      <div class="grid-cards youtube-grid reveal-stagger">
         {tracks.map((track) => (
-          <a href={track.youtube?.url || '#'} target="_blank" rel="noopener" class="youtube-card card-accent">
+          <a href={track.youtube?.url || '#'} target="_blank" rel="noopener" class="youtube-card card-accent track-card">
             <div class="youtube-thumb">
               <img
                 src={track.files?.cover || '/media/youtube/thumb-' + track.id + '-maxres.jpg'}
@@ -149,9 +149,9 @@ const youtube = content.youtube || {};
 
   <!-- ── DistroKid Promotion ── -->
   {ads.length > 0 && ads[0] && (
-    <section class="section section-sm" aria-labelledby="ad-heading">
+    <section class="section section-sm reveal" aria-labelledby="ad-heading">
       <div class="container">
-        <div class="promo-card card">
+        <div class="promo-card card reveal-up">
           <div class="promo-content">
             <h3>{ads[0].title}</h3>
             <p>{ads[0].description}</p>
@@ -165,10 +165,10 @@ const youtube = content.youtube || {};
   )}
 
   <!-- ── Music Platforms ── -->
-  <section class="section section-sm" aria-labelledby="platforms-heading">
+  <section class="section section-sm reveal" aria-labelledby="platforms-heading">
     <div class="container">
-      <h2 id="platforms-heading" class="section-title">{isEn ? 'Available on' : 'Verfügbar auf'}</h2>
-      <div class="platform-logos">
+      <h2 id="platforms-heading" class="section-title reveal-up">{isEn ? 'Available on' : 'Verfügbar auf'}</h2>
+      <div class="platform-logos reveal-stagger">
               <a href="https://open.spotify.com/artist/djexcept4" target="_blank" rel="noopener" class="platform-logo" aria-label="Spotify">
                 <svg viewBox="0 0 24 24" width="56" height="56" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.18-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
               </a>
@@ -189,10 +189,10 @@ const youtube = content.youtube || {};
   </section>
 
   <!-- ── Social Links ── -->
-  <section class="section section-sm" aria-labelledby="social-heading">
+  <section class="section section-sm reveal" aria-labelledby="social-heading">
     <div class="container">
-      <h2 id="social-heading" class="section-title">{isEn ? 'Follow Me' : 'Folge mir'}</h2>
-      <div class="social-links">
+      <h2 id="social-heading" class="section-title reveal-up">{isEn ? 'Follow Me' : 'Folge mir'}</h2>
+      <div class="social-links reveal-stagger">
         {socialLinks.instagram && (
           <a href={socialLinks.instagram.url} target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
@@ -217,10 +217,10 @@ const youtube = content.youtube || {};
 
   <!-- ── FAQ ── -->
   {faqs.length > 0 && (
-    <section class="section" aria-labelledby="faq-heading">
+    <section class="section reveal" aria-labelledby="faq-heading">
       <div class="container">
-        <h2 id="faq-heading" class="section-title">{isEn ? 'FAQ' : 'Häufig gestellte Fragen'}</h2>
-        <dl class="faq-list">
+        <h2 id="faq-heading" class="section-title reveal-up">{isEn ? 'FAQ' : 'Häufig gestellte Fragen'}</h2>
+        <dl class="faq-list reveal-stagger">
           {faqs.map((faq) => (
             <div class="faq-item card">
               <dt>{faq.question}</dt>
@@ -585,3 +585,93 @@ const youtube = content.youtube || {};
     line-height: 1.7;
   }
 </style>
+
+<!-- ── Footer ── -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-brand">
+      <img src="/assets/DJ_Except4-Logo-120.webp" alt="DJ Except4" width="40" height="40" />
+      <span>DJ Except4</span>
+    </div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="/de/impressum/">Impressum</a>
+      <a href="/de/datenschutz/">Datenschutz</a>
+      <a href="https://www.youtube.com/@DJExcept4" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://open.spotify.com/artist/djexcept4" target="_blank" rel="noopener">Spotify</a>
+      <a href="mailto:info@djexcept4.de">info@djexcept4.de</a>
+    </nav>
+    <p class="footer-copy">© 2026 · DJ Except4</p>
+  </div>
+</footer>
+
+<!-- ── Back to Top ── -->
+<button class="back-to-top" aria-label="Back to top" id="back-to-top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
+
+<!-- ── Noise Texture Overlay ── -->
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<!-- ── Custom Cursor (Hero) ── -->
+<div class="hero-custom-cursor" id="hero-cursor" aria-hidden="true"></div>
+
+<script>
+  /* ── Scroll Reveal (Intersection Observer) ── */
+  const revealElements = document.querySelectorAll('.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  /* ── Back to Top ── */
+  const backToTop = document.getElementById('back-to-top');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 600) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ── Custom Cursor (Hero only) ── */
+  const cursor = document.getElementById('hero-cursor');
+  if (cursor) {
+    let cursorVisible = false;
+    let cursorTimeout;
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      if (!cursorVisible) {
+        cursor.classList.add('visible');
+        cursorVisible = true;
+      }
+      clearTimeout(cursorTimeout);
+      cursorTimeout = setTimeout(() => {
+        cursor.classList.remove('visible');
+        cursorVisible = false;
+      }, 3000);
+    });
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest('a, button, .btn, .card, .track-card, .platform-logo, .social-link')) {
+        cursor.classList.add('hover');
+      }
+    });
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest('a, button, .btn, .card, .track-card, .platform-logo, .social-link')) {
+        cursor.classList.remove('hover');
+      }
+    });
+  }
+</script>

@@ -47,11 +47,20 @@ const description = isEn ? track.descriptionEn : track.descriptionDE || track.de
           />
         </div>
         <div class="track-meta">
-          <span class="track-genre">{track.genre}</span>
+          <div class="track-genres">
+            <span class="genre-pill">{track.genre}</span>
+            {track.genreEn && <span class="genre-pill">{track.genreEn}</span>}
+          </div>
           <h1 id="track-heading">{track.title}</h1>
           <p class="track-artist">DJ Except4</p>
           <p class="track-style">{isEn ? track.styleEn : track.style}</p>
           <p class="track-description">{isEn ? track.descriptionEn : track.descriptionDE || track.description}</p>
+
+          <!-- ── Track Progress (visual) ── -->
+          <div class="track-progress" aria-hidden="true">
+            <div class="track-progress-bar" style="width: 0%"></div>
+          </div>
+          <p class="track-duration">{track.bpm} BPM · {track.key}</p>
 
           <div class="track-actions">
             <Player
@@ -123,12 +132,19 @@ const description = isEn ? track.descriptionEn : track.descriptionDE || track.de
     gap: var(--space-md);
   }
 
+  .track-genres {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-sm);
+  }
+
   .track-genre {
     font-size: 0.75rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--dj-accent-cyan);
+    color: var(--dj-accent);
   }
 
   .track-artist {
@@ -146,6 +162,29 @@ const description = isEn ? track.descriptionEn : track.descriptionDE || track.de
   .track-description {
     color: var(--dj-text-secondary);
     line-height: 1.7;
+  }
+
+  /* ── Track Progress Bar ── */
+  .track-progress {
+    width: 100%;
+    height: 4px;
+    background: var(--dj-border);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-sm);
+  }
+  .track-progress-bar {
+    height: 100%;
+    background: var(--dj-accent);
+    border-radius: var(--radius-full);
+    width: 0%;
+    box-shadow: 0 0 8px rgba(77, 201, 246, 0.4);
+  }
+  .track-duration {
+    font-size: 0.8rem;
+    color: var(--dj-text-muted);
+    margin: 0;
   }
 
   .track-actions {
