@@ -49,6 +49,15 @@ const faqs = content.faq || [];
           {isEn ? 'Get in Touch' : 'Kontakt aufnehmen'}
         </a>
       </div>
+      <div class="hero-equalizer" aria-hidden="true">
+        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+        <div class="eq-bar"></div><div class="eq-bar"></div>
+      </div>
     </div>
   </section>
 
@@ -62,7 +71,7 @@ const faqs = content.faq || [];
             {isEn ? 'All Tracks →' : 'Alle Tracks →'}
           </a>
         </div>
-        <div class="track-hero-card card">
+        <div class="track-hero-card card-accent">
           <div class="track-hero-cover">
             <img
               src={latestTrack.files?.cover || '/assets/DJ_Except4-Logo-1200.webp'}
@@ -111,7 +120,7 @@ const faqs = content.faq || [];
       </div>
       <div class="grid-cards youtube-grid">
         {tracks.map((track) => (
-          <a href={track.youtube?.url || '#'} target="_blank" rel="noopener" class="youtube-card card">
+          <a href={track.youtube?.url || '#'} target="_blank" rel="noopener" class="youtube-card card-accent">
             <div class="youtube-thumb">
               <img
                 src={track.files?.cover || '/media/youtube/thumb-' + track.id + '-maxres.jpg'}
