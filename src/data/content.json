@@ -226,8 +226,8 @@
   "contact": {
     "title": "Kontakt",
     "titleEn": "Contact",
-    "description": "Hast du Fragen, möchtest du buchen oder zusammenarbeiten? Schreib mir!",
-    "descriptionEn": "Have questions, want to book, or collaborate? Reach out!",
+    "description": "Hast du Fragen? Schreib mir!",
+    "descriptionEn": "Have a question? Reach out!",
     "name": "Dein Name",
     "nameEn": "Your Name",
     "emailLabel": "E-Mail",
