@@ -10,7 +10,7 @@
     "preview": "astro preview --port 4321",
     "astro": "astro",
     "validate-env": "node scripts/validate-env.js",
-    "deploy": "npm run validate-env && npm run build && rsync -avz --delete dist/ nicolay@staging1:/opt/dj-except4/dist/ && ssh nicolay@staging1 'docker compose -f /opt/dj-except4/docker-compose.yml up -d'",
+    "deploy": "npm run validate-env && npm run build && chmod -R a+r dist/ && find dist/ -type d -exec chmod a+rx {} \\; && rsync -avz --delete dist/ nicolay@staging1:/home/nicolay/dj-except4/dist/ && ssh nicolay@staging1 'docker compose -f /home/nicolay/dj-except4/docker-compose.yml up -d && bash /home/nicolay/dj-except4/verify-deploy.sh'",
     "deploy:docker": "npm run validate-env && npm run build && docker compose up -d --build",
     "lint": "astro check"
   },
