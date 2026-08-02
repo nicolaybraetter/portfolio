@@ -378,7 +378,7 @@ app.post('/api/admin/login', (req, res) => {
   res.cookie(SESSION_COOKIE_NAME, token, {
     httpOnly: true,
     secure: false, // Set to true in production with HTTPS
-    sameSite: 'strict',
+    sameSite: 'lax',
     maxAge: 24 * 60 * 60 * 1000,
     path: '/',
   });
