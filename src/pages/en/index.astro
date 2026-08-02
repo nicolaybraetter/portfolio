@@ -9,7 +9,7 @@ const tracks = content.tracks || [];
 const latestTrack = tracks[0];
 const socialLinks = content.social || {};
 const ads = content.ads || [];
-const faqs = content.faq || [];
+const youtube = content.youtube || {};
 ---
 
 <Layout
@@ -63,7 +63,7 @@ const faqs = content.faq || [];
 
   <!-- ── Latest Track ── -->
   {latestTrack && (
-    <section class="section reveal" aria-labelledby="latest-heading">
+    <section class="section section-sm reveal" aria-labelledby="latest-heading">
       <div class="container">
         <div class="section-header reveal-up">
           <h2 id="latest-heading">{isEn ? 'Latest Release' : 'Neueste Veröffentlichung'}</h2>
@@ -213,23 +213,6 @@ const faqs = content.faq || [];
       </div>
     </div>
   </section>
-
-  <!-- ── FAQ ── -->
-  {faqs.length > 0 && (
-    <section class="section reveal" aria-labelledby="faq-heading">
-      <div class="container">
-        <h2 id="faq-heading" class="section-title reveal-up">{isEn ? 'FAQ' : 'Häufig gestellte Fragen'}</h2>
-        <dl class="faq-list reveal-stagger">
-          {faqs.map((faq) => (
-            <div class="faq-item card">
-              <dt>{faq.question}</dt>
-              <dd>{faq.answer}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </section>
-  )}
 
 </Layout>
 
@@ -523,23 +506,6 @@ const faqs = content.faq || [];
     color: var(--dj-text-primary);
     border-color: var(--dj-accent);
     background: var(--dj-surface-elevated);
-  }
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-  .faq-item {
-    padding: var(--space-5) var(--space-6);
-  }
-  .faq-item dt {
-    font-weight: 700;
-    margin-bottom: var(--space-2);
-    color: var(--dj-text-primary);
-  }
-  .faq-item dd {
-    color: var(--dj-text-secondary);
-    line-height: 1.7;
   }
 </style>
 
