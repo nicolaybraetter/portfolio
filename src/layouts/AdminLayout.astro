@@ -22,6 +22,7 @@ const isEn = locale === 'en';
       <p>Prüfe Authentifizierung...</p>
     </div>
     <script>
+      // Auth check on page load
       const locale = document.body.dataset.locale || 'de';
       fetch('/api/admin/verify', { credentials: 'same-origin' })
         .then(r => {
@@ -35,6 +36,23 @@ const isEn = locale === 'en';
         .catch(() => {
           window.location.href = '/' + locale + '/admin/login/';
         });
+
+      // Logout handler
+      const logoutBtn = document.getElementById('admin-logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          try {
+            await fetch('/api/admin/logout', {
+              method: 'POST',
+              credentials: 'same-origin',
+            });
+          } catch (_) {
+            // Ignore network errors — proceed to login page anyway
+          }
+          window.location.href = '/' + locale + '/admin/login/';
+        });
+      }
     </script>
     <div class="admin-layout" style="display:none">
       <aside class="admin-sidebar" role="navigation" aria-label="Admin navigation">
@@ -53,7 +71,7 @@ const isEn = locale === 'en';
           </ul>
         </nav>
         <div class="admin-logout">
-          <a href={`/${locale}/admin/login/`}>{isEn ? 'Logout' : 'Abmelden'}</a>
+          <a href={`/${locale}/admin/login/`} id="admin-logout-btn" role="button">{isEn ? 'Logout' : 'Abmelden'}</a>
         </div>
       </aside>
       <main class="admin-main" role="main">
