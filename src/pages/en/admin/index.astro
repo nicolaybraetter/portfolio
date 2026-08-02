@@ -1,31 +1,90 @@
 ---
-import Layout from '../../../layouts/Layout.astro';
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+
 const locale = Astro.currentLocale || 'de';
 const isEn = locale === 'en';
 ---
 
-<Layout title={isEn ? 'Admin' : 'Admin'} description="Admin Panel" type="website" locale={locale}>
-  <section class="admin-redirect" aria-labelledby="admin-heading">
+<AdminLayout title={isEn ? 'Admin' : 'Admin'}>
+  <section class="admin-home" aria-labelledby="admin-heading">
     <div class="container">
       <h1 id="admin-heading">{isEn ? 'Admin Panel' : 'Admin-Bereich'}</h1>
-      <p>{isEn ? 'Please log in to access the admin panel.' : 'Bitte melde dich an, um den Admin-Bereich zu betreten.'}</p>
-      <a href={`/${locale}/admin/login/`} class="button button-primary">
-        {isEn ? 'Go to Login' : 'Zum Login'}
-      </a>
+      <p>{isEn ? 'Welcome! Use the sidebar to navigate.' : 'Willkommen! Nutze die Seitenleiste zur Navigation.'}</p>
+
+      <div class="admin-dashboard">
+        <div class="admin-card">
+          <h3>{isEn ? 'Advertising' : 'Werbung'}</h3>
+          <p>{isEn ? 'Manage ad links and placements.' : 'Verwalte Werbelinks und Platzierungen.'}</p>
+          <a href={`/${locale}/admin/werbung/`} class="button button-primary">
+            {isEn ? 'Go to Advertising' : 'Zur Werbung'}
+          </a>
+        </div>
+
+        <div class="admin-card">
+          <h3>{isEn ? 'Media' : 'Medien'}</h3>
+          <p>{isEn ? 'Upload and manage media files.' : 'Mediendateien hochladen und verwalten.'}</p>
+          <a href={`/${locale}/admin/medien/`} class="button button-primary">
+            {isEn ? 'Go to Media' : 'Zu den Medien'}
+          </a>
+        </div>
+
+        <div class="admin-card">
+          <h3>{isEn ? 'Streaming' : 'Streaming'}</h3>
+          <p>{isEn ? 'Manage YouTube and streaming links.' : 'YouTube- und Streaming-Links verwalten.'}</p>
+          <a href={`/${locale}/admin/streaming/`} class="button button-primary">
+            {isEn ? 'Go to Streaming' : 'Zum Streaming'}
+          </a>
+        </div>
+
+        <div class="admin-card">
+          <h3>{isEn ? 'SEO' : 'SEO'}</h3>
+          <p>{isEn ? 'Manage keywords and meta tags.' : 'Keywords und Meta-Tags verwalten.'}</p>
+          <a href={`/${locale}/admin/seo/`} class="button button-primary">
+            {isEn ? 'Go to SEO' : 'Zu SEO'}
+          </a>
+        </div>
+
+        <div class="admin-card">
+          <h3>{isEn ? 'Email' : 'E-Mail'}</h3>
+          <p>{isEn ? 'View and reply to messages.' : 'Nachrichten anzeigen und beantworten.'}</p>
+          <a href={`/${locale}/admin/email/`} class="button button-primary">
+            {isEn ? 'Go to Email' : 'Zu E-Mail'}
+          </a>
+        </div>
+      </div>
     </div>
   </section>
-</Layout>
+</AdminLayout>
 
 <style>
-  .admin-redirect {
-    padding: clamp(3rem, 7vw, 5rem) 0;
-    text-align: center;
+  .admin-home {
+    padding: var(--space-xl);
   }
-  .admin-redirect h1 {
+
+  .admin-home h1 {
     margin-bottom: var(--space-md);
   }
-  .admin-redirect p {
+
+  .admin-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+  }
+
+  .admin-card {
+    padding: var(--space-xl);
+    background: var(--dj-surface);
+    border: 1px solid var(--dj-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .admin-card h3 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .admin-card p {
     color: var(--dj-text-secondary);
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
   }
 </style>
