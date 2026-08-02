@@ -146,9 +146,11 @@ const metaLocale = effectiveLocale === 'en' ? 'en_US' : 'de_DE';
           <span class="footer-logo">DJ Except4</span>
           <span class="footer-copy">&copy; {new Date().getFullYear()} · info@djexcept4.de</span>
         </div>
-        <nav aria-label="Footer-Navigation">
+        <nav aria-label="Footer-Navigation" class="footer-nav">
           <a href={`/${basePath}impressum/`}>Impressum</a>
           <a href={`/${basePath}datenschutz/`}>Datenschutz</a>
+          <a href="https://www.youtube.com/@DJExcept4" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://open.spotify.com/artist/djexcept4" target="_blank" rel="noopener">Spotify</a>
         </nav>
       </div>
     </footer>
@@ -291,6 +293,15 @@ const metaLocale = effectiveLocale === 'en' ? 'en_US' : 'de_DE';
     border-top: 1px solid var(--dj-border-subtle);
     padding-block: var(--space-8);
     margin-top: var(--space-16);
+    background: linear-gradient(180deg, rgba(77, 201, 246, 0.02) 0%, transparent 100%);
+  }
+  .site-footer::before {
+    content: '';
+    display: block;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--dj-accent) 50%, transparent 100%);
+    opacity: 0.4;
+    margin-bottom: var(--space-8);
   }
   .footer-container {
     display: flex;
@@ -320,15 +331,20 @@ const metaLocale = effectiveLocale === 'en' ? 'en_US' : 'de_DE';
     font-size: 0.8125rem;
     color: var(--dj-text-muted);
   }
-  .site-footer nav {
+  .footer-nav {
     display: flex;
-    gap: var(--space-6);
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    justify-content: center;
   }
-  .site-footer nav a {
+  .footer-nav a {
     font-size: 0.8125rem;
     color: var(--dj-text-muted);
     text-decoration: none;
-    transition: color var(--dur-fast);
+    transition: color var(--dur-fast), text-shadow var(--dur-fast);
   }
-  .site-footer nav a:hover { color: var(--dj-accent); }
+  .footer-nav a:hover {
+    color: var(--dj-accent);
+    text-shadow: 0 0 8px rgba(77, 201, 246, 0.4);
+  }
 </style>
