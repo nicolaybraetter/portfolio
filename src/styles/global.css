@@ -726,6 +726,7 @@ hr {
 .login-card {
   width: 100%;
   max-width: 400px;
+  margin-inline: auto;
   background: var(--dj-surface);
   border: 1px solid var(--dj-border);
   border-radius: var(--radius-lg);
