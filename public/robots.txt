@@ -2,5 +2,9 @@ User-agent: *
 Allow: /
 Sitemap: https://djexcept4.de/sitemap.xml
 
-# Disallow admin paths
+# Admin — nicht indexieren
+Disallow: /admin
 Disallow: /admin/
+
+# API — nicht indexieren
+Disallow: /api/

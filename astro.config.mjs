@@ -14,7 +14,9 @@ export default defineConfig({
   ],
   build: {
     format: 'directory',
-    sitemap: true,
+    sitemap: {
+      exclude: ['/admin/**'],
+    },
   },
   i18n: {
     defaultLocale: 'de',
